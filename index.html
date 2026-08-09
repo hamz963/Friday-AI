@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friday AI - Live Developer Control Console</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .glass {
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col p-4 md:p-6 overflow-x-hidden">
+    <!-- Header -->
+    <header class="w-full max-w-7xl mx-auto flex items-center justify-between mb-6">
+        <div class="flex items-center gap-3">
+            <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                <span class="font-extrabold text-xl tracking-tighter">F</span>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold tracking-tight bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">FRIDAY AI</h1>
+                <p class="text-xs text-cyan-400 tracking-widest uppercase">Autonomous Developer Coworker (Interactive Live Demo)</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-emerald-500 animate-ping"></span>
+            <span class="text-xs font-semibold tracking-wider text-emerald-400 uppercase">Live Web Sandbox</span>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
+        <!-- Telemetry & Controls (Left Column) -->
+        <section class="lg:col-span-4 flex flex-col gap-6">
+            <!-- Resource Usage (Interactive Mockup) -->
+            <div class="glass rounded-2xl p-5 flex flex-col gap-4">
+                <h2 class="text-sm font-bold tracking-wider text-cyan-400 uppercase">System Telemetry</h2>
+                
+                <!-- CPU -->
+                <div class="flex flex-col gap-1">
+                    <div class="flex justify-between text-xs text-slate-400 font-semibold">
+                        <span>CPU Utilization</span>
+                        <span id="cpu-percent">14.2%</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-950 rounded-full overflow-hidden">
+                        <div id="cpu-bar" class="h-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-500" style="width: 14%"></div>
+                    </div>
+                </div>
+
+                <!-- Memory -->
+                <div class="flex flex-col gap-1">
+                    <div class="flex justify-between text-xs text-slate-400 font-semibold">
+                        <span>RAM Utilization</span>
+                        <span id="ram-info">4.2 / 16.0 GB</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-950 rounded-full overflow-hidden">
+                        <div id="ram-bar" class="h-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-500" style="width: 26%"></div>
+                    </div>
+                </div>
+
+                <!-- Latency -->
+                <div class="flex flex-col gap-1">
+                    <div class="flex justify-between text-xs text-slate-400 font-semibold">
+                        <span>Pipeline Latency</span>
+                        <span id="latency-val">180 ms</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-950 rounded-full overflow-hidden">
+                        <div id="latency-bar" class="h-full bg-gradient-to-r from-violet-500 to-fuchsia-500 transition-all duration-500" style="width: 12%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Browser Viewport -->
+            <div class="glass rounded-2xl p-5 flex flex-col gap-4 flex-1">
+                <h2 class="text-sm font-bold tracking-wider text-cyan-400 uppercase">Active Browser Frame</h2>
+                <div class="w-full bg-slate-950 border border-slate-800 rounded-xl overflow-hidden aspect-[4/3] flex flex-col">
+                    <div class="bg-slate-900 px-3 py-2 flex items-center gap-2 border-b border-slate-800 text-[10px] text-slate-400">
+                        <span class="h-2 w-2 rounded-full bg-rose-500"></span>
+                        <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+                        <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                        <span id="browser-url" class="bg-slate-950 px-2 py-0.5 rounded border border-slate-800 flex-1 overflow-hidden truncate">https://friday.ai</span>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center justify-center text-xs text-slate-400 bg-slate-950 p-4">
+                        <div class="text-cyan-400 font-extrabold text-sm mb-1">Friday AI Console</div>
+                        <div class="text-[10px] text-slate-600">Simulated active rendering frame</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assistant Chat & Sandboxed Console (Right Column) -->
+        <section class="lg:col-span-8 flex flex-col gap-6 min-h-[500px]">
+            <!-- Chat Container -->
+            <div class="glass rounded-2xl p-5 flex flex-col flex-1 gap-4">
+                <h2 class="text-sm font-bold tracking-wider text-cyan-400 uppercase">Friday Assistant Stream</h2>
+                
+                <!-- Chat Log -->
+                <div id="chat-log" class="flex-1 overflow-y-auto max-h-[350px] pr-2 flex flex-col gap-3">
+                    <div class="bg-cyan-500/10 border border-cyan-500/20 text-cyan-200 text-xs px-4 py-3 rounded-xl">
+                        <strong>Friday:</strong> System initialized. Ready to record voice, run sandboxed terminal commands, and perform OS/browser actions.
+                    </div>
+                </div>
+
+                <!-- Input Row -->
+                <div class="flex gap-2">
+                    <input id="chat-input" type="text" placeholder="Type prompt (e.g., compile workspace, show git status)..." class="bg-slate-950 border border-slate-800 text-slate-100 rounded-xl px-4 py-3 text-sm flex-1 focus:outline-none focus:border-cyan-500 transition-colors">
+                    <button id="chat-send" class="bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-600 hover:to-indigo-700 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all shadow-lg shadow-cyan-500/10">Send</button>
+                </div>
+            </div>
+
+            <!-- Terminal Sandbox Console & Git Status (Claude-Code Style) -->
+            <div class="glass rounded-2xl p-5 flex flex-col gap-4">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-sm font-bold tracking-wider text-cyan-400 uppercase">Sandboxed Shell Console</h2>
+                    <button id="git-refresh" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold px-3 py-1.5 rounded-lg transition-colors border border-slate-700">Refresh Git Status</button>
+                </div>
+
+                <!-- Console Output -->
+                <div id="console-output" class="bg-slate-950 border border-slate-800 rounded-xl p-4 min-h-[120px] max-h-[200px] overflow-y-auto text-xs text-slate-300 mono flex flex-col gap-1 leading-relaxed">
+                    <div class="text-slate-500">$ Initialize workspace diagnostics...</div>
+                    <div id="git-status-log" class="text-cyan-400">Git status: Working directory clean</div>
+                </div>
+
+                <!-- Console Input -->
+                <div class="flex gap-2">
+                    <span class="text-cyan-500 self-center text-sm font-bold ml-2 select-none">$</span>
+                    <input id="console-input" type="text" placeholder="Run safe shell commands (e.g., cargo check, echo hello)..." class="bg-slate-950 border border-slate-800 text-slate-100 rounded-xl px-4 py-2.5 text-sm flex-1 focus:outline-none focus:border-cyan-500 transition-colors mono">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-7xl mx-auto mt-6 text-center text-[10px] text-slate-600 tracking-wider">
+        Friday AI Dashboard &copy; 2026. Made in Rust. Memory Safe & Performant.
+    </footer>
+
+    <script>
+        // Elements
+        const cpuPercent = document.getElementById('cpu-percent');
+        const cpuBar = document.getElementById('cpu-bar');
+        const ramInfo = document.getElementById('ram-info');
+        const ramBar = document.getElementById('ram-bar');
+        const latencyVal = document.getElementById('latency-val');
+        const latencyBar = document.getElementById('latency-bar');
+        const browserUrl = document.getElementById('browser-url');
+        
+        const chatLog = document.getElementById('chat-log');
+        const chatInput = document.getElementById('chat-input');
+        const chatSend = document.getElementById('chat-send');
+        
+        const consoleOutput = document.getElementById('console-output');
+        const consoleInput = document.getElementById('console-input');
+        const gitRefresh = document.getElementById('git-refresh');
+        const gitStatusLog = document.getElementById('git-status-log');
+
+        // Log to console helper
+        function logToConsole(text, isError = false) {
+            const line = document.createElement('div');
+            line.className = isError ? 'text-rose-400' : 'text-slate-300';
+            line.innerText = text;
+            consoleOutput.appendChild(line);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+
+        // Add message helper
+        function addMessage(sender, text, isSystem = false) {
+            const bubble = document.createElement('div');
+            if (isSystem) {
+                bubble.className = "bg-slate-800/60 border border-slate-700/50 text-slate-300 text-xs px-4 py-2.5 rounded-xl";
+            } else if (sender === 'User') {
+                bubble.className = "bg-indigo-600/10 border border-indigo-500/20 text-indigo-200 text-xs px-4 py-3 rounded-xl self-end max-w-lg";
+            } else {
+                bubble.className = "bg-cyan-500/10 border border-cyan-500/20 text-cyan-200 text-xs px-4 py-3 rounded-xl self-start max-w-lg";
+            }
+            bubble.innerHTML = `<strong>${sender}:</strong> ${text}`;
+            chatLog.appendChild(bubble);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+
+        // Update metrics loops
+        setInterval(() => {
+            const cpu = (Math.random() * 45 + 5).toFixed(1);
+            cpuPercent.innerText = `${cpu}%`;
+            cpuBar.style.width = `${cpu}%`;
+            
+            const ram = (Math.random() * 1.5 + 4.0).toFixed(1);
+            ramInfo.innerText = `${ram} / 16.0 GB`;
+            ramBar.style.width = `${(ram / 16) * 100}%`;
+        }, 3000);
+
+        // Git Mock Refresh
+        gitRefresh.onclick = () => {
+            gitStatusLog.innerText = "Git status:\nOn branch main\nYour branch is up to date with 'origin/main'.\nnothing to commit, working tree clean";
+            logToConsole("$ git status");
+        };
+
+        // Chat response simulation
+        function simulateChat(val) {
+            const prompt = val.toLowerCase();
+            setTimeout(() => {
+                if (prompt.includes("browser") || prompt.includes("open")) {
+                    addMessage("Friday", "Refining Action: opening browser viewport... Success.");
+                    addMessage("System Log", "Successfully launched Chromium tab at https://friday.ai", true);
+                    browserUrl.innerText = "https://friday.ai";
+                } else if (prompt.includes("screenshot")) {
+                    addMessage("Friday", "Refining Action: capturing active desktop screen... Success.");
+                    addMessage("System Log", "Saved desktop screenshot locally as target/desktop_capture.png", true);
+                } else if (prompt.includes("compile") || prompt.includes("check")) {
+                    addMessage("Friday", "Triggered Diagnostics compiler. Compiling workspace...");
+                    addMessage("System Log", "Build successful! All 16 crates verified.", true);
+                } else {
+                    addMessage("Friday", "I am running as an interactive sandbox. Download the v1.1.0 release executable to run OS commands locally.");
+                }
+            }, 600);
+        }
+
+        // Send Prompt Action
+        function sendPrompt() {
+            const val = chatInput.value.trim();
+            if (!val) return;
+            chatInput.value = '';
+            addMessage('User', val);
+            simulateChat(val);
+        }
+
+        // Console Shell Command Action
+        function runConsoleCommand() {
+            const val = consoleInput.value.trim();
+            if (!val) return;
+            consoleInput.value = '';
+            logToConsole(`$ ${val}`);
+            setTimeout(() => {
+                if (val.includes("echo")) {
+                    logToConsole(val.replace("echo", "").trim());
+                } else if (val.includes("cargo") || val.includes("build")) {
+                    logToConsole("Finished dev profile [unoptimized + debuginfo] target(s) in 0.05s");
+                } else {
+                    logToConsole(`Safety sandbox: command run locally requires running the friday.exe backend.`);
+                }
+            }, 300);
+        }
+
+        chatSend.onclick = sendPrompt;
+        chatInput.onkeydown = (e) => { if (e.key === 'Enter') sendPrompt(); };
+        consoleInput.onkeydown = (e) => { if (e.key === 'Enter') runConsoleCommand(); };
+    </script>
+</body>
+</html>
