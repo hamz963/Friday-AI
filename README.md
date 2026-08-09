@@ -1,6 +1,19 @@
 # Friday AI - Autonomous System Automation & Engineering Co-worker
 
-Friday AI is an advanced, high-performance local AI assistant and autonomous engineering co-worker built from scratch in **Rust** for maximum memory safety, concurrency, and speed. It integrates real-time voice streams, file/ZIP processors, Whisper Flow prompt refinement, and sandboxed developer co-worker capabilities.
+<div align="center">
+
+![Friday AI Logo](./logo.jpg)
+
+**Friday AI** is an advanced, high-performance local AI assistant and autonomous engineering co-worker built from scratch in **Rust** for maximum memory safety, concurrency, and speed. It integrates real-time voice streams, file/ZIP processors, Whisper Flow prompt refinement, and sandboxed developer co-worker capabilities.
+
+</div>
+
+---
+
+## 📄 Project Proposal & Product Architecture
+Read the complete 28-section product architecture proposal:
+* 📥 **[Download Executive Proposal PDF (PROPOSAL.pdf)](./PROPOSAL.pdf)**
+* 📖 **[View Product Proposal Markdown (PROPOSAL.md)](./PROPOSAL.md)**
 
 ---
 
@@ -87,6 +100,7 @@ Friday AI is organized as a modular Cargo workspace containing 16 crates:
 The embedded Axum server exposes the following endpoints:
 
 *   **`GET /`**: Serves the embedded HTML/CSS/JS glassmorphism dashboard.
+*   **`GET /assets/logo.jpg`**: Serves the embedded brand logo image asset.
 *   **`GET /api/metrics`**: Captures CPU load, used RAM, and command execution latency.
 *   **`GET /api/git`**: Queries local workspace repository tree logs.
 *   **`POST /api/terminal`**: Safely executes terminal commands through the sandboxing filter.
