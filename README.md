@@ -4,6 +4,12 @@ Friday AI is an advanced, high-performance local AI assistant and autonomous eng
 
 ---
 
+## 🚀 Interactive Live Demo
+Try the glassmorphic control console directly on the web:
+👉 **[Friday AI Live Dashboard Demo](https://hamz963.github.io/Friday-AI-Assistant/)**
+
+---
+
 ## 🚀 Comparison: Friday AI vs. OpenJarvis vs. OpenClaw
 
 | Feature | **Friday AI (This Project)** | **OpenJarvis** | **OpenClaw** |
@@ -51,7 +57,7 @@ cargo run --bin friday
 
 ### Run all tests:
 ```bash
-cargo test
+cargo test -j 1
 ```
 
 ---
