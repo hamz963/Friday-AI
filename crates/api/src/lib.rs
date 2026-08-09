@@ -48,6 +48,7 @@ impl ApiServer {
     pub fn build_router() -> Router {
         Router::new()
             .route("/", get(Self::serve_dashboard))
+            .route("/assets/logo.jpg", get(Self::serve_logo))
             .route("/api/metrics", get(Self::handle_metrics))
             .route("/api/git", get(Self::handle_git))
             .route("/api/terminal", post(Self::handle_terminal))
@@ -56,6 +57,14 @@ impl ApiServer {
 
     async fn serve_dashboard() -> Html<&'static str> {
         Html(include_str!("dashboard.html"))
+    }
+
+    async fn serve_logo() -> impl axum::response::IntoResponse {
+        let bytes = include_bytes!("logo.jpg");
+        (
+            [("content-type", "image/jpeg")],
+            bytes.as_ref(),
+        )
     }
 
     async fn handle_metrics() -> Json<Value> {
