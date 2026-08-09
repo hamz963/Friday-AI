@@ -1,19 +1,22 @@
-# Friday AI - Autonomous System Automation & Engineering Co-worker
+# F.R.I.D.A.Y. AI - Autonomous System Automation & Engineering Co-worker
 
 <div align="center">
 
 ![Friday AI Logo](./logo.jpg)
 
-**Friday AI** is an advanced, high-performance local AI assistant and autonomous engineering co-worker built from scratch in **Rust** for maximum memory safety, concurrency, and speed. It integrates real-time voice streams, file/ZIP processors, Whisper Flow prompt refinement, and sandboxed developer co-worker capabilities.
+### **F.R.I.D.A.Y.**
+**F**ast, **R**esilient & **I**ntelligent **D**esktop **A**gent **Y**ield-Engine
+
+*Your AI. Your Computer. Your Projects. Your Agent.*
 
 </div>
 
 ---
 
-## 📄 Project Proposal & Product Architecture
-Read the complete 28-section product architecture proposal:
-* 📥 **[Download Executive Proposal PDF (PROPOSAL.pdf)](./PROPOSAL.pdf)**
-* 📖 **[View Product Proposal Markdown (PROPOSAL.md)](./PROPOSAL.md)**
+## 📄 Project Proposal, Architecture & Presentation Deck
+Read the complete product specifications and executive pitch deck:
+* 📊 **[Download Executive Presentation Deck PDF (SLIDES.pdf)](./SLIDES.pdf)** | **[View Deck (SLIDES.md)](./SLIDES.md)**
+* 📥 **[Download Product Proposal PDF (PROPOSAL.pdf)](./PROPOSAL.pdf)** | **[View Proposal (PROPOSAL.md)](./PROPOSAL.md)**
 
 ---
 

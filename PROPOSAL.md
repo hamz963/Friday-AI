@@ -2,9 +2,9 @@
 
 ![Friday AI Logo](./logo.jpg)
 
-# FRIDAY AI
-### Project Proposal & Product Architecture
-**Autonomous Personal AI Operating System & Agent Platform**
+# F.R.I.D.A.Y. AI
+### **F**ast, **R**esilient & **I**ntelligent **D**esktop **A**gent **Y**ield-Engine
+**Project Proposal & Product Architecture**
 
 *Your AI. Your Computer. Your Projects. Your Agent.*
 
