@@ -1,0 +1,67 @@
+name: Release Pipeline
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    name: Build & Publish Release
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            artifact_name: friday.exe
+            package_name: friday-windows-x64.zip
+          - os: macos-latest
+            artifact_name: friday
+            package_name: friday-macos-x64.tar.gz
+          - os: ubuntu-latest
+            artifact_name: friday
+            package_name: friday-linux-x64.tar.gz
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up Rust Toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build Crate Target (Release Mode)
+        run: cargo build --release
+
+      - name: Build Windows MSI Installer
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          $env:PATH += ";C:\Program Files (x86)\WiX Toolset v3.11\bin"
+          candle friday.wxs -out friday.wixobj
+          light friday.wixobj -out friday-installer.msi
+
+      - name: Package Release Assets (Windows)
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          cd target/release
+          Compress-Archive -Path friday.exe -DestinationPath ../../${{ matrix.package_name }}
+
+      - name: Package Release Assets (Unix)
+        if: matrix.os != 'windows-latest'
+        run: |
+          cd target/release
+          tar -czf ../../${{ matrix.package_name }} ${{ matrix.artifact_name }}
+
+      - name: Publish Build Artifacts to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ matrix.package_name }}
+            friday-installer.msi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
