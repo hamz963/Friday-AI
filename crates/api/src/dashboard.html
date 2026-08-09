@@ -138,6 +138,41 @@
         </section>
     </main>
 
+    <!-- Educational Info & Usage Guide -->
+    <section class="w-full max-w-7xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass rounded-2xl p-6">
+            <h2 class="text-sm font-bold tracking-wider text-cyan-400 uppercase mb-3">🎓 Educational Purpose & Sandboxing</h2>
+            <p class="text-xs text-slate-300 leading-relaxed">
+                Friday AI is designed as a secure, educational workspace to explore autonomous agent actions. Letting LLMs execute shell commands directly on a host operating system presents significant security risks. Friday AI implements a multi-tiered defense:
+            </p>
+            <ul class="list-disc list-inside text-xs text-slate-400 mt-2 space-y-1">
+                <li><strong class="text-slate-300">Whisper Flow Refiner</strong>: Normalizes stutters and maps speech to strict, pre-approved action parameters.</li>
+                <li><strong class="text-slate-300">Terminal Sandbox</strong>: Filters out destructive patterns (e.g., recursive deletes, root access attempts).</li>
+                <li><strong class="text-slate-300">Safe Diagnostics Loop</strong>: Restricts compilations and checks to sandboxed workspace folders.</li>
+            </ul>
+        </div>
+        <div class="glass rounded-2xl p-6">
+            <h2 class="text-sm font-bold tracking-wider text-cyan-400 uppercase mb-3">🛠️ System Usage Guide</h2>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                Deploy and use the codebase in your local environment using the three native workspace states:
+            </p>
+            <div class="grid grid-cols-3 gap-3 text-center">
+                <div class="bg-slate-950/60 p-2.5 rounded-xl border border-slate-800">
+                    <div class="text-cyan-400 font-bold text-xs">Voice Mode</div>
+                    <div class="text-[10px] text-slate-500 mt-1">Natively records and processes wake words locally.</div>
+                </div>
+                <div class="bg-slate-950/60 p-2.5 rounded-xl border border-slate-800">
+                    <div class="text-cyan-400 font-bold text-xs">API Daemon</div>
+                    <div class="text-[10px] text-slate-500 mt-1">Exposes Axum server to host this interactive Web UI.</div>
+                </div>
+                <div class="bg-slate-950/60 p-2.5 rounded-xl border border-slate-800">
+                    <div class="text-cyan-400 font-bold text-xs">CLI checks</div>
+                    <div class="text-[10px] text-slate-500 mt-1">Allows direct shell parsing for automated compiles.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="w-full max-w-7xl mx-auto mt-6 text-center text-[10px] text-slate-600 tracking-wider">
         Friday AI Dashboard &copy; 2026. Made in Rust. Memory Safe & Performant.

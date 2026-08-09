@@ -10,6 +10,26 @@ Try the glassmorphic control console directly on the web:
 
 ---
 
+## 🎓 Educational Purpose & Security Architecture
+
+Friday AI is developed to study the safety, behavior, and security implications of letting autonomous LLM agents execute local system commands. Since raw command execution presents high security risks, the project explores several mitigation strategies:
+* **Whisper Flow speech normalization**: Pre-processes raw inputs to filter noise and map requests to predefined action boundaries.
+* **Terminal Sandbox (Command Filtering)**: Implements regex parsers to detect and block destructive operations (e.g. recursive overrides or root privilege escalations).
+* **Safe Diagnostics Loop**: Confines compilation tests to restricted workspace folders to avoid side-channel modifications.
+
+---
+
+## 🛠️ Ways of Using Friday AI
+
+1. **Desktop Command Center (Dashboard Mode)**:
+   Launch the Axum daemon server locally (`cargo run --bin friday`) to open the interactive Web UI. This serves as a control center where you can view live telemetry (CPU/RAM load), run console commands, and interact with the assistant.
+2. **Autonomous Developer Co-worker (CI/Diagnostics Mode)**:
+   Integrate Friday AI with your project build system to automatically run checks, parse errors, and suggest diagnostic revisions.
+3. **Local Speech Assistant (Voice Mode)**:
+   Configure local CPAL input streams to run hotkey voice activation, processing speech prompts in the background.
+
+---
+
 ## 📊 Comparison: Friday AI vs. OpenJarvis vs. OpenClaw
 
 | Feature | **Friday AI (This Project)** | **OpenJarvis** | **OpenClaw** |
