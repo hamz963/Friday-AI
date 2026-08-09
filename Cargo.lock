@@ -889,10 +889,15 @@ dependencies = [
 name = "friday-api"
 version = "0.1.0"
 dependencies = [
+ "async-trait",
  "axum",
  "friday-agents",
  "friday-core",
+ "friday-git",
+ "friday-llm",
  "friday-memory",
+ "friday-refiner",
+ "friday-terminal",
  "serde",
  "serde_json",
  "thiserror 2.0.18",
