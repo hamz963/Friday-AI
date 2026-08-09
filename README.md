@@ -15,7 +15,7 @@
 
 ## 📄 Project Proposal, Architecture & Presentation Deck
 Read the complete product specifications and executive pitch deck:
-* 📊 **[Download Executive Presentation Deck PDF (SLIDES.pdf)](./SLIDES.pdf)** | **[View Deck (SLIDES.md)](./SLIDES.md)**
+* 📊 **[Download PowerPoint Deck (SLIDES.pptx)](./SLIDES.pptx)** | **[PDF Version (SLIDES.pdf)](./SLIDES.pdf)** | **[View Markdown (SLIDES.md)](./SLIDES.md)**
 * 📥 **[Download Product Proposal PDF (PROPOSAL.pdf)](./PROPOSAL.pdf)** | **[View Proposal (PROPOSAL.md)](./PROPOSAL.md)**
 
 ---
