@@ -7,6 +7,7 @@
 ## **F.R.I.D.A.Y.**
 ### **F**ast, **R**esilient & **I**ntelligent **D**esktop **A**gent **Y**ield-Engine
 
+**Author & Lead Architect**: **Hamza Abdul Karim**  
 *Autonomous Personal AI Operating System & Agent Platform*
 
 ---
@@ -178,6 +179,7 @@ Phase 9: Ecosystem (Plugins, skills & mobile companion sync)
 
 ### *"Friday, make it happen."*
 
+**Author & Creator**: **Hamza Abdul Karim**  
 👉 **Live Demo**: [hamz963.github.io/Friday-AI-Assistant](https://hamz963.github.io/Friday-AI-Assistant/)  
 📦 **GitHub Releases**: [github.com/hamz963/Friday-AI-Assistant](https://github.com/hamz963/Friday-AI-Assistant)
 

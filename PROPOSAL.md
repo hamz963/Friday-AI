@@ -6,6 +6,7 @@
 ### **F**ast, **R**esilient & **I**ntelligent **D**esktop **A**gent **Y**ield-Engine
 **Project Proposal & Product Architecture**
 
+**Author & Creator**: **Hamza Abdul Karim**  
 *Your AI. Your Computer. Your Projects. Your Agent.*
 
 ---
