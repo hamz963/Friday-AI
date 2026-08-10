@@ -14,7 +14,8 @@ use friday_git::GitController;
 use friday_files::FileProcessor;
 use friday_memory::MemoryStore;
 use friday_refiner::WhisperFlowRefiner;
-use friday_llm::{LlmProvider, LlmRequest, LlmResponse, OllamaProvider, ChatMessage};
+use friday_llm::{LlmProvider, LlmRequest, LlmResponse, OllamaProvider};
+use friday_generator::FreeMediaGenerator;
 use friday_agents::AutomationAgent;
 use async_trait::async_trait;
 
@@ -33,12 +34,10 @@ impl FallbackLlm {
 #[async_trait]
 impl LlmProvider for FallbackLlm {
     async fn generate(&self, request: LlmRequest) -> Result<LlmResponse, Box<dyn std::error::Error + Send + Sync>> {
-        // Try live Ollama local LLM first
         if let Ok(res) = self.ollama.generate(request.clone()).await {
             return Ok(res);
         }
 
-        // Fallback execution engine if Ollama server is offline
         let prompt = request.messages.last().map(|m| m.content.to_lowercase()).unwrap_or_default();
         let res = if prompt.contains("browser") {
             "browser_open \"https://friday.ai\""
@@ -79,6 +78,11 @@ struct ListDirInput {
     path: Option<String>,
 }
 
+#[derive(Deserialize)]
+struct MediaGenerateInput {
+    prompt: String,
+}
+
 impl ApiServer {
     pub fn build_router() -> Router {
         Router::new()
@@ -93,11 +97,29 @@ impl ApiServer {
             .route("/api/files/list", post(Self::handle_files_list))
             .route("/api/files/read", post(Self::handle_files_read))
             .route("/api/files/write", post(Self::handle_files_write))
+            .route("/api/generate/image", post(Self::handle_generate_image))
+            .route("/api/generate/video", post(Self::handle_generate_video))
     }
 
     async fn handle_enhance(Json(payload): Json<ChatInput>) -> Json<Value> {
         let enhanced = friday_refiner::PromptEnhancer::enhance(&payload.prompt);
         Json(json!(enhanced))
+    }
+
+    async fn handle_generate_image(Json(payload): Json<MediaGenerateInput>) -> Json<Value> {
+        let generator = FreeMediaGenerator::new();
+        match generator.generate_image(&payload.prompt).await {
+            Ok(media) => Json(json!(media)),
+            Err(e) => Json(json!({ "error": e.to_string() })),
+        }
+    }
+
+    async fn handle_generate_video(Json(payload): Json<MediaGenerateInput>) -> Json<Value> {
+        let generator = FreeMediaGenerator::new();
+        match generator.generate_video(&payload.prompt).await {
+            Ok(media) => Json(json!(media)),
+            Err(e) => Json(json!({ "error": e.to_string() })),
+        }
     }
 
     async fn serve_dashboard() -> Html<&'static str> {
@@ -168,19 +190,16 @@ impl ApiServer {
     }
 
     async fn handle_chat(Json(payload): Json<ChatInput>) -> Json<Value> {
-        // 1. Refine prompt
         let llm = Arc::new(FallbackLlm::new());
         let refiner = WhisperFlowRefiner::new(llm.clone());
         let refined_prompt = refiner.refine_prompt(&payload.prompt).await.unwrap_or_else(|_| payload.prompt.clone());
 
-        // 2. Persistent SQLite Memory Store
         let msg_id_user = uuid::Uuid::new_v4().to_string();
         let msg_id_assistant = uuid::Uuid::new_v4().to_string();
         if let Ok(mem) = MemoryStore::new("friday_memory.db") {
             let _ = mem.save_message(&msg_id_user, "user", &payload.prompt);
         }
 
-        // 3. Process automation actions using Agent Orchestrator
         let mut automation = AutomationAgent::new();
         let (action_result, browser_url, browser_title) = if refined_prompt.contains("browser_open") {
             let res = automation.run_workflow("browser_open", "https://friday.ai").unwrap_or_else(|e| e.to_string());

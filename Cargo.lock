@@ -893,6 +893,8 @@ dependencies = [
  "axum",
  "friday-agents",
  "friday-core",
+ "friday-files",
+ "friday-generator",
  "friday-git",
  "friday-llm",
  "friday-memory",
@@ -903,6 +905,7 @@ dependencies = [
  "thiserror 2.0.18",
  "tokio",
  "tracing",
+ "uuid",
 ]
 
 [[package]]
@@ -1003,11 +1006,14 @@ name = "friday-generator"
 version = "0.1.0"
 dependencies = [
  "friday-core",
+ "reqwest",
  "serde",
  "serde_json",
  "tempfile",
  "thiserror 2.0.18",
+ "tokio",
  "tracing",
+ "uuid",
 ]
 
 [[package]]

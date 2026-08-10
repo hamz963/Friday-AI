@@ -12,6 +12,7 @@ friday-git = { path = "../git" }
 friday-files = { path = "../files" }
 friday-refiner = { path = "../refiner" }
 friday-llm = { path = "../llm" }
+friday-generator = { path = "../generator" }
 serde = { workspace = true }
 serde_json = { workspace = true }
 tokio = { workspace = true }

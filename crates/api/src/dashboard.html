@@ -135,6 +135,19 @@
                     <span class="text-cyan-500 self-center text-sm font-bold ml-2 select-none">$</span>
                     <input id="console-input" type="text" placeholder="Run safe shell commands (e.g., cargo check, echo hello)..." class="bg-slate-950 border border-slate-800 text-slate-100 rounded-xl px-4 py-2.5 text-sm flex-1 focus:outline-none focus:border-cyan-500 transition-colors mono">
                 </div>
+            <!-- 🎨 100% Free AI Media Studio -->
+            <div class="glass rounded-2xl p-5 flex flex-col gap-4">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-sm font-bold tracking-wider text-cyan-400 uppercase flex items-center gap-2">🎨 100% Free AI Media Studio <span class="text-[10px] bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded-full border border-cyan-500/30">FLUX.1 & AnimateDiff</span></h2>
+                </div>
+                <div class="flex gap-2">
+                    <input id="media-prompt" type="text" placeholder="Type prompt (e.g., futuristic cyan iron man reactor glowing in cyber city)..." class="bg-slate-950 border border-slate-800 text-slate-100 rounded-xl px-4 py-2.5 text-sm flex-1 focus:outline-none focus:border-cyan-500 transition-colors">
+                    <button id="gen-image-btn" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 font-semibold text-xs px-4 py-2.5 rounded-xl border border-slate-700 transition-all flex items-center gap-1.5">🖼️ Gen Image</button>
+                    <button id="gen-video-btn" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold text-xs px-4 py-2.5 rounded-xl transition-all shadow-md">🎬 Gen Video</button>
+                </div>
+                <div id="media-preview-container" class="bg-slate-950 border border-slate-800 rounded-xl p-4 min-h-[160px] flex items-center justify-center text-xs text-slate-500">
+                    <div>No media generated yet. Enter a prompt above to create free AI artwork or video preview.</div>
+                </div>
             </div>
         </section>
     </main>
@@ -332,9 +345,46 @@
             }
         }
 
+        // 6. Free Media Studio Generator
+        async function generateMedia(type) {
+            const mediaPrompt = document.getElementById('media-prompt');
+            const previewContainer = document.getElementById('media-preview-container');
+            const val = mediaPrompt.value.trim();
+            if (!val) return;
+            previewContainer.innerHTML = `<div class="text-cyan-400 font-semibold animate-pulse">Generating 100% free AI ${type} using FLUX.1 / AnimateDiff... Please wait ~3s</div>`;
+            
+            try {
+                const endpoint = type === 'image' ? '/api/generate/image' : '/api/generate/video';
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: val })
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    previewContainer.innerHTML = `
+                        <div class="flex flex-col gap-3 items-center w-full">
+                            <div class="flex justify-between items-center w-full text-[11px] text-slate-400">
+                                <span>Engine: <strong class="text-cyan-400">${data.engine}</strong></span>
+                                <span>Type: <strong class="text-indigo-400 uppercase">${data.media_type}</strong></span>
+                            </div>
+                            <img src="${data.url}" alt="${data.prompt}" class="max-h-[280px] rounded-xl border border-slate-700 shadow-xl object-cover">
+                            <a href="${data.url}" target="_blank" class="text-xs bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 px-4 py-2 rounded-lg border border-cyan-500/40 font-semibold transition-colors">📥 Open & Download Full Res Media</a>
+                        </div>
+                    `;
+                }
+            } catch (err) {
+                previewContainer.innerHTML = `<div class="text-rose-400 font-semibold">Error generating free media.</div>`;
+            }
+        }
+
         // Event Listeners
         const chatEnhance = document.getElementById('chat-enhance');
         if (chatEnhance) chatEnhance.onclick = enhancePrompt;
+        const genImageBtn = document.getElementById('gen-image-btn');
+        if (genImageBtn) genImageBtn.onclick = () => generateMedia('image');
+        const genVideoBtn = document.getElementById('gen-video-btn');
+        if (genVideoBtn) genVideoBtn.onclick = () => generateMedia('video');
         chatSend.onclick = sendPrompt;
         chatInput.onkeydown = (e) => { if (e.key === 'Enter') sendPrompt(); };
         consoleInput.onkeydown = (e) => { if (e.key === 'Enter') runConsoleCommand(); };
