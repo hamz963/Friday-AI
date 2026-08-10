@@ -1,5 +1,14 @@
 use rusqlite::{params, Connection, Result};
 use std::path::Path;
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct StoredMessage {
+    pub id: String,
+    pub role: String,
+    pub content: String,
+    pub timestamp: String,
+}
 
 pub struct MemoryStore {
     conn: Connection,
@@ -51,6 +60,27 @@ impl MemoryStore {
         Ok(())
     }
 
+    pub fn get_recent_messages(&self, limit: usize) -> Result<Vec<StoredMessage>> {
+        let mut stmt = self.conn.prepare(
+            "SELECT id, role, content, timestamp FROM conversation ORDER BY timestamp DESC LIMIT ?1"
+        )?;
+        let message_iter = stmt.query_map(params![limit as i64], |row| {
+            Ok(StoredMessage {
+                id: row.get(0)?,
+                role: row.get(1)?,
+                content: row.get(2)?,
+                timestamp: row.get(3)?,
+            })
+        })?;
+
+        let mut messages = Vec::new();
+        for msg in message_iter {
+            messages.push(msg?);
+        }
+        messages.reverse();
+        Ok(messages)
+    }
+
     pub fn get_preference(&self, key: &str) -> Result<Option<String>> {
         let mut stmt = self.conn.prepare("SELECT value FROM preference WHERE key = ?1")?;
         let mut rows = stmt.query(params![key])?;
@@ -90,5 +120,11 @@ mod tests {
 
         // Test conversation history
         store.save_message("msg-1", "user", "hello").unwrap();
+        store.save_message("msg-2", "assistant", "hi user").unwrap();
+        
+        let history = store.get_recent_messages(10).unwrap();
+        assert_eq!(history.len(), 2);
+        assert_eq!(history[0].content, "hello");
+        assert_eq!(history[1].content, "hi user");
     }
 }

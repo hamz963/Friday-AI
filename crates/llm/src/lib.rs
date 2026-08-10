@@ -30,3 +30,5 @@ pub mod ollama;
 pub mod crawler;
 
 pub use crawler::UrlCrawler;
+pub use ollama::OllamaProvider;
+pub use openai::OpenAiProvider;

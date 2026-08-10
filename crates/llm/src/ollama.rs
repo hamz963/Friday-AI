@@ -1,62 +1,72 @@
-use crate::{LlmProvider, LlmRequest, LlmResponse};
-use serde_json::json;
+use crate::{ChatMessage, LlmProvider, LlmRequest, LlmResponse};
+use async_trait::async_trait;
+use serde::{Deserialize, Serialize};
+use std::error::Error;
 
 pub struct OllamaProvider {
+    pub endpoint: String,
     pub model: String,
-    pub api_base: String,
-    client: reqwest::Client,
+    pub client: reqwest::Client,
+}
+
+#[derive(Serialize)]
+struct OllamaRequest<'a> {
+    model: &'a str,
+    messages: &'a [ChatMessage],
+    stream: bool,
+}
+
+#[derive(Deserialize)]
+struct OllamaMessage {
+    content: String,
+}
+
+#[derive(Deserialize)]
+struct OllamaResponse {
+    message: OllamaMessage,
 }
 
 impl OllamaProvider {
-    pub fn new(model: String, api_base: Option<String>) -> Self {
+    pub fn new(model: Option<String>, endpoint: Option<String>) -> Self {
         Self {
-            model,
-            api_base: api_base.unwrap_or_else(|| "http://localhost:11434/api".to_string()),
+            model: model.unwrap_or_else(|| "llama3.2".to_string()),
+            endpoint: endpoint.unwrap_or_else(|| "http://localhost:11434".to_string()),
             client: reqwest::Client::new(),
         }
     }
 }
 
-#[async_trait::async_trait]
+#[async_trait]
 impl LlmProvider for OllamaProvider {
-    async fn generate(&self, request: LlmRequest) -> Result<LlmResponse, Box<dyn std::error::Error + Send + Sync>> {
-        let url = format!("{}/generate", self.api_base);
+    async fn generate(&self, request: LlmRequest) -> Result<LlmResponse, Box<dyn Error + Send + Sync>> {
+        let url = format!("{}/api/chat", self.endpoint);
+        let payload = OllamaRequest {
+            model: &self.model,
+            messages: &request.messages,
+            stream: false,
+        };
 
-        let system_prompt = request.messages.iter()
-            .filter(|m| m.role == "system")
-            .map(|m| m.content.as_str())
-            .collect::<Vec<_>>()
-            .join("\n");
-
-        let user_prompt = request.messages.iter()
-            .filter(|m| m.role == "user")
-            .map(|m| m.content.as_str())
-            .collect::<Vec<_>>()
-            .join("\n");
-
-        let body = json!({
-            "model": self.model,
-            "prompt": user_prompt,
-            "system": system_prompt,
-            "stream": false,
-        });
-
-        let res = self.client.post(&url)
-            .json(&body)
-            .send()
-            .await?;
-
+        let res = self.client.post(&url).json(&payload).send().await?;
         if !res.status().is_success() {
-            let err_text = res.text().await?;
-            return Err(format!("Ollama API error: {}", err_text).into());
+            let err_text = res.text().await.unwrap_or_default();
+            return Err(format!("Ollama API Error: {}", err_text).into());
         }
 
-        let json_val: serde_json::Value = res.json().await?;
-        let content = json_val["response"]
-            .as_str()
-            .ok_or("Failed to parse response field from Ollama")?
-            .to_string();
+        let resp: OllamaResponse = res.json().await?;
+        Ok(LlmResponse {
+            content: resp.message.content,
+        })
+    }
+}
 
-        Ok(LlmResponse { content })
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_ollama_provider_init() {
+        let provider = OllamaProvider::new(None, None);
+        assert_eq!(provider.model, "llama3.2");
+        assert_eq!(provider.endpoint, "http://localhost:11434");
     }
 }

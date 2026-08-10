@@ -9,6 +9,7 @@ friday-memory = { path = "../memory" }
 friday-agents = { path = "../agents" }
 friday-terminal = { path = "../terminal" }
 friday-git = { path = "../git" }
+friday-files = { path = "../files" }
 friday-refiner = { path = "../refiner" }
 friday-llm = { path = "../llm" }
 serde = { workspace = true }
@@ -18,3 +19,4 @@ axum = { workspace = true }
 tracing = { workspace = true }
 thiserror = { workspace = true }
 async-trait = "0.1"
+uuid = { workspace = true }
