@@ -53,6 +53,12 @@ impl ApiServer {
             .route("/api/git", get(Self::handle_git))
             .route("/api/terminal", post(Self::handle_terminal))
             .route("/api/chat", post(Self::handle_chat))
+            .route("/api/enhance", post(Self::handle_enhance))
+    }
+
+    async fn handle_enhance(Json(payload): Json<ChatInput>) -> Json<Value> {
+        let enhanced = friday_refiner::PromptEnhancer::enhance(&payload.prompt);
+        Json(json!(enhanced))
     }
 
     async fn serve_dashboard() -> Html<&'static str> {

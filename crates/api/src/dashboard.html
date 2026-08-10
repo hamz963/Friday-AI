@@ -112,6 +112,7 @@
                 <!-- Input Row -->
                 <div class="flex gap-2">
                     <input id="chat-input" type="text" placeholder="Type prompt (e.g., open browser at https://google.com)..." class="bg-slate-950 border border-slate-800 text-slate-100 rounded-xl px-4 py-3 text-sm flex-1 focus:outline-none focus:border-cyan-500 transition-colors">
+                    <button id="chat-enhance" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 font-semibold text-xs px-4 py-3 rounded-xl transition-all border border-slate-700 flex items-center gap-1.5" title="Enhance prompt clarity & structure">✨ Enhance</button>
                     <button id="chat-send" class="bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-600 hover:to-indigo-700 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all shadow-lg shadow-cyan-500/10">Send</button>
                 </div>
             </div>
@@ -310,7 +311,30 @@
             }
         }
 
+        // 5. Magic Prompt Enhancer
+        async function enhancePrompt() {
+            const val = chatInput.value.trim();
+            if (!val) return;
+            addMessage('System', '✨ Enhancing prompt clarity and structure for maximum efficiency...', true);
+            try {
+                const res = await fetch('/api/enhance', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: val })
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    chatInput.value = data.enhanced;
+                    addMessage('System', `✨ Prompt enhanced! Quality Score: ${data.quality_score}%. Ready to send.`, true);
+                }
+            } catch (err) {
+                addMessage('System', 'Prompt enhancement error.', true);
+            }
+        }
+
         // Event Listeners
+        const chatEnhance = document.getElementById('chat-enhance');
+        if (chatEnhance) chatEnhance.onclick = enhancePrompt;
         chatSend.onclick = sendPrompt;
         chatInput.onkeydown = (e) => { if (e.key === 'Enter') sendPrompt(); };
         consoleInput.onkeydown = (e) => { if (e.key === 'Enter') runConsoleCommand(); };
