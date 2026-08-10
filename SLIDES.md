@@ -136,10 +136,36 @@ Phase 9: Ecosystem (Plugins, skills & mobile companion sync)
 
 ## Slide 9: Multi-OS Distribution Strategy
 
-* **Windows**: Native **`friday-installer.msi`** (compiled via WiX Toolset) & standalone `friday.exe` (34.3 MB).
+* **Windows**: Native **`friday-installer.msi`** (compiled via WiX Toolset) & standalone `friday.exe` (11.9 MB).
 * **macOS**: Native Apple Silicon/Intel **`friday-macos-x64.tar.gz`**.
 * **Linux**: Native **`friday-linux-x64.tar.gz`** & `.deb` packages.
 * **Automated CI/CD**: Cloud pipeline powered by GitHub Actions (`.github/workflows/release.yml`).
+
+---
+
+<!-- slide -->
+
+## Slide 10: 100% Free AI Media Studio & Real LLMs
+### Zero-Config FLUX.1 Artwork & AnimateDiff Video Engine
+
+* **Free Image Generation**: Powered by **FLUX.1-schnell** (1024x1024) via Pollinations HTTP pipeline ($0.00 API key cost).
+* **AI Video Animation**: Text-to-video frame sequences powered by **AnimateDiff**.
+* **Local & Cloud LLMs**: Built-in support for **Ollama** (`llama3.2`) and OpenAI-compatible endpoints.
+* **Persistent Memory**: SQLite database (`friday_memory.db`) preserves historic chat context across reboots.
+
+---
+
+<!-- slide -->
+
+## Slide 11: Competitive Edge: Friday AI vs. Odysseus.ai
+
+| Feature | 🤖 **Friday AI** | 🧠 **Odysseus.ai** (PewDiePie) | 💻 **OpenInterpreter** |
+|:---|:---|:---|:---|
+| **Engine Core** | **100% Compiled Rust** | Electron / Node.js | Python CLI |
+| **Binary Footprint** | **11.9 MB** (Single `.exe`) | ~250 MB (Electron app) | Requires Python venv |
+| **Execution Latency**| **200 ms / 1,000,000 loops** | Standard Web Latency | Multi-second loop |
+| **Safety Engine** | **Regex Sandbox (`friday-terminal`)** | Unrestricted / Basic shell | Confirmation Prompts |
+| **Free AI Media** | **FLUX.1 & AnimateDiff ($0 API key)** | External API keys required | None |
 
 ---
 
