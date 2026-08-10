@@ -13,6 +13,21 @@
 
 ---
 
+---
+
+## 📦 Downloads & Releases (v1.3.1 Latest)
+
+Download the pre-compiled, zero-dependency production binaries for your platform:
+
+| Platform | Download Asset | Description |
+|:---|:---|:---|
+| **Windows 64-bit** | 💻 **[friday.exe (11.8 MB)](https://github.com/hamz963/Friday-AI-Assistant/releases/download/v1.3.1/friday.exe)** | Native zero-dependency Windows executable |
+| **Windows Zip Package** | 📦 **[friday-windows-x64.zip (5.5 MB)](https://github.com/hamz963/Friday-AI-Assistant/releases/download/v1.3.1/friday-windows-x64.zip)** | Compressed release bundle for Windows |
+| **macOS 64-bit / ARM** | 🍏 **[friday-macos-x64.tar.gz (5.6 MB)](https://github.com/hamz963/Friday-AI-Assistant/releases/download/v1.3.1/friday-macos-x64.tar.gz)** | Compressed release tarball for macOS |
+| **All Releases** | 🚀 **[View Release Page (v1.3.1)](https://github.com/hamz963/Friday-AI-Assistant/releases/tag/v1.3.1)** | Tagged GitHub Release Page |
+
+---
+
 ## 📄 Project Proposal, Architecture & Presentation Deck
 Read the complete product specifications and executive pitch deck:
 * 📊 **[Download PowerPoint Deck (SLIDES.pptx)](./SLIDES.pptx)** | **[PDF Version (SLIDES.pdf)](./SLIDES.pdf)** | **[View Markdown (SLIDES.md)](./SLIDES.md)**
