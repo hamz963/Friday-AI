@@ -41,7 +41,7 @@ edition = "2021"
 "# , name
         ))?;
         fs::write(root.join("src/main.rs"), r#"fn main() {
-    println!("Hello from Friday AI generated app!");
+    println!("Hello from NOVA OS generated app!");
 }
 "#)?;
         Ok(())
@@ -99,7 +99,7 @@ impl FreeMediaGenerator {
             let _ = fs::create_dir_all(&output_dir);
         }
 
-        let file_name = format!("friday_img_{}.jpg", Uuid::new_v4());
+        let file_name = format!("nova_img_{}.jpg", Uuid::new_v4());
         let local_path = output_dir.join(&file_name);
 
         let resp = self.client.get(&image_url).send().await?;
@@ -132,7 +132,7 @@ impl FreeMediaGenerator {
             let _ = fs::create_dir_all(&output_dir);
         }
 
-        let file_name = format!("friday_vid_{}.mp4", Uuid::new_v4());
+        let file_name = format!("nova_vid_{}.mp4", Uuid::new_v4());
         let local_path = output_dir.join(&file_name);
 
         Ok(GeneratedMediaResult {

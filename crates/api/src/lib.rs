@@ -8,19 +8,19 @@ use std::net::SocketAddr;
 use std::sync::Arc;
 use std::time::Instant;
 
-use friday_core::SystemMetricsTracker;
-use friday_terminal::TerminalSandbox;
-use friday_git::GitController;
-use friday_files::FileProcessor;
-use friday_memory::MemoryStore;
-use friday_refiner::WhisperFlowRefiner;
-use friday_llm::{LlmProvider, LlmRequest, LlmResponse, OllamaProvider};
-use friday_generator::FreeMediaGenerator;
-use friday_voice::{LocalSpeechSynthesizer, VoiceSynthesisPayload};
-use friday_diagnostics::SelfHealingEngine;
-use friday_plugins::McpClient;
-use friday_desktop::{DesktopInspector, ScreenInspectionPayload};
-use friday_agents::AutomationAgent;
+use nova_core::SystemMetricsTracker;
+use nova_terminal::TerminalSandbox;
+use nova_git::GitController;
+use nova_files::FileProcessor;
+use nova_memory::MemoryStore;
+use nova_refiner::WhisperFlowRefiner;
+use nova_llm::{LlmProvider, LlmRequest, LlmResponse, OllamaProvider};
+use nova_generator::FreeMediaGenerator;
+use nova_voice::{LocalSpeechSynthesizer, VoiceSynthesisPayload};
+use nova_diagnostics::SelfHealingEngine;
+use nova_plugins::McpClient;
+use nova_desktop::{DesktopInspector, ScreenInspectionPayload};
+use nova_agents::AutomationAgent;
 use async_trait::async_trait;
 
 struct FallbackLlm {
@@ -44,11 +44,11 @@ impl LlmProvider for FallbackLlm {
 
         let prompt = request.messages.last().map(|m| m.content.to_lowercase()).unwrap_or_default();
         let res = if prompt.contains("browser") {
-            "browser_open \"https://friday.ai\""
+            "browser_open \"https://NOVA.ai\""
         } else if prompt.contains("screenshot") {
             "desktop_screenshot"
         } else {
-            "Friday AI processed instruction successfully. System ready for action."
+            "NOVA OS processed instruction successfully. System ready for action."
         };
         Ok(LlmResponse { content: res.to_string() })
     }
@@ -131,7 +131,7 @@ impl ApiServer {
     }
 
     async fn handle_enhance(Json(payload): Json<ChatInput>) -> Json<Value> {
-        let enhanced = friday_refiner::PromptEnhancer::enhance(&payload.prompt);
+        let enhanced = nova_refiner::PromptEnhancer::enhance(&payload.prompt);
         Json(json!(enhanced))
     }
 
@@ -163,7 +163,7 @@ impl ApiServer {
     }
 
     async fn handle_rag_index(Json(payload): Json<RagIndexInput>) -> Json<Value> {
-        if let Ok(store) = MemoryStore::new("friday_memory.db") {
+        if let Ok(store) = MemoryStore::new("nova_memory.db") {
             match store.index_document_content(&payload.path, &payload.content) {
                 Ok(chunks) => Json(json!({ "success": true, "chunks_indexed": chunks })),
                 Err(e) => Json(json!({ "error": e.to_string() })),
@@ -174,7 +174,7 @@ impl ApiServer {
     }
 
     async fn handle_rag_search(Json(payload): Json<RagSearchInput>) -> Json<Value> {
-        if let Ok(store) = MemoryStore::new("friday_memory.db") {
+        if let Ok(store) = MemoryStore::new("nova_memory.db") {
             let limit = payload.top_k.unwrap_or(5);
             match store.rag_vector_search(&payload.query, limit) {
                 Ok(results) => Json(json!({ "results": results })),
@@ -200,7 +200,7 @@ impl ApiServer {
     async fn handle_desktop_inspect(Json(payload): Json<ScreenInspectionPayload>) -> Json<Value> {
         let inspector = DesktopInspector::new();
         let temp_dir = std::env::temp_dir();
-        let save_path = temp_dir.join("friday_screen_inspect.png");
+        let save_path = temp_dir.join("nova_screen_inspect.png");
         match inspector.inspect_screen(&save_path, &payload) {
             Ok(result) => Json(json!(result)),
             Err(e) => Json(json!({ "error": e.to_string() })),
@@ -246,7 +246,7 @@ impl ApiServer {
     }
 
     async fn handle_memory_history() -> Json<Value> {
-        if let Ok(store) = MemoryStore::new("friday_memory.db") {
+        if let Ok(store) = MemoryStore::new("nova_memory.db") {
             let history = store.get_recent_messages(20).unwrap_or_default();
             Json(json!({ "history": history }))
         } else {
@@ -283,14 +283,14 @@ impl ApiServer {
 
         let msg_id_user = uuid::Uuid::new_v4().to_string();
         let msg_id_assistant = uuid::Uuid::new_v4().to_string();
-        if let Ok(mem) = MemoryStore::new("friday_memory.db") {
+        if let Ok(mem) = MemoryStore::new("nova_memory.db") {
             let _ = mem.save_message(&msg_id_user, "user", &payload.prompt);
         }
 
         let mut automation = AutomationAgent::new();
         let (action_result, browser_url, browser_title) = if refined_prompt.contains("browser_open") {
-            let res = automation.run_workflow("browser_open", "https://friday.ai").unwrap_or_else(|e| e.to_string());
-            (res, "https://friday.ai", "Mock Title for https://friday.ai")
+            let res = automation.run_workflow("browser_open", "https://NOVA.ai").unwrap_or_else(|e| e.to_string());
+            (res, "https://NOVA.ai", "Mock Title for https://NOVA.ai")
         } else if refined_prompt.contains("desktop_screenshot") {
             let res = automation.run_workflow("desktop_screenshot", "").unwrap_or_else(|e| e.to_string());
             (res, "about:blank", "Active Desktop screenshot saved")
@@ -300,7 +300,7 @@ impl ApiServer {
 
         let response_text = format!("Refined Action: {}. Completed successfully.", refined_prompt);
 
-        if let Ok(mem) = MemoryStore::new("friday_memory.db") {
+        if let Ok(mem) = MemoryStore::new("nova_memory.db") {
             let _ = mem.save_message(&msg_id_assistant, "assistant", &response_text);
         }
 

@@ -1,9 +1,9 @@
-use friday_core::{SystemMetricsTracker, detect_hardware};
+use nova_core::{SystemMetricsTracker, detect_hardware};
 use std::time::Instant;
 
 #[test]
 fn run_performance_benchmarks() {
-    println!("\n=== Running Friday AI Performance Benchmarks ===");
+    println!("\n=== Running NOVA OS Performance Benchmarks ===");
     
     // 1. Hardware context
     let hw = detect_hardware();

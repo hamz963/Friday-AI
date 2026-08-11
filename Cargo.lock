@@ -861,259 +861,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "friday-agents"
-version = "0.1.0"
-dependencies = [
- "async-trait",
- "friday-browser",
- "friday-core",
- "friday-desktop",
- "friday-files",
- "friday-generator",
- "friday-llm",
- "friday-memory",
- "friday-plugins",
- "friday-refiner",
- "html2md",
- "serde",
- "serde_json",
- "tempfile",
- "thiserror 2.0.18",
- "tokio",
- "tracing",
- "uuid",
- "zip",
-]
-
-[[package]]
-name = "friday-api"
-version = "0.1.0"
-dependencies = [
- "async-trait",
- "axum",
- "friday-agents",
- "friday-core",
- "friday-desktop",
- "friday-diagnostics",
- "friday-files",
- "friday-generator",
- "friday-git",
- "friday-llm",
- "friday-memory",
- "friday-plugins",
- "friday-refiner",
- "friday-terminal",
- "friday-voice",
- "serde",
- "serde_json",
- "thiserror 2.0.18",
- "tokio",
- "tracing",
- "uuid",
-]
-
-[[package]]
-name = "friday-browser"
-version = "0.1.0"
-dependencies = [
- "friday-core",
- "headless_chrome",
- "serde",
- "serde_json",
- "thiserror 2.0.18",
- "tracing",
-]
-
-[[package]]
-name = "friday-cli"
-version = "0.1.0"
-dependencies = [
- "async-trait",
- "friday-agents",
- "friday-api",
- "friday-browser",
- "friday-core",
- "friday-desktop",
- "friday-diagnostics",
- "friday-files",
- "friday-generator",
- "friday-git",
- "friday-llm",
- "friday-memory",
- "friday-plugins",
- "friday-refiner",
- "friday-terminal",
- "friday-voice",
- "html2md",
- "serde",
- "serde_json",
- "tempfile",
- "tokio",
- "uuid",
- "zip",
-]
-
-[[package]]
-name = "friday-core"
-version = "0.1.0"
-dependencies = [
- "serde",
- "serde_json",
- "sysinfo",
- "thiserror 2.0.18",
- "tokio",
- "toml",
- "tracing",
- "uuid",
-]
-
-[[package]]
-name = "friday-desktop"
-version = "0.1.0"
-dependencies = [
- "enigo",
- "friday-core",
- "image",
- "serde",
- "serde_json",
- "tempfile",
- "thiserror 2.0.18",
- "tracing",
-]
-
-[[package]]
-name = "friday-diagnostics"
-version = "0.1.0"
-dependencies = [
- "friday-core",
- "friday-terminal",
- "regex",
- "serde",
- "serde_json",
- "thiserror 2.0.18",
- "tracing",
-]
-
-[[package]]
-name = "friday-files"
-version = "0.1.0"
-dependencies = [
- "friday-core",
- "serde",
- "serde_json",
- "tempfile",
- "thiserror 2.0.18",
- "tracing",
- "zip",
-]
-
-[[package]]
-name = "friday-generator"
-version = "0.1.0"
-dependencies = [
- "chrono",
- "friday-core",
- "reqwest",
- "serde",
- "serde_json",
- "tempfile",
- "thiserror 2.0.18",
- "tokio",
- "tracing",
- "uuid",
-]
-
-[[package]]
-name = "friday-git"
-version = "0.1.0"
-dependencies = [
- "friday-core",
- "friday-terminal",
- "serde",
- "serde_json",
- "tempfile",
- "thiserror 2.0.18",
- "tracing",
-]
-
-[[package]]
-name = "friday-llm"
-version = "0.1.0"
-dependencies = [
- "async-trait",
- "friday-core",
- "futures",
- "html2md",
- "reqwest",
- "serde",
- "serde_json",
- "thiserror 2.0.18",
- "tokio",
- "tracing",
-]
-
-[[package]]
-name = "friday-memory"
-version = "0.1.0"
-dependencies = [
- "chrono",
- "friday-core",
- "rusqlite",
- "serde",
- "serde_json",
- "thiserror 2.0.18",
- "tracing",
-]
-
-[[package]]
-name = "friday-plugins"
-version = "0.1.0"
-dependencies = [
- "async-trait",
- "friday-core",
- "serde",
- "serde_json",
- "thiserror 2.0.18",
- "tracing",
-]
-
-[[package]]
-name = "friday-refiner"
-version = "0.1.0"
-dependencies = [
- "async-trait",
- "friday-core",
- "friday-llm",
- "serde",
- "serde_json",
- "thiserror 2.0.18",
- "tokio",
- "tracing",
-]
-
-[[package]]
-name = "friday-terminal"
-version = "0.1.0"
-dependencies = [
- "friday-core",
- "serde",
- "serde_json",
- "thiserror 2.0.18",
- "tracing",
-]
-
-[[package]]
-name = "friday-voice"
-version = "0.1.0"
-dependencies = [
- "friday-core",
- "serde",
- "serde_json",
- "thiserror 2.0.18",
- "tracing",
-]
-
-[[package]]
 name = "futf"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1998,6 +1745,259 @@ name = "noop_proc_macro"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0676bb32a98c1a483ce53e500a81ad9c3d5b3f7c920c28c24e9cb0980d0b5bc8"
+
+[[package]]
+name = "nova-agents"
+version = "0.1.0"
+dependencies = [
+ "async-trait",
+ "html2md",
+ "nova-browser",
+ "nova-core",
+ "nova-desktop",
+ "nova-files",
+ "nova-generator",
+ "nova-llm",
+ "nova-memory",
+ "nova-plugins",
+ "nova-refiner",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror 2.0.18",
+ "tokio",
+ "tracing",
+ "uuid",
+ "zip",
+]
+
+[[package]]
+name = "nova-api"
+version = "0.1.0"
+dependencies = [
+ "async-trait",
+ "axum",
+ "nova-agents",
+ "nova-core",
+ "nova-desktop",
+ "nova-diagnostics",
+ "nova-files",
+ "nova-generator",
+ "nova-git",
+ "nova-llm",
+ "nova-memory",
+ "nova-plugins",
+ "nova-refiner",
+ "nova-terminal",
+ "nova-voice",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.18",
+ "tokio",
+ "tracing",
+ "uuid",
+]
+
+[[package]]
+name = "nova-browser"
+version = "0.1.0"
+dependencies = [
+ "headless_chrome",
+ "nova-core",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.18",
+ "tracing",
+]
+
+[[package]]
+name = "nova-cli"
+version = "0.1.0"
+dependencies = [
+ "async-trait",
+ "html2md",
+ "nova-agents",
+ "nova-api",
+ "nova-browser",
+ "nova-core",
+ "nova-desktop",
+ "nova-diagnostics",
+ "nova-files",
+ "nova-generator",
+ "nova-git",
+ "nova-llm",
+ "nova-memory",
+ "nova-plugins",
+ "nova-refiner",
+ "nova-terminal",
+ "nova-voice",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "tokio",
+ "uuid",
+ "zip",
+]
+
+[[package]]
+name = "nova-core"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "sysinfo",
+ "thiserror 2.0.18",
+ "tokio",
+ "toml",
+ "tracing",
+ "uuid",
+]
+
+[[package]]
+name = "nova-desktop"
+version = "0.1.0"
+dependencies = [
+ "enigo",
+ "image",
+ "nova-core",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror 2.0.18",
+ "tracing",
+]
+
+[[package]]
+name = "nova-diagnostics"
+version = "0.1.0"
+dependencies = [
+ "nova-core",
+ "nova-terminal",
+ "regex",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.18",
+ "tracing",
+]
+
+[[package]]
+name = "nova-files"
+version = "0.1.0"
+dependencies = [
+ "nova-core",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror 2.0.18",
+ "tracing",
+ "zip",
+]
+
+[[package]]
+name = "nova-generator"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "nova-core",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror 2.0.18",
+ "tokio",
+ "tracing",
+ "uuid",
+]
+
+[[package]]
+name = "nova-git"
+version = "0.1.0"
+dependencies = [
+ "nova-core",
+ "nova-terminal",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror 2.0.18",
+ "tracing",
+]
+
+[[package]]
+name = "nova-llm"
+version = "0.1.0"
+dependencies = [
+ "async-trait",
+ "futures",
+ "html2md",
+ "nova-core",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.18",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
+name = "nova-memory"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "nova-core",
+ "rusqlite",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.18",
+ "tracing",
+]
+
+[[package]]
+name = "nova-plugins"
+version = "0.1.0"
+dependencies = [
+ "async-trait",
+ "nova-core",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.18",
+ "tracing",
+]
+
+[[package]]
+name = "nova-refiner"
+version = "0.1.0"
+dependencies = [
+ "async-trait",
+ "nova-core",
+ "nova-llm",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.18",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
+name = "nova-terminal"
+version = "0.1.0"
+dependencies = [
+ "nova-core",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.18",
+ "tracing",
+]
+
+[[package]]
+name = "nova-voice"
+version = "0.1.0"
+dependencies = [
+ "nova-core",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.18",
+ "tracing",
+]
 
 [[package]]
 name = "ntapi"

@@ -50,7 +50,7 @@ mod tests {
 
     #[test]
     fn test_execute_safe_command() {
-        let out = TerminalSandbox::execute_command("echo hello_friday").unwrap();
-        assert!(out.contains("hello_friday"));
+        let out = TerminalSandbox::execute_command("echo hello_NOVA").unwrap();
+        assert!(out.contains("hello_NOVA"));
     }
 }

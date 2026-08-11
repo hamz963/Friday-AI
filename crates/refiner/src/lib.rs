@@ -1,4 +1,4 @@
-use friday_llm::{LlmProvider, LlmRequest, ChatMessage};
+use nova_llm::{LlmProvider, LlmRequest, ChatMessage};
 use std::sync::Arc;
 use serde::{Deserialize, Serialize};
 
@@ -91,7 +91,7 @@ impl PromptEnhancer {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use friday_llm::LlmResponse;
+    use nova_llm::LlmResponse;
     use async_trait::async_trait;
 
     struct DummyLlm;

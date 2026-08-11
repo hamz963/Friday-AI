@@ -68,7 +68,7 @@ impl DesktopInspector {
         Ok(DesktopInspectionResult {
             screenshot_path: path_str,
             detected_elements: elements,
-            active_window_title: "Friday AI Assistant Developer Dashboard".to_string(),
+            active_window_title: "NOVA OS Assistant Developer Dashboard".to_string(),
             is_local_processed: true,
             summary: "Active screen captured & analyzed 100% locally with zero data exfiltration.".to_string(),
         })

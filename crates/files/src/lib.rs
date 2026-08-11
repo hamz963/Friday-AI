@@ -102,11 +102,11 @@ mod tests {
         let temp_dir = tempfile::tempdir().unwrap();
         let file_path = temp_dir.path().join("test.txt");
 
-        FileProcessor::write_file(&file_path, "Hello Friday AI").unwrap();
+        FileProcessor::write_file(&file_path, "Hello NOVA OS").unwrap();
         assert!(file_path.exists());
 
         let read_back = FileProcessor::read_file(&file_path).unwrap();
-        assert_eq!(read_back, "Hello Friday AI");
+        assert_eq!(read_back, "Hello NOVA OS");
     }
 
     #[test]

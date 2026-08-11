@@ -1,11 +1,11 @@
-use friday_core::{AppConfig, detect_hardware};
-use friday_api::ApiServer;
+use nova_core::{AppConfig, detect_hardware};
+use nova_api::ApiServer;
 use std::net::SocketAddr;
 use std::process::Command;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    println!("=== Booting Friday AI Operating System ===");
+    println!("=== Booting NOVA OS Operating System ===");
 
     // 1. Detect hardware & settings
     let hw = detect_hardware();

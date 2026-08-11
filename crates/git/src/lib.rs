@@ -1,4 +1,4 @@
-use friday_terminal::TerminalSandbox;
+use nova_terminal::TerminalSandbox;
 use std::path::Path;
 
 pub struct GitController;

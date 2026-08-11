@@ -1,28 +1,28 @@
 [package]
-name = "friday-cli"
+name = "nova-cli"
 version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "friday"
+name = "nova"
 path = "src/main.rs"
 
 [dependencies]
-friday-core = { path = "../core" }
-friday-llm = { path = "../llm" }
-friday-memory = { path = "../memory" }
-friday-plugins = { path = "../plugins" }
-friday-agents = { path = "../agents" }
-friday-desktop = { path = "../desktop" }
-friday-browser = { path = "../browser" }
-friday-voice = { path = "../voice" }
-friday-files = { path = "../files" }
-friday-refiner = { path = "../refiner" }
-friday-generator = { path = "../generator" }
-friday-terminal = { path = "../terminal" }
-friday-git = { path = "../git" }
-friday-diagnostics = { path = "../diagnostics" }
-friday-api = { path = "../api" }
+nova-core = { path = "../core" }
+nova-llm = { path = "../llm" }
+nova-memory = { path = "../memory" }
+nova-plugins = { path = "../plugins" }
+nova-agents = { path = "../agents" }
+nova-desktop = { path = "../desktop" }
+nova-browser = { path = "../browser" }
+nova-voice = { path = "../voice" }
+nova-files = { path = "../files" }
+nova-refiner = { path = "../refiner" }
+nova-generator = { path = "../generator" }
+nova-terminal = { path = "../terminal" }
+nova-git = { path = "../git" }
+nova-diagnostics = { path = "../diagnostics" }
+nova-api = { path = "../api" }
 tokio = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }

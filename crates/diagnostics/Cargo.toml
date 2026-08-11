@@ -1,11 +1,11 @@
 [package]
-name = "friday-diagnostics"
+name = "nova-diagnostics"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-friday-core = { path = "../core" }
-friday-terminal = { path = "../terminal" }
+nova-core = { path = "../core" }
+nova-terminal = { path = "../terminal" }
 serde = { workspace = true }
 serde_json = { workspace = true }
 tracing = { workspace = true }

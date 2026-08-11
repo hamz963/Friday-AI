@@ -1,22 +1,22 @@
 [package]
-name = "friday-api"
+name = "nova-api"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-friday-core = { path = "../core" }
-friday-memory = { path = "../memory" }
-friday-agents = { path = "../agents" }
-friday-terminal = { path = "../terminal" }
-friday-git = { path = "../git" }
-friday-files = { path = "../files" }
-friday-refiner = { path = "../refiner" }
-friday-llm = { path = "../llm" }
-friday-generator = { path = "../generator" }
-friday-voice = { path = "../voice" }
-friday-diagnostics = { path = "../diagnostics" }
-friday-plugins = { path = "../plugins" }
-friday-desktop = { path = "../desktop" }
+nova-core = { path = "../core" }
+nova-memory = { path = "../memory" }
+nova-agents = { path = "../agents" }
+nova-terminal = { path = "../terminal" }
+nova-git = { path = "../git" }
+nova-files = { path = "../files" }
+nova-refiner = { path = "../refiner" }
+nova-llm = { path = "../llm" }
+nova-generator = { path = "../generator" }
+nova-voice = { path = "../voice" }
+nova-diagnostics = { path = "../diagnostics" }
+nova-plugins = { path = "../plugins" }
+nova-desktop = { path = "../desktop" }
 serde = { workspace = true }
 serde_json = { workspace = true }
 tokio = { workspace = true }

@@ -40,11 +40,11 @@ impl Default for AppConfig {
                 api_base: None,
             },
             memory: MemoryConfig {
-                database_url: "sqlite://friday.db".to_string(),
+                database_url: "sqlite://NOVA.db".to_string(),
                 use_vector: false,
             },
             voice: VoiceConfig {
-                wake_word: "friday".to_string(),
+                wake_word: "NOVA".to_string(),
                 tts_provider: "kokoro".to_string(),
                 stt_provider: "whisper".to_string(),
             },
@@ -70,6 +70,6 @@ mod tests {
         assert_eq!(config.llm.provider, "openai");
         assert_eq!(config.llm.model, "gpt-4o");
         assert_eq!(config.memory.use_vector, false);
-        assert_eq!(config.voice.wake_word, "friday");
+        assert_eq!(config.voice.wake_word, "NOVA");
     }
 }

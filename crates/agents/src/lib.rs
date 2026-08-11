@@ -1,6 +1,6 @@
-use friday_llm::{LlmProvider, LlmRequest, ChatMessage};
-use friday_memory::MemoryStore;
-use friday_plugins::Plugin;
+use nova_llm::{LlmProvider, LlmRequest, ChatMessage};
+use nova_memory::MemoryStore;
+use nova_plugins::Plugin;
 use serde::{Deserialize, Serialize};
 use std::sync::Arc;
 
@@ -69,7 +69,7 @@ impl AgentOrchestrator {
         let selected_roles = self.select_agents_for_goal(user_input);
         
         let system_prompt = format!(
-            "You are Friday AI Agent Orchestrator controlling roles: {:?}.
+            "You are NOVA OS Agent Orchestrator controlling roles: {:?}.
 Analyze the user's goal objectively:
 1. Technical feasibility & breakdown
 2. Risk assessment
@@ -103,15 +103,15 @@ Analyze the user's goal objectively:
 }
 
 pub struct AutomationAgent {
-    pub desktop: friday_desktop::DesktopOperator,
-    pub browser: friday_browser::BrowserOperator,
+    pub desktop: nova_desktop::DesktopOperator,
+    pub browser: nova_browser::BrowserOperator,
 }
 
 impl AutomationAgent {
     pub fn new() -> Self {
         Self {
-            desktop: friday_desktop::DesktopOperator::new(),
-            browser: friday_browser::BrowserOperator::new(),
+            desktop: nova_desktop::DesktopOperator::new(),
+            browser: nova_browser::BrowserOperator::new(),
         }
     }
 
@@ -137,7 +137,7 @@ mod tests {
     #[test]
     fn test_agent_role_selection() {
         let memory = Arc::new(MemoryStore::new_in_memory().unwrap());
-        let mock_provider = Arc::new(friday_llm::OllamaProvider::new("http://127.0.0.1:11434".to_string(), "llama3".to_string()));
+        let mock_provider = Arc::new(nova_llm::OllamaProvider::new("http://127.0.0.1:11434".to_string(), "llama3".to_string()));
         let orchestrator = AgentOrchestrator::new(mock_provider, memory);
 
         let network_roles = orchestrator.select_agents_for_goal("Create a Cisco Packet Tracer project");

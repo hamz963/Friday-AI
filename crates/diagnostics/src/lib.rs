@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 use regex::Regex;
-use friday_terminal::TerminalSandbox;
+use nova_terminal::TerminalSandbox;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DiagnosticErrorPayload {

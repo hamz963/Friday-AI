@@ -201,7 +201,7 @@ mod tests {
         assert_eq!(history.len(), 2);
 
         // Test Local Vector RAG indexing & search
-        let count = store.index_document_content("PROPOSAL.md", "Friday AI is a local Rust engine.\n\nIt features zero data leakage.").unwrap();
+        let count = store.index_document_content("PROPOSAL.md", "NOVA OS is a local Rust engine.\n\nIt features zero data leakage.").unwrap();
         assert_eq!(count, 2);
 
         let rag_res = store.rag_vector_search("Rust engine", 5).unwrap();

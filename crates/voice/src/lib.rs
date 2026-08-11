@@ -70,14 +70,14 @@ mod tests {
     fn test_local_speech_synthesis() {
         let synth = LocalSpeechSynthesizer::new();
         let payload = VoiceSynthesisPayload {
-            text: "Friday AI is ready.".to_string(),
-            voice_name: Some("Friday".to_string()),
+            text: "NOVA OS is ready.".to_string(),
+            voice_name: Some("NOVA".to_string()),
             rate: 1.0,
             pitch: 1.0,
         };
         let res = synth.synthesize(&payload);
         assert!(res.is_local);
-        assert_eq!(res.text, "Friday AI is ready.");
+        assert_eq!(res.text, "NOVA OS is ready.");
         assert!(res.synthesized_length_ms > 0);
     }
 }

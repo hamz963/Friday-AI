@@ -1,7 +1,7 @@
-use friday_core::AppConfig;
-use friday_memory::MemoryStore;
-use friday_llm::{LlmProvider, LlmRequest, LlmResponse, ChatMessage};
-use friday_agents::{AgentOrchestrator, AutomationAgent};
+use nova_core::AppConfig;
+use nova_memory::MemoryStore;
+use nova_llm::{LlmProvider, LlmRequest, LlmResponse, ChatMessage};
+use nova_agents::{AgentOrchestrator, AutomationAgent};
 use std::sync::Arc;
 use async_trait::async_trait;
 
@@ -17,10 +17,10 @@ impl LlmProvider for MockLlm {
 }
 
 #[tokio::test]
-async fn test_full_friday_integration_workflow() {
+async fn test_full_nova_integration_workflow() {
     // 1. Load config (Phase 1)
     let config = AppConfig::default();
-    assert_eq!(config.voice.wake_word, "friday");
+    assert_eq!(config.voice.wake_word, "NOVA");
 
     // 2. Initialize database memory (Phase 1)
     let memory = Arc::new(MemoryStore::new_in_memory().unwrap());
@@ -52,8 +52,8 @@ async fn test_full_friday_integration_workflow() {
     assert_eq!(status, Some("initialized".to_string()));
 
     // 7. Whisper Flow Prompt Refinement (Phase 3)
-    let refiner = friday_refiner::WhisperFlowRefiner::new(llm.clone());
-    let refined_prompt = refiner.refine_prompt("umm Friday, please... uh... make a design poster...").await.unwrap();
+    let refiner = nova_refiner::WhisperFlowRefiner::new(llm.clone());
+    let refined_prompt = refiner.refine_prompt("umm NOVA, please... uh... make a design poster...").await.unwrap();
     assert_eq!(refined_prompt, "Mock critique: The desktop screenshot workflow is feasible."); // Mocked by MockLlm
 
     // 8. ZIP Processing & Folder Traversal (Phase 3)
@@ -67,20 +67,20 @@ async fn test_full_friday_integration_workflow() {
     zip.write_all(b"Hello world from integration!").unwrap();
     zip.finish().unwrap();
 
-    friday_files::FileProcessor::extract_zip(&archive_path, &extract_path).unwrap();
-    let scanned_files = friday_files::FileProcessor::scan_directory(&extract_path).unwrap();
+    nova_files::FileProcessor::extract_zip(&archive_path, &extract_path).unwrap();
+    let scanned_files = nova_files::FileProcessor::scan_directory(&extract_path).unwrap();
     assert_eq!(scanned_files.len(), 1);
     assert_eq!(std::fs::read_to_string(&scanned_files[0]).unwrap(), "Hello world from integration!");
 
     // 9. SVG Poster Asset & Code Generator (Phase 3)
     let svg_poster_path = temp_dir.path().join("out.svg");
-    friday_generator::ProjectGenerator::generate_svg_poster("Friday AI", "Digital Partner", &svg_poster_path).unwrap();
+    nova_generator::ProjectGenerator::generate_svg_poster("NOVA OS", "Digital Partner", &svg_poster_path).unwrap();
     assert!(svg_poster_path.exists());
     let svg_raw = std::fs::read_to_string(&svg_poster_path).unwrap();
     assert!(svg_raw.contains("Digital Partner"));
 
     // 10. Web Scraper & Link API processor (Phase 3)
-    let _crawler = friday_llm::UrlCrawler::new();
+    let _crawler = nova_llm::UrlCrawler::new();
     // We use a mock HTML parsing check directly to avoid external network calls during automated test runs
     let parsed_md = html2md::parse_html("<div><h1>Hello Links</h1></div>");
     assert!(parsed_md.contains("Hello Links"));

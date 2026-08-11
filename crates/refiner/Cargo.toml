@@ -1,11 +1,11 @@
 [package]
-name = "friday-refiner"
+name = "nova-refiner"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-friday-core = { path = "../core" }
-friday-llm = { path = "../llm" }
+nova-core = { path = "../core" }
+nova-llm = { path = "../llm" }
 serde = { workspace = true }
 serde_json = { workspace = true }
 tracing = { workspace = true }

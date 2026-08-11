@@ -55,7 +55,7 @@
     <!-- Top Cybernetic Header -->
     <header class="w-full bg-slate-950/90 border-b border-cyan-500/30 sticky top-0 z-50 backdrop-blur-md px-4 py-3 flex items-center justify-between">
         <div class="flex items-center gap-3">
-            <!-- OpenJarvis Arc Reactor Pulse Core -->
+            <!-- OpenNOVA Arc Reactor Pulse Core -->
             <div class="relative w-10 h-10 rounded-full border-2 border-cyan-400 flex items-center justify-center bg-slate-950 reactor-core">
                 <div class="w-5 h-5 rounded-full bg-cyan-300 border border-white shadow-lg shadow-cyan-400"></div>
             </div>
@@ -68,13 +68,13 @@
             </div>
         </div>
 
-        <!-- OpenJarvis Frontier Model Selector -->
+        <!-- OpenNOVA Frontier Model Selector -->
         <div class="hidden md:flex items-center gap-2 bg-slate-900/90 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-slate-300">
             <span class="text-cyan-400 font-bold uppercase text-[10px] tracking-wider">🧠 Active Preset Engine:</span>
             <select id="model-selector" class="bg-transparent text-slate-100 font-bold focus:outline-none cursor-pointer text-xs">
-                <option value="openjarvis-code" class="bg-slate-900 text-amber-300" selected>💻 OpenJarvis Autonomous Developer</option>
-                <option value="openjarvis-research" class="bg-slate-900 text-cyan-300">🔬 OpenJarvis Deep Research Agent</option>
-                <option value="openjarvis-digest" class="bg-slate-900 text-emerald-300">☀️ OpenJarvis Morning Digest & Briefing</option>
+                <option value="openNOVA-code" class="bg-slate-900 text-amber-300" selected>💻 OpenNOVA Autonomous Developer</option>
+                <option value="openNOVA-research" class="bg-slate-900 text-cyan-300">🔬 OpenNOVA Deep Research Agent</option>
+                <option value="openNOVA-digest" class="bg-slate-900 text-emerald-300">☀️ OpenNOVA Morning Digest & Briefing</option>
                 <option value="claude-3-7-sonnet" class="bg-slate-900 text-purple-300">🏆 Claude 3.7 Sonnet (Hybrid Reasoning)</option>
                 <option value="gpt-4-5" class="bg-slate-900 text-indigo-300">🥇 OpenAI GPT-4.5 / GPT-4o Flagship</option>
             </select>
@@ -90,8 +90,8 @@
             <button id="open-settings-btn" class="bg-slate-900 hover:bg-slate-800 text-slate-300 font-semibold text-xs px-3 py-2 rounded-xl border border-slate-700 transition-colors">
                 <span>⚙️ Keys</span>
             </button>
-            <a href="https://github.com/hamz963/Friday-AI/releases/tag/v1.5.0" target="_blank" class="bg-gradient-to-r from-cyan-500 via-indigo-600 to-amber-500 hover:opacity-90 text-slate-950 font-extrabold text-xs px-4 py-2 rounded-xl transition-all shadow-lg shadow-cyan-500/20 flex items-center gap-1.5">
-                ⚡ Download Jarvis.exe
+            <a href="https://github.com/hamz963/NOVA-AI/releases/tag/v1.5.0" target="_blank" class="bg-gradient-to-r from-cyan-500 via-indigo-600 to-amber-500 hover:opacity-90 text-slate-950 font-extrabold text-xs px-4 py-2 rounded-xl transition-all shadow-lg shadow-cyan-500/20 flex items-center gap-1.5">
+                ⚡ Download NOVA.exe
             </a>
         </div>
     </header>
@@ -99,13 +99,13 @@
     <!-- Main SaaS & Cyber HUD Layout -->
     <div class="flex-1 w-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 p-4 gap-6">
 
-        <!-- Sidebar Navigation Drawer (OpenJarvis Presets) -->
+        <!-- Sidebar Navigation Drawer (OpenNOVA Presets) -->
         <aside class="lg:col-span-3 flex flex-col gap-4">
             
-            <!-- OpenJarvis Presets Drawer -->
+            <!-- OpenNOVA Presets Drawer -->
             <div class="glass rounded-2xl p-4 flex flex-col gap-3 glow-arc">
                 <div class="text-xs font-bold tracking-wider text-cyan-400 uppercase flex justify-between items-center border-b border-cyan-500/20 pb-2">
-                    <span>OpenJarvis Agent Presets</span>
+                    <span>OpenNOVA Agent Presets</span>
                     <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/40">On-Device</span>
                 </div>
                 
@@ -144,7 +144,7 @@
                 </nav>
             </div>
 
-            <!-- OpenJarvis Telemetry HUD -->
+            <!-- OpenNOVA Telemetry HUD -->
             <div class="glass rounded-2xl p-4 flex flex-col gap-3">
                 <div class="text-xs font-bold tracking-wider text-cyan-400 uppercase">System Telemetry HUD</div>
                 <div class="space-y-2 text-[11px] mono">
@@ -183,7 +183,7 @@
                 <div class="font-bold text-slate-200">System Architect:</div>
                 <div class="text-cyan-300 font-extrabold text-sm tracking-wide">Hamza Abdul Karim</div>
                 <p class="text-[11px] text-slate-400 leading-relaxed">
-                    OpenJarvis Architecture Stack • On-Device & Frontier Cloud Integration.
+                    OpenNOVA Architecture Stack • On-Device & Frontier Cloud Integration.
                 </p>
             </div>
         </aside>
@@ -191,7 +191,7 @@
         <!-- Central Cybernetic Workspace (Right Column) -->
         <main class="lg:col-span-9 flex flex-col gap-6">
 
-            <!-- Chat & OpenJarvis Workspace Stream -->
+            <!-- Chat & OpenNOVA Workspace Stream -->
             <section id="section-chat" class="glass rounded-2xl p-5 flex flex-col min-h-[560px] gap-4 glow-arc flex-1">
                 <div class="flex justify-between items-center pb-3 border-b border-cyan-500/20">
                     <div class="flex items-center gap-2">
@@ -221,7 +221,7 @@
                 <!-- Input Controls -->
                 <div class="flex flex-col gap-2 pt-2 border-t border-cyan-500/20">
                     <div class="flex gap-2">
-                        <input id="chat-input" type="text" placeholder="Command JARVIS (e.g. build me a schedule for next day, write python code)..." class="bg-slate-950 border border-cyan-500/30 text-cyan-100 rounded-xl px-4 py-3 text-sm flex-1 focus:outline-none focus:border-cyan-400 transition-all shadow-inner">
+                        <input id="chat-input" type="text" placeholder="Command NOVA (e.g. build me a schedule for next day, write python code)..." class="bg-slate-950 border border-cyan-500/30 text-cyan-100 rounded-xl px-4 py-3 text-sm flex-1 focus:outline-none focus:border-cyan-400 transition-all shadow-inner">
                         <button id="chat-enhance" class="bg-slate-900 hover:bg-slate-800 text-cyan-400 font-semibold text-xs px-4 py-3 rounded-xl transition-all border border-slate-700 flex items-center gap-1.5" title="Enhance prompt clarity & structure">✨ Enhance</button>
                         <button id="chat-send" class="bg-gradient-to-r from-cyan-500 via-indigo-600 to-amber-500 hover:opacity-95 text-slate-950 font-extrabold text-sm px-6 py-3 rounded-xl transition-all shadow-lg shadow-cyan-500/20">Send</button>
                     </div>
@@ -260,8 +260,8 @@
                         <button id="git-refresh" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded-lg border border-slate-700">Refresh Git Status</button>
                     </div>
                     <div id="console-output" class="bg-slate-950 border border-slate-800 rounded-xl p-3 min-h-[140px] max-h-[160px] overflow-y-auto text-xs text-slate-300 mono flex flex-col gap-1 leading-relaxed">
-                        <div class="text-slate-500">$ Initialize OpenJarvis security sandbox...</div>
-                        <div id="git-status-log" class="text-cyan-400">Git status: Working tree clean (OpenJarvis v2.0)</div>
+                        <div class="text-slate-500">$ Initialize OpenNOVA security sandbox...</div>
+                        <div id="git-status-log" class="text-cyan-400">Git status: Working tree clean (OpenNOVA v2.0)</div>
                     </div>
                     <div class="flex gap-2">
                         <span class="text-cyan-500 self-center text-xs font-bold select-none">$</span>
@@ -342,11 +342,11 @@
 
     <!-- Footer -->
     <footer class="w-full bg-slate-950 border-t border-cyan-500/20 py-4 px-6 text-center text-xs text-slate-500 flex flex-col md:flex-row items-center justify-between gap-2">
-        <div>OpenJarvis Autonomous Stack &copy; 2026. Architected by <strong class="text-cyan-400">Hamza Abdul Karim</strong>.</div>
+        <div>OpenNOVA Autonomous Stack &copy; 2026. Architected by <strong class="text-cyan-400">Hamza Abdul Karim</strong>.</div>
         <div class="flex gap-4 text-[11px] text-slate-400">
-            <a href="https://github.com/hamz963/Friday-AI" target="_blank" class="hover:text-cyan-400">GitHub Repo</a>
-            <a href="https://github.com/hamz963/Friday-AI/releases/tag/v1.5.0" target="_blank" class="hover:text-cyan-400">Download v1.5.0 Release</a>
-            <span>OpenJarvis Protocol</span>
+            <a href="https://github.com/hamz963/NOVA-AI" target="_blank" class="hover:text-cyan-400">GitHub Repo</a>
+            <a href="https://github.com/hamz963/NOVA-AI/releases/tag/v1.5.0" target="_blank" class="hover:text-cyan-400">Download v1.5.0 Release</a>
+            <span>OpenNOVA Protocol</span>
         </div>
     </footer>
 
@@ -393,7 +393,7 @@
         const lightboxDownloadLink = document.getElementById('lightbox-download-link');
 
         // Voice Readout Helper (Text to Speech)
-        function speakJarvis(text) {
+        function speakNOVA(text) {
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
                 const cleanText = text.replace(/<[^>]*>?/gm, '').replace(/[\#\*\`]/g, '');
@@ -406,8 +406,8 @@
 
         if (voiceBtn) {
             voiceBtn.onclick = () => {
-                speakJarvis("Jarvis voice HUD active. All systems functional.");
-                addMessage("System", "🎙️ <strong>JARVIS Voice Synthesis Core</strong> activated.", true);
+                speakNOVA("NOVA voice HUD active. All systems functional.");
+                addMessage("System", "🎙️ <strong>NOVA Voice Synthesis Core</strong> activated.", true);
             };
         }
 
@@ -448,7 +448,7 @@
                     customModelInput.classList.add('hidden');
                     const selectedText = modelSelector.options[modelSelector.selectedIndex].text.split('(')[0].trim();
                     activeModelBadge.innerText = selectedText;
-                    addMessage('System', `🔥 Switched OpenJarvis preset to <strong>${selectedText}</strong>.`, true);
+                    addMessage('System', `🔥 Switched OpenNOVA preset to <strong>${selectedText}</strong>.`, true);
                 }
             };
         }
@@ -480,11 +480,11 @@
                 chatLog.appendChild(bubble);
 
                 if (text.includes("<iframe") || text.includes("<div")) {
-                    bubble.innerHTML = `<strong>JARVIS:</strong> ${text}`;
+                    bubble.innerHTML = `<strong>NOVA:</strong> ${text}`;
                     chatLog.scrollTop = chatLog.scrollHeight;
                 } else {
                     let currentLength = 0;
-                    bubble.innerHTML = `<strong>JARVIS:</strong> `;
+                    bubble.innerHTML = `<strong>NOVA:</strong> `;
                     const contentSpan = document.createElement('span');
                     const cursor = document.createElement('span');
                     cursor.className = 'text-cyan-400 animate-pulse font-bold ml-1';
@@ -498,7 +498,7 @@
                             contentSpan.innerHTML = text;
                             cursor.remove();
                             clearInterval(timer);
-                            speakJarvis(text);
+                            speakNOVA(text);
                         } else {
                             contentSpan.innerHTML = text.substring(0, currentLength);
                         }
@@ -511,14 +511,14 @@
         // Live Interactive Application Templates
         const CHATTING_APP_HTML = `<!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>OpenJarvis Chat App</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
+<head><meta charset="utf-8"><title>OpenNOVA Chat App</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
 <body class="h-full bg-slate-950 text-slate-100 flex flex-col p-3 font-sans">
 <header class="bg-slate-900 border border-cyan-500/30 p-2.5 rounded-xl flex justify-between items-center mb-2 text-xs">
-<div class="font-bold text-cyan-400 flex items-center gap-1.5">💬 JARVIS Real-Time Chatting App</div>
+<div class="font-bold text-cyan-400 flex items-center gap-1.5">💬 NOVA Real-Time Chatting App</div>
 <span class="text-[10px] text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded font-bold">● Connected</span>
 </header>
 <div id="msgs" class="flex-1 bg-slate-900/80 rounded-xl p-3 overflow-y-auto border border-slate-800 space-y-2 text-xs min-h-[180px]">
-<div class="bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 p-2.5 rounded-xl max-w-xs"><strong>Jarvis:</strong> Welcome to your Live Built Chatting App! Type a message below to chat live.</div>
+<div class="bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 p-2.5 rounded-xl max-w-xs"><strong>NOVA:</strong> Welcome to your Live Built Chatting App! Type a message below to chat live.</div>
 </div>
 <div class="flex gap-2 mt-2">
 <input id="in" type="text" placeholder="Type a message..." class="bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 text-xs flex-1 focus:outline-none focus:border-cyan-500">
@@ -530,7 +530,7 @@ function send(){
 const val=input.value.trim(); if(!val) return; input.value='';
 const u=document.createElement('div'); u.className='bg-indigo-600/30 border border-indigo-500/40 text-indigo-100 p-2.5 rounded-xl max-w-xs ml-auto text-right'; u.innerHTML='<strong>You:</strong> '+val; msgs.appendChild(u); msgs.scrollTop=msgs.scrollHeight;
 setTimeout(()=>{
-const a=document.createElement('div'); a.className='bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 p-2.5 rounded-xl max-w-xs'; a.innerHTML='<strong>Jarvis:</strong> Received message: "'+val+'". Friday AI agent ready!'; msgs.appendChild(a); msgs.scrollTop=msgs.scrollHeight;
+const a=document.createElement('div'); a.className='bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 p-2.5 rounded-xl max-w-xs'; a.innerHTML='<strong>NOVA:</strong> Received message: "'+val+'". NOVA OS agent ready!'; msgs.appendChild(a); msgs.scrollTop=msgs.scrollHeight;
 },500);
 }
 btn.onclick=send; input.onkeydown=(e)=>{if(e.key==='Enter')send();};
@@ -538,7 +538,7 @@ btn.onclick=send; input.onkeydown=(e)=>{if(e.key==='Enter')send();};
 
         const SCHEDULE_APP_HTML = `<!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>OpenJarvis Daily Schedule</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
+<head><meta charset="utf-8"><title>OpenNOVA Daily Schedule</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
 <body class="h-full bg-slate-950 text-slate-100 flex flex-col p-3 font-sans">
 <header class="bg-slate-900 border border-amber-500/30 p-2.5 rounded-xl flex justify-between items-center mb-2 text-xs">
 <div class="font-bold text-amber-400 flex items-center gap-1.5">📅 Tomorrow's Daily Schedule & Timetable</div>
@@ -547,7 +547,7 @@ btn.onclick=send; input.onkeydown=(e)=>{if(e.key==='Enter')send();};
 <div id="schedList" class="flex-1 bg-slate-900/80 rounded-xl p-2.5 overflow-y-auto border border-slate-800 space-y-2 text-xs min-h-[190px]">
 <div class="bg-slate-800 p-2.5 rounded-lg border-l-4 border-cyan-400 flex justify-between items-center"><div><div class="font-bold text-cyan-300">08:00 AM - 09:00 AM</div><div>Morning Exercise & Cybernetic Briefing</div></div><span class="text-emerald-400 font-bold">✓ Ready</span></div>
 <div class="bg-slate-800 p-2.5 rounded-lg border-l-4 border-indigo-400 flex justify-between items-center"><div><div class="font-bold text-indigo-300">09:30 AM - 01:00 PM</div><div>Core AI Architecture & Development Session</div></div><span class="text-amber-400 font-bold">● Scheduled</span></div>
-<div class="bg-slate-800 p-2.5 rounded-lg border-l-4 border-purple-400 flex justify-between items-center"><div><div class="font-bold text-purple-300">02:00 PM - 05:00 PM</div><div>Project Review & OpenJarvis Codebase Sync</div></div><span class="text-amber-400 font-bold">● Scheduled</span></div>
+<div class="bg-slate-800 p-2.5 rounded-lg border-l-4 border-purple-400 flex justify-between items-center"><div><div class="font-bold text-purple-300">02:00 PM - 05:00 PM</div><div>Project Review & OpenNOVA Codebase Sync</div></div><span class="text-amber-400 font-bold">● Scheduled</span></div>
 </div>
 <div class="flex gap-2 mt-2">
 <input id="sIn" type="text" placeholder="Add schedule item (e.g. 06:00 PM Dinner)..." class="bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-1.5 text-xs flex-1 focus:outline-none focus:border-amber-500">
@@ -565,7 +565,7 @@ list.appendChild(d);
 
         const TODO_APP_HTML = `<!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>OpenJarvis Todo App</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
+<head><meta charset="utf-8"><title>OpenNOVA Todo App</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
 <body class="h-full bg-slate-950 text-slate-100 flex flex-col p-3 font-sans">
 <header class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl flex justify-between items-center mb-2 text-xs">
 <div class="font-bold text-indigo-400 flex items-center gap-1.5">📝 Task & Todo Manager</div>
@@ -575,7 +575,7 @@ list.appendChild(d);
 <button id="addBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-3 py-1.5 rounded-xl text-xs">+ Add Task</button>
 </div>
 <ul id="list" class="flex-1 bg-slate-900/80 rounded-xl p-2.5 overflow-y-auto border border-slate-800 space-y-1.5 text-xs min-h-[180px]">
-<li class="bg-slate-800 p-2 rounded-lg flex justify-between items-center"><span>Setup OpenJarvis workspace</span><span class="text-emerald-400 font-bold">✓ Done</span></li>
+<li class="bg-slate-800 p-2 rounded-lg flex justify-between items-center"><span>Setup OpenNOVA workspace</span><span class="text-emerald-400 font-bold">✓ Done</span></li>
 </ul>
 <script>
 const list=document.getElementById('list'), input=document.getElementById('tIn'), btn=document.getElementById('addBtn');
@@ -612,7 +612,7 @@ list.appendChild(li);
         // Free Public Open LLM Fallback (Pollinations AI GPT-4o API)
         async function fetchFreePublicLlmResponse(prompt) {
             try {
-                const sys = encodeURIComponent("You are JARVIS, an autonomous AI developer co-worker architected by Hamza Abdul Karim. Provide clear, direct, expert, production-ready responses. No fluff.");
+                const sys = encodeURIComponent("You are NOVA, an autonomous AI developer co-worker architected by Hamza Abdul Karim. Provide clear, direct, expert, production-ready responses. No fluff.");
                 const p = encodeURIComponent(prompt);
                 const res = await fetch(`https://text.pollinations.ai/${p}?model=openai&system=${sys}`);
                 if (res.ok) {
@@ -625,7 +625,7 @@ list.appendChild(li);
             return null;
         }
 
-        // OpenJarvis Smart Response Generator with Typo Normalizer
+        // OpenNOVA Smart Response Generator with Typo Normalizer
         async function generateSmartAiResponse(prompt, modelName) {
             let normalized = prompt.toLowerCase().trim()
                 .replace(/\bcpde\b/g, "code")
@@ -640,7 +640,7 @@ list.appendChild(li);
                 window[uniqueId] = SCHEDULE_APP_HTML;
                 const escapedHtml = encodeURIComponent(SCHEDULE_APP_HTML);
 
-                return `Here is a complete **Tomorrow's Daily Schedule & Timetable Application** built & generated by **JARVIS**:<br><br>
+                return `Here is a complete **Tomorrow's Daily Schedule & Timetable Application** built & generated by **NOVA**:<br><br>
                 
                 <!-- INLINE LIVE INTERACTIVE APP VIEWPORT -->
                 <div class="my-2 rounded-xl border border-amber-500/40 overflow-hidden bg-slate-950 shadow-2xl">
@@ -654,25 +654,25 @@ list.appendChild(li);
                 </div><br>
 
                 <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-[11px] mono text-amber-300 overflow-x-auto">
-                // Friday AI Schedule Engine Payload<br>
+                // NOVA OS Schedule Engine Payload<br>
                 struct ScheduleTask { time_slot: String, title: String, priority: String }
                 </div>`;
             }
 
             // 2. PYTHON CODE REQUESTS ("python", "code", "script")
             if (normalized.includes("python") || normalized.includes("script")) {
-                return `Here is a complete, production-ready **Python Web Scraper & Automation Suite** generated by **JARVIS**:<br><br>
+                return `Here is a complete, production-ready **Python Web Scraper & Automation Suite** generated by **NOVA**:<br><br>
                 <div class="bg-slate-950 p-4 rounded-xl border border-cyan-500/30 text-[11px] mono text-emerald-300 overflow-x-auto leading-relaxed">
-                # OpenJarvis Production Python Web Scraper & Data Extractor<br>
+                # OpenNOVA Production Python Web Scraper & Data Extractor<br>
                 import requests<br>
                 from bs4 import BeautifulSoup<br>
                 import json<br><br>
-                class OpenJarvisScraper:<br>
+                class OpenNOVAScraper:<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, target_url: str):<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.target_url = target_url<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.headers = {"User-Agent": "OpenJarvis-Bot/2.0"}<br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.headers = {"User-Agent": "OpenNOVA-Bot/2.0"}<br><br>
                 &nbsp;&nbsp;&nbsp;&nbsp;def fetch_and_parse(self):<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"[JARVIS] Requesting URL: {self.target_url}")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"[NOVA] Requesting URL: {self.target_url}")<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response = requests.get(self.target_url, headers=self.headers)<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if response.status_code == 200:<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;soup = BeautifulSoup(response.text, 'html.parser')<br>
@@ -680,7 +680,7 @@ list.appendChild(li);
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { "status": 200, "headings": titles[:5] }<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {"status": response.status_code, "error": "Request failed"}<br><br>
                 if __name__ == "__main__":<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;scraper = OpenJarvisScraper("https://news.ycombinator.com")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;scraper = OpenNOVAScraper("https://news.ycombinator.com")<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;print(json.dumps(scraper.fetch_and_parse(), indent=2))
                 </div><br>
                 ✅ **Execution Statistics**: Code syntax validated cleanly. 0 dependencies missing.`;
@@ -692,7 +692,7 @@ list.appendChild(li);
                 window[uniqueId] = CHATTING_APP_HTML;
                 const escapedHtml = encodeURIComponent(CHATTING_APP_HTML);
 
-                return `Here is a complete **Real-Time Interactive Application** built & generated by **JARVIS**:<br><br>
+                return `Here is a complete **Real-Time Interactive Application** built & generated by **NOVA**:<br><br>
                 
                 <!-- INLINE LIVE INTERACTIVE APP VIEWPORT -->
                 <div class="my-2 rounded-xl border border-cyan-500/40 overflow-hidden bg-slate-950 shadow-2xl">
@@ -706,7 +706,7 @@ list.appendChild(li);
                 </div><br>
 
                 <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-[11px] mono text-cyan-300 overflow-x-auto">
-                // Friday AI Axum Rust WebSockets Backend<br>
+                // NOVA OS Axum Rust WebSockets Backend<br>
                 use axum::{routing::get, Router};<br>
                 #[tokio::main]<br>
                 async fn main() {<br>
@@ -733,7 +733,7 @@ list.appendChild(li);
 
             // 6. Greetings & Author Info
             if (normalized.includes("hi") || normalized.includes("hello") || normalized.includes("hey")) {
-                return `Hello! 👋 I am **JARVIS**, your autonomous cybernetic developer co-worker architected by **Hamza Abdul Karim**. Running on **OpenJarvis Stack**.<br><br>
+                return `Hello! 👋 I am **NOVA**, your autonomous cybernetic developer co-worker architected by **Hamza Abdul Karim**. Running on **OpenNOVA Stack**.<br><br>
                 I can construct applications, write Python code, execute RAG searches, or generate artwork. Try asking:<br>
                 • <em>"build me a schedule for next day"</em><br>
                 • <em>"write a python code for me"</em><br>
@@ -741,18 +741,18 @@ list.appendChild(li);
             }
 
             if (normalized.includes("who created") || normalized.includes("author") || normalized.includes("hamza")) {
-                return `OpenJarvis Friday AI was architected and built by **Hamza Abdul Karim** as an ultra-fast autonomous AI operating system natively in Rust with 100% on-device privacy enforcement.`;
+                return `OpenNOVA NOVA OS was architected and built by **Hamza Abdul Karim** as an ultra-fast autonomous AI operating system natively in Rust with 100% on-device privacy enforcement.`;
             }
 
             // 7. Default Solution
-            return `Here is the optimal OpenJarvis solution for: *"<strong>${prompt}</strong>"*:<br><br>
+            return `Here is the optimal OpenNOVA solution for: *"<strong>${prompt}</strong>"*:<br><br>
             <div class="bg-slate-950 p-3 rounded-lg border border-cyan-500/30 text-[11px] mono text-cyan-300 overflow-x-auto">
-            # OpenJarvis Solution for ${prompt}<br>
-            class OpenJarvisRunner:<br>
+            # OpenNOVA Solution for ${prompt}<br>
+            class OpenNOVARunner:<br>
             &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, objective: str):<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.objective = objective<br><br>
             &nbsp;&nbsp;&nbsp;&nbsp;def run(self):<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"[JARVIS] Executing objective: {self.objective}")<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"[NOVA] Executing objective: {self.objective}")<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {"status": "SUCCESS", "latency_ms": 0.12}
             </div><br>
             ✅ **Verification**: Code validated cleanly with 0 warnings.`;
@@ -779,18 +779,18 @@ list.appendChild(li);
                 const mediaPrompt = document.getElementById('media-prompt');
                 mediaPrompt.value = val;
                 generateMedia('image');
-                addMessage("JARVIS", `[Engine: ${currentModel}] Triggered 🍌 Nano Banana AI Media Engine. Rendering artwork below...`);
+                addMessage("NOVA", `[Engine: ${currentModel}] Triggered 🍌 Nano Banana AI Media Engine. Rendering artwork below...`);
             } else if (lower.includes("fix") || lower.includes("check") || lower.includes("compile")) {
-                addMessage("JARVIS", `[Engine: ${currentModel}] Executing Self-Healing Codebase Diagnostics (friday-diagnostics)....`);
+                addMessage("NOVA", `[Engine: ${currentModel}] Executing Self-Healing Codebase Diagnostics (NOVA-diagnostics)....`);
                 logToConsole("$ cargo check --workspace");
                 setTimeout(() => logToConsole("Finished dev profile [unoptimized + debuginfo] target(s) in 0.12s. Workspace clean."), 300);
                 addMessage("System", "🛠️ Self-Healing Diagnostics: 0 compiler errors. Applied diff patches automatically.", true);
             } else if (lower.includes("rag") || lower.includes("search")) {
-                addMessage("JARVIS", `[Engine: ${currentModel}] Searching local SQLite vector RAG database for "${val}"...`);
+                addMessage("NOVA", `[Engine: ${currentModel}] Searching local SQLite vector RAG database for "${val}"...`);
                 addMessage("System", "🧠 RAG Knowledge Match: Found 3 relevant chunks in PROPOSAL.md and SLIDES.md.", true);
             } else {
                 const aiResp = await generateSmartAiResponse(val, currentModel);
-                addMessage("JARVIS", aiResp);
+                addMessage("NOVA", aiResp);
             }
         }
 
@@ -866,9 +866,9 @@ list.appendChild(li);
         }
 
         // Preset Clicks
-        if (presetCode) presetCode.onclick = () => { modelSelector.value = "openjarvis-code"; modelSelector.onchange(); chatInput.focus(); };
-        if (presetResearch) presetResearch.onclick = () => { modelSelector.value = "openjarvis-research"; modelSelector.onchange(); chatInput.value = "run deep research search"; sendPrompt(); };
-        if (presetDigest) presetDigest.onclick = () => { modelSelector.value = "openjarvis-digest"; modelSelector.onchange(); chatInput.value = "morning digest"; sendPrompt(); };
+        if (presetCode) presetCode.onclick = () => { modelSelector.value = "openNOVA-code"; modelSelector.onchange(); chatInput.focus(); };
+        if (presetResearch) presetResearch.onclick = () => { modelSelector.value = "openNOVA-research"; modelSelector.onchange(); chatInput.value = "run deep research search"; sendPrompt(); };
+        if (presetDigest) presetDigest.onclick = () => { modelSelector.value = "openNOVA-digest"; modelSelector.onchange(); chatInput.value = "morning digest"; sendPrompt(); };
         if (presetMedia) presetMedia.onclick = () => { document.getElementById('media-prompt').focus(); };
 
         // Chip Clicks
@@ -888,7 +888,7 @@ list.appendChild(li);
                 if (!val) return;
                 consoleInput.value = '';
                 logToConsole(`$ ${val}`);
-                setTimeout(() => logToConsole(`Executed '${val}' inside OpenJarvis security sandbox. Workspace clean.`), 300);
+                setTimeout(() => logToConsole(`Executed '${val}' inside OpenNOVA security sandbox. Workspace clean.`), 300);
             }
         };
         if (gitRefresh) gitRefresh.onclick = () => {
