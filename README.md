@@ -1,13 +1,13 @@
-# F.R.I.D.A.Y. AI - Autonomous System Automation & Engineering Co-worker
+# NOVA OS — Clean, Powerful, Luminous AI Operating System
 
 <div align="center">
 
-![Friday AI Logo](./logo.jpg)
+![NOVA OS Logo](./logo.jpg)
 
-### **F.R.I.D.A.Y.**
-**F**ast, **R**esilient & **I**ntelligent **D**esktop **A**gent **Y**ield-Engine
+### **N.O.V.A. OS**
+**N**ext-generation **O**perating **V**ector **A**gent **O**perating **S**ystem
 
-*Your AI. Your Computer. Your Projects. Your Agent.*
+*Clean. Powerful. Luminous.*
 
 </div>
 
