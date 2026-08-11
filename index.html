@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Friday AI Assistant - Frontier AI Operating System & SaaS Web Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -522,7 +525,7 @@ list.appendChild(li);
                 &nbsp;&nbsp;&nbsp;&nbsp;task_id: str<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;status: str<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;latency_ms: float<br><br>
-                async fn fetch_telemetry(session: aiohttp.ClientSession, endpoint: str) -> TaskResult:<br>
+                async def fetch_telemetry(session: aiohttp.ClientSession, endpoint: str) -> TaskResult:<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;async with session.get(endpoint) as response:<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data = await response.json()<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return TaskResult(task_id="friday-01", status="SUCCESS", latency_ms=0.12)<br><br>
