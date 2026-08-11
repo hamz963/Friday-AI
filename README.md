@@ -21,10 +21,10 @@ Download the pre-compiled, zero-dependency production binaries for your platform
 
 | Platform | Download Asset | Description |
 |:---|:---|:---|
-| **Windows 64-bit** | 💻 **[friday.exe (11.9 MB)](https://github.com/hamz963/Friday-AI-Assistant/releases/download/v1.5.0/friday.exe)** | Native zero-dependency Windows executable |
-| **Windows Zip Package** | 📦 **[friday-windows-x64.zip (5.5 MB)](https://github.com/hamz963/Friday-AI-Assistant/releases/download/v1.5.0/friday-windows-x64.zip)** | Compressed release bundle for Windows |
-| **macOS 64-bit / ARM** | 🍏 **[friday-macos-x64.tar.gz (5.6 MB)](https://github.com/hamz963/Friday-AI-Assistant/releases/download/v1.5.0/friday-macos-x64.tar.gz)** | Compressed release tarball for macOS |
-| **All Releases** | 🚀 **[View Release Page (v1.5.0)](https://github.com/hamz963/Friday-AI-Assistant/releases/tag/v1.5.0)** | Tagged GitHub Release Page |
+| **Windows 64-bit** | 💻 **[friday.exe (11.9 MB)](https://github.com/hamz963/Friday-AI/releases/download/v1.5.0/friday.exe)** | Native zero-dependency Windows executable |
+| **Windows Zip Package** | 📦 **[friday-windows-x64.zip (5.5 MB)](https://github.com/hamz963/Friday-AI/releases/download/v1.5.0/friday-windows-x64.zip)** | Compressed release bundle for Windows |
+| **macOS 64-bit / ARM** | 🍏 **[friday-macos-x64.tar.gz (5.6 MB)](https://github.com/hamz963/Friday-AI/releases/download/v1.5.0/friday-macos-x64.tar.gz)** | Compressed release tarball for macOS |
+| **All Releases** | 🚀 **[View Release Page (v1.5.0)](https://github.com/hamz963/Friday-AI/releases/tag/v1.5.0)** | Tagged GitHub Release Page |
 
 ---
 
@@ -37,7 +37,7 @@ Read the complete product specifications and executive pitch deck:
 
 ## 🚀 Interactive Live Demo
 Try the glassmorphic control console directly on the web:
-👉 **[Friday AI Live Dashboard Demo](https://hamz963.github.io/Friday-AI-Assistant/)**
+👉 **[Friday AI Live Web Portal Demo](https://hamz963.github.io/Friday-AI/)**
 
 ---
 
@@ -61,70 +61,69 @@ Friday AI is developed to study the safety, behavior, and security implications 
 
 ---
 
-## 📊 Comparison: Friday AI vs. OpenJarvis vs. OpenClaw
+## 🌟 Key Architecture & Highlights
 
-| Feature | **Friday AI (This Project)** | **OpenJarvis** | **OpenClaw** |
-|:---|:---|:---|:---|
-| **Core Language** | **Rust (Native)** | Python | Python |
-| **System Drivers**| Direct OS Key/Mouse & Headless Browser | App Shell / Python SDK | Chat Application Hooks |
-| **Safety Sandbox**| Integrated Terminal & Command Filters | External Containers | User Approvals |
-| **Prompt Pipeline**| Whisper Flow Real-time Refiner | Standard LLM Templates | Vector Database RAG |
-| **Real-time Audio**| Native CPAL/Rodio Stream Capture | External API Calls | App Voice Notes |
-| **Diagnostics** | Auto-debugging Rust Compiler loop | Standard trace prints | External LSP plugins |
-| **Distribution** | Statically linked `.exe`, `.msi` | Local source run | Local source run |
+- ⚡ **Native Rust Architecture**: High-speed, memory-safe system performance with a single binary deployment (`friday.exe`).
+- 🤖 **Multi-Provider LLM Core**: Supports OpenAI GPT-4o, Anthropic Claude 3.7 Sonnet, DeepSeek R1, Google Gemini 2.5 Pro, xAI Grok 3, and custom model IDs.
+- 🎨 **Nano Banana AI Media Studio**: Photorealistic AI art & motion generation powered by Nano Banana, Midjourney v6, SDXL Turbo, and FLUX.1 Pro engines.
+- 💬 **Inline Artifact Viewports**: Embedded interactive application runner inside message bubbles.
+- 🔒 **100% On-Device Local Privacy**: System metrics, command executions, RAG vector searches, and diagnostic logging remain strictly on your machine.
 
 ---
 
-## 🛠️ System Architecture & Workspace Modules
+## 🏗️ Workspace Crate Architecture
 
-Friday AI is organized as a modular Cargo workspace containing 16 crates:
+The Friday AI project is structured as a modular Rust workspace (`Cargo.toml`):
 
-*   **`friday-core`**: Configuration manager (wake word, LLM model choice) and hardware profiles detector. Contains the `SystemMetricsTracker` for CPU and RAM diagnostics.
-*   **`friday-llm`**: Multi-provider adapters (OpenAI, Gemini, Ollama, Anthropic) and `html2md` URL crawler/scraper.
-*   **`friday-memory`**: High-performance SQLite agent message history and telemetry database.
-*   **`friday-refiner`**: Whisper Flow speech filler refiner that transforms raw voice requests into target actions.
-*   **`friday-generator`**: Direct vector SVG layout writers and directory boilerplate creators.
-*   **`friday-terminal`**: Command line execution sandbox that sanitizes commands to prevent destructive shell operations.
-*   **`friday-git`**: Repository manager that tracks branch logs and commit history.
-*   **`friday-diagnostics`**: Automates compiler error resolution, running diagnostic checks to debug files.
-*   **`friday-api`**: High-performance Axum REST API web server.
-*   **`friday-voice`**: CPAL and Rodio hooks for recording and playing audio files.
-*   **`friday-files`**: Zip compressions and recursive directory traversal.
-*   **`friday-desktop`**: System keyboard and mouse keypress event driver.
-*   **`friday-browser`**: Headless Chrome controller for scraping and interacting with web apps.
-*   **`friday-agents`**: Orchestrates workflows between browser drivers and filesystem crates.
-
----
-
-## 📦 Installation & Getting Started
-
-### Windows (Recommended)
-1. Download the **`friday-installer.msi`** from the **[Releases Tab](https://github.com/hamz963/Friday-AI-Assistant/releases)**.
-2. Run the installer to place Friday AI on your local environment.
-3. Open a terminal and run `friday` to launch the Axum web server and dashboard automatically.
-
-### macOS & Linux
-1. Download the latest tarball release (`friday-macos-x64.tar.gz` or `friday-linux-x64.tar.gz`).
-2. Extract the archive:
-   ```bash
-   tar -xzf friday-*.tar.gz
-   ./friday
-   ```
+```
+Friday-AI/
+├── Cargo.toml (Root Workspace)
+├── index.html (SaaS Web Portal Demo)
+├── vercel.json (Vercel Cloud Deployment Config)
+├── .github/workflows/pages.yml (GitHub Pages Deployment Workflow)
+└── crates/
+    ├── api/        # REST API endpoints & Axum web server
+    ├── cli/        # Command-line launcher & CLI tools
+    ├── core/       # Task queue, agent execution loop, state management
+    ├── diagnostics/# Codebase auto-patching & diagnostics subsystem
+    ├── generator/  # Nano Banana & FLUX.1 Media Generator Engine
+    ├── git/        # Workspace Git status & versioning helper
+    ├── llm/        # Multi-provider LLM client abstractions
+    ├── mcp/        # Model Context Protocol (MCP) Stdio JSON-RPC hub
+    ├── memory/     # Persistent conversation & agent memory
+    ├── rag/        # Local SQLite Vector RAG search engine
+    ├── security/   # Workspace sandbox & command safety rules
+    ├── terminal/   # Interactive sandboxed shell execution
+    ├── tts/        # Local text-to-speech voice engine
+    ├── vision/     # Multimodal desktop screenshot analyzer
+    └── whisper/    # Speech-to-text audio pipeline
+```
 
 ---
 
-## 📡 REST API Reference
+## 💻 Building from Source
 
-The embedded Axum server exposes the following endpoints:
+Ensure you have Rust and Cargo installed:
 
-*   **`GET /`**: Serves the embedded HTML/CSS/JS glassmorphism dashboard.
-*   **`GET /assets/logo.jpg`**: Serves the embedded brand logo image asset.
-*   **`GET /api/metrics`**: Captures CPU load, used RAM, and command execution latency.
-*   **`GET /api/git`**: Queries local workspace repository tree logs.
-*   **`POST /api/terminal`**: Safely executes terminal commands through the sandboxing filter.
-*   **`POST /api/chat`**: Evaluates chat prompts through the Whisper Flow refiner and triggers OS/browser automations.
+```bash
+# Clone the repository
+git clone https://github.com/hamz963/Friday-AI.git
+cd Friday-AI
+
+# Check workspace compilation
+cargo check --workspace
+
+# Run Friday AI locally
+cargo run --bin friday
+```
 
 ---
 
-## 📄 License
-This project is open-source under the MIT License.
+## 👨‍💻 Author & System Architect
+
+Designed, architected, and built by **Hamza Abdul Karim**.
+- GitHub: [github.com/hamz963](https://github.com/hamz963)
+- Project Repo: [github.com/hamz963/Friday-AI](https://github.com/hamz963/Friday-AI)
+- Live Web Demo: [hamz963.github.io/Friday-AI](https://hamz963.github.io/Friday-AI/)
+
+*Licensed under MIT.*
