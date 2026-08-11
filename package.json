@@ -1,7 +1,7 @@
 {
-  "name": "friday-ai-assistant",
+  "name": "nova-ai-assistant",
   "version": "1.5.0",
-  "description": "Friday AI Assistant - Autonomous AI Operating System & SaaS Web Demo Portal",
+  "description": "NOVA OS Assistant - Autonomous AI Operating System & SaaS Web Demo Portal",
   "main": "index.html",
   "scripts": {
     "build": "echo 'Build complete'",

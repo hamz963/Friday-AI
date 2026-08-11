@@ -15,16 +15,16 @@
 
 ---
 
-## 📦 Downloads & Releases (v1.5.0 Latest - 100% Local Privacy Mode)
+## 📦 Downloads & Releases (v2.0.0 Latest - 100% Local Privacy Mode)
 
 Download the pre-compiled, zero-dependency production binaries for your platform:
 
 | Platform | Download Asset | Description |
 |:---|:---|:---|
-| **Windows 64-bit** | 💻 **[friday.exe (11.9 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v1.5.0/friday.exe)** | Native zero-dependency Windows executable |
-| **Windows Zip Package** | 📦 **[friday-windows-x64.zip (5.5 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v1.5.0/friday-windows-x64.zip)** | Compressed release bundle for Windows |
-| **macOS 64-bit / ARM** | 🍏 **[friday-macos-x64.tar.gz (5.6 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v1.5.0/friday-macos-x64.tar.gz)** | Compressed release tarball for macOS |
-| **All Releases** | 🚀 **[View Release Page (v1.5.0)](https://github.com/hamz963/NOVA-AI/releases/tag/v1.5.0)** | Tagged GitHub Release Page |
+| **Windows 64-bit** | 💻 **[nova.exe (11.9 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v2.0.0/nova.exe)** | Native zero-dependency Windows executable |
+| **Windows Zip Package** | 📦 **[NOVA-windows-x64.zip (5.5 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v2.0.0/NOVA-windows-x64.zip)** | Compressed release bundle for Windows |
+| **macOS 64-bit / ARM** | 🍏 **[nova-macos-x64.tar.gz (5.6 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v2.0.0/nova-macos-x64.tar.gz)** | Compressed release tarball for macOS |
+| **All Releases** | 🚀 **[View Release Page (v2.0.0)](https://github.com/hamz963/NOVA-AI/releases/tag/v2.0.0)** | Tagged GitHub Release Page |
 
 ---
 
@@ -37,25 +37,25 @@ Read the complete product specifications and executive pitch deck:
 
 ## 🚀 Interactive Live Demo
 Try the glassmorphic control console directly on the web:
-👉 **[Friday AI Live Web Portal Demo](https://hamz963.github.io/NOVA-AI/)**
+👉 **[NOVA OS Live Web Portal Demo](https://hamz963.github.io/NOVA-AI/)**
 
 ---
 
 ## 🎓 Educational Purpose & Security Architecture
 
-Friday AI is developed to study the safety, behavior, and security implications of letting autonomous LLM agents execute local system commands. Since raw command execution presents high security risks, the project explores several mitigation strategies:
+NOVA OS is developed to study the safety, behavior, and security implications of letting autonomous LLM agents execute local system commands. Since raw command execution presents high security risks, the project explores several mitigation strategies:
 * **Whisper Flow speech normalization**: Pre-processes raw inputs to filter noise and map requests to predefined action boundaries.
 * **Terminal Sandbox (Command Filtering)**: Implements regex parsers to detect and block destructive operations (e.g. recursive overrides or root privilege escalations).
 * **Safe Diagnostics Loop**: Confines compilation tests to restricted workspace folders to avoid side-channel modifications.
 
 ---
 
-## 🛠️ Ways of Using Friday AI
+## 🛠️ Ways of Using NOVA OS
 
 1. **Desktop Command Center (Dashboard Mode)**:
-   Launch the Axum daemon server locally (`cargo run --bin friday`) to open the interactive Web UI. This serves as a control center where you can view live telemetry (CPU/RAM load), run console commands, and interact with the assistant.
+   Launch the Axum daemon server locally (`cargo run --bin NOVA`) to open the interactive Web UI. This serves as a control center where you can view live telemetry (CPU/RAM load), run console commands, and interact with the assistant.
 2. **Autonomous Developer Co-worker (CI/Diagnostics Mode)**:
-   Integrate Friday AI with your project build system to automatically run checks, parse errors, and suggest diagnostic revisions.
+   Integrate NOVA OS with your project build system to automatically run checks, parse errors, and suggest diagnostic revisions.
 3. **Local Speech Assistant (Voice Mode)**:
    Configure local CPAL input streams to run hotkey voice activation, processing speech prompts in the background.
 
@@ -63,7 +63,7 @@ Friday AI is developed to study the safety, behavior, and security implications 
 
 ## 🌟 Key Architecture & Highlights
 
-- ⚡ **Native Rust Architecture**: High-speed, memory-safe system performance with a single binary deployment (`friday.exe`).
+- ⚡ **Native Rust Architecture**: High-speed, memory-safe system performance with a single binary deployment (`nova.exe`).
 - 🤖 **Multi-Provider LLM Core**: Supports OpenAI GPT-4o, Anthropic Claude 3.7 Sonnet, DeepSeek R1, Google Gemini 2.5 Pro, xAI Grok 3, and custom model IDs.
 - 🎨 **Nano Banana AI Media Studio**: Photorealistic AI art & motion generation powered by Nano Banana, Midjourney v6, SDXL Turbo, and FLUX.1 Pro engines.
 - 💬 **Inline Artifact Viewports**: Embedded interactive application runner inside message bubbles.
@@ -73,7 +73,7 @@ Friday AI is developed to study the safety, behavior, and security implications 
 
 ## 🏗️ Workspace Crate Architecture
 
-The Friday AI project is structured as a modular Rust workspace (`Cargo.toml`):
+The NOVA OS project is structured as a modular Rust workspace (`Cargo.toml`):
 
 ```
 NOVA-AI/
@@ -113,8 +113,8 @@ cd NOVA-AI
 # Check workspace compilation
 cargo check --workspace
 
-# Run Friday AI locally
-cargo run --bin friday
+# Run NOVA OS locally
+cargo run --bin NOVA
 ```
 
 ---

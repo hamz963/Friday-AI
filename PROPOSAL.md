@@ -1,8 +1,8 @@
 <div align="center">
 
-![Friday AI Logo](./logo.jpg)
+![NOVA OS Logo](./logo.jpg)
 
-# Friday AI Assistant Platform
+# NOVA OS Assistant Platform
 ### Technical Proposal & Architecture Blueprint
 
 **Author & Architect:** **Hamza Abdul Karim**  
@@ -25,12 +25,12 @@
 7. Phase 2: Speech Normalization & Refiner (Whisper Flow)
 8. Phase 3: Interactive Security & Sandboxed Terminal
 9. Phase 4: 100% Free AI Media Studio (FLUX.1 Engine)
-10. Competitive Differentiators (Friday AI vs. Odysseus.ai)
+10. Competitive Differentiators (NOVA OS vs. Odysseus.ai)
 11. Technology Stack & Toolchain
 12. Database Architecture (SQLite Memory Store)
 13. API Gateway Design (Axum REST & GraphQL)
 14. Frontend Architecture (Glassmorphic Web UI)
-15. CLI & Workspace Tools (`friday-tools` & `friday-files`)
+15. CLI & Workspace Tools (`NOVA-tools` & `NOVA-files`)
 16. Security Architecture & Threat Mitigation
 17. Development Roadmap & Timeline
 18. Risk Assessment & Mitigation
@@ -42,18 +42,18 @@
 
 ## 1. Executive Summary
 
-Friday AI (F.R.I.D.A.Y. - Fast, Resilient & Intelligent Desktop Agent Yield-Engine) is an ambitious, open-source AI desktop operating system platform engineered natively in compiled Rust. Designed to surpass heavy Electron wrappers like Odysseus.ai and open-source CLI script runners, Friday AI delivers an ultra-fast 11.9 MB standalone binary with 200ms latency execution loops.
+NOVA OS (F.R.I.D.A.Y. - Fast, Resilient & Intelligent Desktop Agent Yield-Engine) is an ambitious, open-source AI desktop operating system platform engineered natively in compiled Rust. Designed to surpass heavy Electron wrappers like Odysseus.ai and open-source CLI script runners, NOVA OS delivers an ultra-fast 11.9 MB standalone binary with 200ms latency execution loops.
 
 > [!IMPORTANT]
-> **KEY DIFFERENTIATOR:** Friday AI introduces four category-defining innovations: Whisper Flow Speech Normalization, Terminal Command Security Sandboxing, 100% Free FLUX.1/AnimateDiff Media Generation ($0 API key cost), and Zero-Dependency Native Rust Compilation.
+> **KEY DIFFERENTIATOR:** NOVA OS introduces four category-defining innovations: Whisper Flow Speech Normalization, Terminal Command Security Sandboxing, 100% Free FLUX.1/AnimateDiff Media Generation ($0 API key cost), and Zero-Dependency Native Rust Compilation.
 
 ### Key Deliverables
 - **Core Engine:** 16-crate modular Rust monorepo providing sub-millisecond execution and memory safety.
-- **API Gateway:** High-throughput Axum REST API & embedded web dashboard (`friday-api`).
+- **API Gateway:** High-throughput Axum REST API & embedded web dashboard (`NOVA-api`).
 - **Frontend:** Glassmorphic dark-mode web console with real-time progress bars & active viewport simulation.
-- **Free Media Studio:** Native generative engine (`friday-generator`) producing 1024x1024 FLUX.1 artwork and video clips.
-- **Security Kernel:** Regex-based shell sandbox (`friday-terminal`) filtering out destructive OS commands.
-- **Persistent Memory:** SQLite database (`friday-memory`) tracking historical interactions and user settings.
+- **Free Media Studio:** Native generative engine (`NOVA-generator`) producing 1024x1024 FLUX.1 artwork and video clips.
+- **Security Kernel:** Regex-based shell sandbox (`NOVA-terminal`) filtering out destructive OS commands.
+- **Persistent Memory:** SQLite database (`NOVA-memory`) tracking historical interactions and user settings.
 
 ---
 
@@ -63,29 +63,29 @@ Friday AI (F.R.I.D.A.Y. - Fast, Resilient & Intelligent Desktop Agent Yield-Engi
 > **INTERNSHIP CONTEXT & AUTHOR:** This project is architected and built by **Hamza Abdul Karim** as part of an 8-week engineering program. The following section outlines the scope Hamza will design, build, test, and deliver within 6-7 working weeks.
 
 ### What Can Be Achieved in 6-7 Weeks by Hamza Abdul Karim
-While the full Friday AI roadmap spans long-term agentic capabilities, Hamza Abdul Karim delivers a functional, multi-platform MVP within the 8-week window by constructing a thin vertical slice — from compiled Rust core to API gateway to web dashboard and free media generation engine.
+While the full NOVA OS roadmap spans long-term agentic capabilities, Hamza Abdul Karim delivers a functional, multi-platform MVP within the 8-week window by constructing a thin vertical slice — from compiled Rust core to API gateway to web dashboard and free media generation engine.
 
 ### Week-by-Week Internship Plan
 | Week | Focus Area | Deliverables |
 |:---|:---|:---|
 | **Week 1** | Onboarding & Monorepo Setup | Repo setup, 16-crate Cargo workspace, Docker & Architecture docs |
-| **Week 2** | Core Runtime & Diagnostics | `friday-core` profiler, system metrics profiler, hardware telemetry |
-| **Week 3** | Terminal Sandbox Kernel | `friday-terminal` command filtering, safe execution loop |
-| **Week 4** | Speech Refiner & Memory | `friday-refiner` Whisper Flow filter, `friday-memory` SQLite database |
-| **Week 5** | Free Media Engine | `friday-generator` FLUX.1 & AnimateDiff integration ($0 API key) |
-| **Week 6** | API Gateway & Web Dashboard | `friday-api` Axum server, glassmorphic HTML UI console |
+| **Week 2** | Core Runtime & Diagnostics | `NOVA-core` profiler, system metrics profiler, hardware telemetry |
+| **Week 3** | Terminal Sandbox Kernel | `NOVA-terminal` command filtering, safe execution loop |
+| **Week 4** | Speech Refiner & Memory | `NOVA-refiner` Whisper Flow filter, `NOVA-memory` SQLite database |
+| **Week 5** | Free Media Engine | `NOVA-generator` FLUX.1 & AnimateDiff integration ($0 API key) |
+| **Week 6** | API Gateway & Web Dashboard | `NOVA-api` Axum server, glassmorphic HTML UI console |
 | **Week 7** | Testing & CI/CD Pipeline | Automated GitHub Actions release pipeline (`.github/workflows/release.yml`) |
-| **Week 8** | Final Demo & Handoff | v1.4.0 Release packaging (`friday.exe`, `friday-windows-x64.zip`), presentation |
+| **Week 8** | Final Demo & Handoff | v1.4.0 Release packaging (`nova.exe`, `NOVA-windows-x64.zip`), presentation |
 
 ### Concrete Deliverables by Week 7
 | Deliverable | Status | Completion |
 |:---|:---|:---|
 | 16-Crate Rust Workspace Monorepo | Fully Complete | 100% |
-| Terminal Command Security Sandbox (`friday-terminal`) | Fully Complete | 100% |
-| Whisper Flow Speech Anomaly Refiner (`friday-refiner`) | Fully Complete | 100% |
-| 100% Free AI Media Studio Engine (`friday-generator`) | Fully Complete | 100% |
-| SQLite Persistent Storage (`friday-memory`) | Fully Complete | 100% |
-| Axum Web API & Dashboard (`friday-api`) | Fully Complete | 100% |
+| Terminal Command Security Sandbox (`NOVA-terminal`) | Fully Complete | 100% |
+| Whisper Flow Speech Anomaly Refiner (`NOVA-refiner`) | Fully Complete | 100% |
+| 100% Free AI Media Studio Engine (`NOVA-generator`) | Fully Complete | 100% |
+| SQLite Persistent Storage (`NOVA-memory`) | Fully Complete | 100% |
+| Axum Web API & Dashboard (`NOVA-api`) | Fully Complete | 100% |
 | Multi-OS GitHub Actions CI/CD Pipeline | Fully Complete | 100% |
 | Standalone Binary Release Packaging (`v1.4.0`) | Fully Complete | 100% |
 
@@ -105,19 +105,19 @@ While the full Friday AI roadmap spans long-term agentic capabilities, Hamza Abd
 | Global AI Market Size (2026) | $550+ Billion | Grand View Research |
 | Active Developers Worldwide | 28.7 Million+ | Evans Data Corp |
 | Open Source AI Workspaces | 1,200,000+ Downloads | GitHub Trends |
-| Friday AI Binary Size Target | 11.9 MB (0.05% of Electron) | Friday AI Benchmark |
+| NOVA OS Binary Size Target | 11.9 MB (0.05% of Electron) | NOVA OS Benchmark |
 
 ---
 
 ## 4. Platform Vision & Core Objectives
 
 > [!TIP]
-> **VISION BY HAMZA ABDUL KARIM:** My vision for Friday AI is to bridge the gap between human intention and desktop software execution. By empowering users with native Rust memory safety, terminal command sandboxing, speech filler filtration, and zero-cost AI media generation, Friday AI creates an ultra-fast, trustworthy, and autonomous AI operating system for everyone.
+> **VISION BY HAMZA ABDUL KARIM:** My vision for NOVA OS is to bridge the gap between human intention and desktop software execution. By empowering users with native Rust memory safety, terminal command sandboxing, speech filler filtration, and zero-cost AI media generation, NOVA OS creates an ultra-fast, trustworthy, and autonomous AI operating system for everyone.
 
 ### Core Platform Pillars
 - **Speed:** 200 ms total execution latency for 1,000,000 loop iterations in release profile.
 - **Safety:** Regex-driven command security filtering to block destructive shell execution.
-- **Simplicity:** Single zero-dependency executable file (`friday.exe`) with embedded web interface.
+- **Simplicity:** Single zero-dependency executable file (`nova.exe`) with embedded web interface.
 - **Generative Freedom:** 100% free AI media studio ($0 API key cost) powered by FLUX.1-schnell & AnimateDiff.
 
 ---
@@ -127,25 +127,25 @@ While the full Friday AI roadmap spans long-term agentic capabilities, Hamza Abd
 ```
 +-----------------------------------------------------------------------+
 |                            USER INTERFACE                             |
-|    [Axum Web Dashboard]    [friday-cli]    [Browser Extension]       |
+|    [Axum Web Dashboard]    [NOVA-cli]    [Browser Extension]       |
 +-----------------------------------+-----------------------------------+
                                     |
                                     v
 +-----------------------------------------------------------------------+
 |                       UNIFIED API & ROUTER                            |
-|    [friday-api (Axum)]   [Prompt Enhancer]   [Whisper Flow Refiner]   |
+|    [NOVA-api (Axum)]   [Prompt Enhancer]   [Whisper Flow Refiner]   |
 +-----------------------------------+-----------------------------------+
                                     |
                                     v
 +-----------------------------------------------------------------------+
 |                       EXECUTION & SAFETY KERNEL                       |
-|    [friday-terminal Sandbox]   [friday-git]   [friday-generator]     |
+|    [NOVA-terminal Sandbox]   [NOVA-git]   [NOVA-generator]     |
 +-----------------------------------+-----------------------------------+
                                     |
                                     v
 +-----------------------------------------------------------------------+
 |                       PERSISTENCE & STORAGE                           |
-|    [friday-memory (SQLite)]   [Local Media Storage]   [System Metrics]|
+|    [NOVA-memory (SQLite)]   [Local Media Storage]   [System Metrics]|
 +-----------------------------------------------------------------------+
 ```
 
@@ -156,13 +156,13 @@ While the full Friday AI roadmap spans long-term agentic capabilities, Hamza Abd
 ### 16-Crate Modular Workspace
 | Crate Name | Technology | Purpose |
 |:---|:---|:---|
-| `friday-core` | sysinfo, tokio | Configuration, metrics profiler & hardware monitor |
-| `friday-llm` | reqwest, serde | Ollama (`llama3.2`) and OpenAI API adapters |
-| `friday-memory` | rusqlite | Persistent SQLite database store (`friday_memory.db`) |
-| `friday-refiner` | regex | Whisper Flow prompt filler word normalizer |
-| `friday-terminal` | std::process | Sandboxed shell command execution engine |
-| `friday-generator` | reqwest, uuid | 100% Free AI Media Studio (FLUX.1 & AnimateDiff) |
-| `friday-api` | axum, tower | Axum REST gateway & embedded HTML console |
+| `NOVA-core` | sysinfo, tokio | Configuration, metrics profiler & hardware monitor |
+| `NOVA-llm` | reqwest, serde | Ollama (`llama3.2`) and OpenAI API adapters |
+| `NOVA-memory` | rusqlite | Persistent SQLite database store (`nova_memory.db`) |
+| `NOVA-refiner` | regex | Whisper Flow prompt filler word normalizer |
+| `NOVA-terminal` | std::process | Sandboxed shell command execution engine |
+| `NOVA-generator` | reqwest, uuid | 100% Free AI Media Studio (FLUX.1 & AnimateDiff) |
+| `NOVA-api` | axum, tower | Axum REST gateway & embedded HTML console |
 
 ---
 
@@ -184,13 +184,13 @@ While the full Friday AI roadmap spans long-term agentic capabilities, Hamza Abd
 
 ---
 
-## 10. Competitive Differentiators (Friday AI vs. Odysseus.ai)
+## 10. Competitive Differentiators (NOVA OS vs. Odysseus.ai)
 
-| Feature | Odysseus.ai (PewDiePie) | Friday AI Enhancement |
+| Feature | Odysseus.ai (PewDiePie) | NOVA OS Enhancement |
 |:---|:---|:---|
 | **Core Runtime** | Electron / Node.js (~250 MB) | 100% Native Compiled Rust (11.9 MB) |
 | **Execution Speed** | Standard Web Latency | 200 ms latency across 1,000,000 loops |
-| **Terminal Safety** | Unrestricted / Basic shell | Regex Command Sandbox (`friday-terminal`) |
+| **Terminal Safety** | Unrestricted / Basic shell | Regex Command Sandbox (`NOVA-terminal`) |
 | **Speech Cleaning** | Standard text input | Whisper Flow filler word filtration |
 | **AI Media Studio** | Requires paid API keys | 100% Free FLUX.1 & AnimateDiff Engine ($0) |
 
@@ -236,10 +236,10 @@ While the full Friday AI roadmap spans long-term agentic capabilities, Hamza Abd
 
 ---
 
-## 15. CLI & Workspace Tools (`friday-tools`)
-- `friday.chat(prompt)`: Sends instruction to local Friday instance.
-- `friday.generate_image(prompt)`: Triggers FLUX.1 free artwork generator.
-- `friday.run_command(cmd)`: Executes sandboxed shell command.
+## 15. CLI & Workspace Tools (`NOVA-tools`)
+- `NOVA.chat(prompt)`: Sends instruction to local NOVA instance.
+- `NOVA.generate_image(prompt)`: Triggers FLUX.1 free artwork generator.
+- `NOVA.run_command(cmd)`: Executes sandboxed shell command.
 
 ---
 
@@ -259,8 +259,8 @@ While the full Friday AI roadmap spans long-term agentic capabilities, Hamza Abd
 | Phase | Milestone | Deliverables |
 |:---|:---|:---|
 | **Phase 1** | Foundation | 16-crate monorepo, Axum REST server |
-| **Phase 2** | Security Kernel | `friday-terminal` sandbox, speech refiner |
-| **Phase 3** | Free Media Studio | `friday-generator` FLUX.1 & AnimateDiff engine |
+| **Phase 2** | Security Kernel | `NOVA-terminal` sandbox, speech refiner |
+| **Phase 3** | Free Media Studio | `NOVA-generator` FLUX.1 & AnimateDiff engine |
 | **Phase 4** | CI/CD Release v1.4.0 | Automated GitHub Actions release pipeline |
 
 ---
@@ -288,14 +288,14 @@ While the full Friday AI roadmap spans long-term agentic capabilities, Hamza Abd
 
 ## 21. Conclusion & Next Steps
 
-Friday AI represents a generational leap forward in personal AI operating systems. By combining native Rust systems programming, speech normalization, command security sandboxing, and a 100% free AI media generation engine, Friday AI delivers an ultra-fast, secure workspace for developers and creators worldwide.
+NOVA OS represents a generational leap forward in personal AI operating systems. By combining native Rust systems programming, speech normalization, command security sandboxing, and a 100% free AI media generation engine, NOVA OS delivers an ultra-fast, secure workspace for developers and creators worldwide.
 
 ---
 
 <div align="center">
 
 **-- End of Proposal --**  
-Friday AI Assistant Platform | v1.4.0 | August 10, 2026  
+NOVA OS Assistant Platform | v1.4.0 | August 10, 2026  
 Designed & Architected by **Hamza Abdul Karim**
 
 </div>

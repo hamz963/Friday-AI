@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "friday-ai-assistant",
+  "name": "nova-ai-assistant",
   "builds": [
     {
       "src": "index.html",
