@@ -29,6 +29,8 @@ pub mod gemini;
 pub mod ollama;
 pub mod crawler;
 
+pub use anthropic::AnthropicProvider;
 pub use crawler::UrlCrawler;
+pub use gemini::GeminiProvider;
 pub use ollama::OllamaProvider;
 pub use openai::OpenAiProvider;
