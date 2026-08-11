@@ -21,10 +21,10 @@ Download the pre-compiled, zero-dependency production binaries for your platform
 
 | Platform | Download Asset | Description |
 |:---|:---|:---|
-| **Windows 64-bit** | 💻 **[friday.exe (11.9 MB)](https://github.com/hamz963/Friday-AI/releases/download/v1.5.0/friday.exe)** | Native zero-dependency Windows executable |
-| **Windows Zip Package** | 📦 **[friday-windows-x64.zip (5.5 MB)](https://github.com/hamz963/Friday-AI/releases/download/v1.5.0/friday-windows-x64.zip)** | Compressed release bundle for Windows |
-| **macOS 64-bit / ARM** | 🍏 **[friday-macos-x64.tar.gz (5.6 MB)](https://github.com/hamz963/Friday-AI/releases/download/v1.5.0/friday-macos-x64.tar.gz)** | Compressed release tarball for macOS |
-| **All Releases** | 🚀 **[View Release Page (v1.5.0)](https://github.com/hamz963/Friday-AI/releases/tag/v1.5.0)** | Tagged GitHub Release Page |
+| **Windows 64-bit** | 💻 **[friday.exe (11.9 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v1.5.0/friday.exe)** | Native zero-dependency Windows executable |
+| **Windows Zip Package** | 📦 **[friday-windows-x64.zip (5.5 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v1.5.0/friday-windows-x64.zip)** | Compressed release bundle for Windows |
+| **macOS 64-bit / ARM** | 🍏 **[friday-macos-x64.tar.gz (5.6 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v1.5.0/friday-macos-x64.tar.gz)** | Compressed release tarball for macOS |
+| **All Releases** | 🚀 **[View Release Page (v1.5.0)](https://github.com/hamz963/NOVA-AI/releases/tag/v1.5.0)** | Tagged GitHub Release Page |
 
 ---
 
@@ -37,7 +37,7 @@ Read the complete product specifications and executive pitch deck:
 
 ## 🚀 Interactive Live Demo
 Try the glassmorphic control console directly on the web:
-👉 **[Friday AI Live Web Portal Demo](https://hamz963.github.io/Friday-AI/)**
+👉 **[Friday AI Live Web Portal Demo](https://hamz963.github.io/NOVA-AI/)**
 
 ---
 
@@ -76,7 +76,7 @@ Friday AI is developed to study the safety, behavior, and security implications 
 The Friday AI project is structured as a modular Rust workspace (`Cargo.toml`):
 
 ```
-Friday-AI/
+NOVA-AI/
 ├── Cargo.toml (Root Workspace)
 ├── index.html (SaaS Web Portal Demo)
 ├── vercel.json (Vercel Cloud Deployment Config)
@@ -107,8 +107,8 @@ Ensure you have Rust and Cargo installed:
 
 ```bash
 # Clone the repository
-git clone https://github.com/hamz963/Friday-AI.git
-cd Friday-AI
+git clone https://github.com/hamz963/NOVA-AI.git
+cd NOVA-AI
 
 # Check workspace compilation
 cargo check --workspace
@@ -123,7 +123,7 @@ cargo run --bin friday
 
 Designed, architected, and built by **Hamza Abdul Karim**.
 - GitHub: [github.com/hamz963](https://github.com/hamz963)
-- Project Repo: [github.com/hamz963/Friday-AI](https://github.com/hamz963/Friday-AI)
-- Live Web Demo: [hamz963.github.io/Friday-AI](https://hamz963.github.io/Friday-AI/)
+- Project Repo: [github.com/hamz963/NOVA-AI](https://github.com/hamz963/NOVA-AI)
+- Live Web Demo: [hamz963.github.io/NOVA-AI](https://hamz963.github.io/NOVA-AI/)
 
 *Licensed under MIT.*
