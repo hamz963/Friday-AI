@@ -15,16 +15,16 @@
 
 ---
 
-## 📦 Downloads & Releases (v2.0.0 Latest - 100% Local Privacy Mode)
+## 📦 Downloads & Releases (v1.0.0 Latest - 100% Local Privacy Mode)
 
 Download the pre-compiled, zero-dependency production binaries for your platform:
 
 | Platform | Download Asset | Description |
 |:---|:---|:---|
-| **Windows 64-bit** | 💻 **[nova.exe (11.9 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v2.0.0/nova.exe)** | Native zero-dependency Windows executable |
-| **Windows Zip Package** | 📦 **[NOVA-windows-x64.zip (5.5 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v2.0.0/NOVA-windows-x64.zip)** | Compressed release bundle for Windows |
-| **macOS 64-bit / ARM** | 🍏 **[nova-macos-x64.tar.gz (5.6 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v2.0.0/nova-macos-x64.tar.gz)** | Compressed release tarball for macOS |
-| **All Releases** | 🚀 **[View Release Page (v2.0.0)](https://github.com/hamz963/NOVA-AI/releases/tag/v2.0.0)** | Tagged GitHub Release Page |
+| **Windows 64-bit** | 💻 **[nova.exe (11.9 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v1.0.0/nova.exe)** | Native zero-dependency Windows executable |
+| **Windows Zip Package** | 📦 **[NOVA-windows-x64.zip (5.5 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v1.0.0/NOVA-windows-x64.zip)** | Compressed release bundle for Windows |
+| **macOS 64-bit / ARM** | 🍏 **[nova-macos-x64.tar.gz (5.6 MB)](https://github.com/hamz963/NOVA-AI/releases/download/v1.0.0/nova-macos-x64.tar.gz)** | Compressed release tarball for macOS |
+| **All Releases** | 🚀 **[View Release Page (v1.0.0)](https://github.com/hamz963/NOVA-AI/releases/tag/v1.0.0)** | Tagged GitHub Release Page |
 
 ---
 
