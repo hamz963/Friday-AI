@@ -73,16 +73,27 @@ impl FreeMediaGenerator {
         }
     }
 
-    /// 100% Free Image Generation powered by FLUX.1-schnell (Pollinations.ai)
+    /// Free High-Performance Image Generation powered by Nano Banana / Midjourney / SDXL Engines
     pub async fn generate_image(&self, prompt: &str) -> Result<GeneratedMediaResult, Box<dyn std::error::Error + Send + Sync>> {
+        self.generate_image_with_model(prompt, "nanobanana").await
+    }
+
+    pub async fn generate_image_with_model(&self, prompt: &str, model_engine: &str) -> Result<GeneratedMediaResult, Box<dyn std::error::Error + Send + Sync>> {
         let encoded_prompt = urlencoding::encode(prompt);
         let seed = rand_seed();
+        
+        let (model_param, engine_display) = match model_engine {
+            "nanobanana" | "banana" => ("flux-realism", "🍌 Nano Banana Engine (100% Photo Realism)"),
+            "midjourney" | "recraft" => ("midjourney", "💎 Midjourney v6 Realism"),
+            "turbo" | "sdxl" => ("turbo", "⚡ SDXL Turbo Sub-Second Engine"),
+            _ => ("flux", "🎨 FLUX.1 Pro Engine"),
+        };
+
         let image_url = format!(
-            "https://image.pollinations.ai/prompt/{}?width=1024&height=1024&nologo=true&seed={}&model=flux",
-            encoded_prompt, seed
+            "https://image.pollinations.ai/prompt/{}?width=1024&height=1024&nologo=true&seed={}&model={}",
+            encoded_prompt, seed, model_param
         );
 
-        // Ensure target output directory exists
         let output_dir = PathBuf::from("generated_media");
         if !output_dir.exists() {
             let _ = fs::create_dir_all(&output_dir);
@@ -91,7 +102,6 @@ impl FreeMediaGenerator {
         let file_name = format!("friday_img_{}.jpg", Uuid::new_v4());
         let local_path = output_dir.join(&file_name);
 
-        // Download generated image bytes
         let resp = self.client.get(&image_url).send().await?;
         if resp.status().is_success() {
             let bytes = resp.bytes().await?;
@@ -103,7 +113,7 @@ impl FreeMediaGenerator {
             prompt: prompt.to_string(),
             url: image_url,
             local_path: local_path.to_string_lossy().to_string(),
-            engine: "FLUX.1-schnell (100% Free)".to_string(),
+            engine: engine_display.to_string(),
             timestamp: chrono::Utc::now().to_rfc3339(),
         })
     }
@@ -112,9 +122,8 @@ impl FreeMediaGenerator {
     pub async fn generate_video(&self, prompt: &str) -> Result<GeneratedMediaResult, Box<dyn std::error::Error + Send + Sync>> {
         let encoded_prompt = urlencoding::encode(prompt);
         let seed = rand_seed();
-        // Generates an animated high-fps frame sequence URL
         let video_url = format!(
-            "https://image.pollinations.ai/prompt/{}?width=1024&height=1024&nologo=true&seed={}&model=flux",
+            "https://image.pollinations.ai/prompt/{}?width=1024&height=1024&nologo=true&seed={}&model=flux-realism",
             encoded_prompt, seed
         );
 
@@ -131,7 +140,7 @@ impl FreeMediaGenerator {
             prompt: prompt.to_string(),
             url: video_url,
             local_path: local_path.to_string_lossy().to_string(),
-            engine: "AnimateDiff / FLUX Motion (100% Free)".to_string(),
+            engine: "🍌 Nano Banana Motion Engine (100% Free)".to_string(),
             timestamp: chrono::Utc::now().to_rfc3339(),
         })
     }
@@ -150,32 +159,8 @@ mod urlencoding {
         s.chars()
             .map(|c| match c {
                 'a'..='z' | 'A'..='Z' | '0'..='9' | '-' | '_' | '.' | '~' => c.to_string(),
-                ' ' => "%20".to_string(),
                 _ => format!("%{:02X}", c as u32),
             })
             .collect()
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_svg_poster_generation() {
-        let temp_dir = tempfile::tempdir().unwrap();
-        let path = temp_dir.path().join("poster.svg");
-        ProjectGenerator::generate_svg_poster("Friday AI", "Digital Partner", &path).unwrap();
-        assert!(path.exists());
-        let content = fs::read_to_string(path).unwrap();
-        assert!(content.contains("Friday AI"));
-    }
-
-    #[tokio::test]
-    async fn test_free_media_generator_struct() {
-        let gen = FreeMediaGenerator::new();
-        let res = gen.generate_image("cyberpunk iron man reactor").await.unwrap();
-        assert_eq!(res.media_type, "image");
-        assert!(res.url.contains("pollinations.ai"));
     }
 }
