@@ -52,7 +52,7 @@
             <div>
                 <div class="flex items-center gap-2">
                     <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-cyan-200 to-indigo-300 bg-clip-text text-transparent">F.R.I.D.A.Y. AI</span>
-                    <span class="text-[10px] bg-cyan-500/20 text-cyan-300 font-semibold px-2 py-0.5 rounded-full border border-cyan-500/30">v1.5.0 OPTIMAL</span>
+                    <span class="text-[10px] bg-cyan-500/20 text-cyan-300 font-semibold px-2 py-0.5 rounded-full border border-cyan-500/30">v1.5.0 STREAMING</span>
                 </div>
                 <p class="text-[11px] text-slate-400">Autonomous Developer Coworker & Universal Model Engine</p>
             </div>
@@ -177,8 +177,9 @@
 
                 <!-- Main Chat Log -->
                 <div id="chat-log" class="flex-1 overflow-y-auto max-h-[520px] pr-2 flex flex-col gap-4">
-                    <div class="bg-cyan-500/10 border border-cyan-500/20 text-cyan-200 text-xs px-4 py-3 rounded-xl">
-                        <strong>Friday AI Assistant:</strong> Connected to <strong>Claude 3.7 Sonnet</strong> and <strong>GPT-4o</strong>! Ask me to write **Python scripts**, **Rust web apps**, **Chatting apps**, or **Todo apps** and I will generate live working code and embedded interactive viewports!
+                    <div class="bg-cyan-500/10 border border-cyan-500/20 text-cyan-200 text-xs px-4 py-3 rounded-xl leading-relaxed">
+                        <strong>Friday AI Assistant:</strong> Connected to <strong>Claude 3.7 Sonnet</strong> and <strong>GPT-4o</strong>! Ask me to write **Python scripts**, **Rust web apps**, **Chatting apps**, or **Todo apps** and I will generate live working code and embedded interactive viewports!<br><br>
+                        <span class="text-[11px] text-slate-400">💡 <em>Note: Enter your personal API key in ⚙️ API Keys for direct cloud inference, or download <strong>friday.exe</strong> to run desktop terminal commands locally!</em></span>
                     </div>
                 </div>
 
@@ -418,19 +419,51 @@
             consoleOutput.scrollTop = consoleOutput.scrollHeight;
         }
 
-        // Add Message Helper
+        // Add Message Helper with Typewriter Streaming Effect
         function addMessage(sender, text, isSystem = false) {
             const bubble = document.createElement('div');
             if (isSystem) {
                 bubble.className = "bg-slate-800/60 border border-slate-700/50 text-slate-300 text-xs px-4 py-2.5 rounded-xl";
+                bubble.innerHTML = `<strong>${sender}:</strong> ${text}`;
+                chatLog.appendChild(bubble);
+                chatLog.scrollTop = chatLog.scrollHeight;
             } else if (sender === 'User') {
                 bubble.className = "bg-indigo-600/10 border border-indigo-500/20 text-indigo-200 text-xs px-4 py-3 rounded-xl self-end max-w-xl";
+                bubble.innerHTML = `<strong>${sender}:</strong> ${text}`;
+                chatLog.appendChild(bubble);
+                chatLog.scrollTop = chatLog.scrollHeight;
             } else {
                 bubble.className = "bg-cyan-500/10 border border-cyan-500/20 text-cyan-200 text-xs px-4 py-3 rounded-xl self-start w-full max-w-2xl leading-relaxed space-y-3";
+                chatLog.appendChild(bubble);
+
+                // Check if text contains iframe / complex HTML
+                if (text.includes("<iframe") || text.includes("<div")) {
+                    bubble.innerHTML = `<strong>${sender}:</strong> ${text}`;
+                    chatLog.scrollTop = chatLog.scrollHeight;
+                } else {
+                    // Typewriter streaming effect
+                    let currentLength = 0;
+                    bubble.innerHTML = `<strong>${sender}:</strong> `;
+                    const contentSpan = document.createElement('span');
+                    const cursor = document.createElement('span');
+                    cursor.className = 'text-cyan-400 animate-pulse font-bold ml-1';
+                    cursor.innerText = '█';
+                    bubble.appendChild(contentSpan);
+                    bubble.appendChild(cursor);
+
+                    const timer = setInterval(() => {
+                        currentLength += 3;
+                        if (currentLength >= text.length) {
+                            contentSpan.innerHTML = text;
+                            cursor.remove();
+                            clearInterval(timer);
+                        } else {
+                            contentSpan.innerHTML = text.substring(0, currentLength);
+                        }
+                        chatLog.scrollTop = chatLog.scrollHeight;
+                    }, 20);
+                }
             }
-            bubble.innerHTML = `<strong>${sender}:</strong> ${text}`;
-            chatLog.appendChild(bubble);
-            chatLog.scrollTop = chatLog.scrollHeight;
         }
 
         // Interactive Live Inline Chat Application Generator Code
