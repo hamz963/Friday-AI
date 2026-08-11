@@ -72,9 +72,9 @@
         <div class="hidden md:flex items-center gap-2 bg-slate-900/90 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-slate-300">
             <span class="text-cyan-400 font-bold uppercase text-[10px] tracking-wider">🧠 Active Preset Engine:</span>
             <select id="model-selector" class="bg-transparent text-slate-100 font-bold focus:outline-none cursor-pointer text-xs">
-                <option value="openNOVA-code" class="bg-slate-900 text-amber-300" selected>💻 OpenNOVA Autonomous Developer</option>
-                <option value="openNOVA-research" class="bg-slate-900 text-cyan-300">🔬 OpenNOVA Deep Research Agent</option>
-                <option value="openNOVA-digest" class="bg-slate-900 text-emerald-300">☀️ OpenNOVA Morning Digest & Briefing</option>
+                <option value="nova-code" class="bg-slate-900 text-amber-300" selected>💻 NOVA Autonomous Developer</option>
+                <option value="nova-research" class="bg-slate-900 text-cyan-300">🔬 NOVA Deep Research Agent</option>
+                <option value="nova-digest" class="bg-slate-900 text-emerald-300">☀️ NOVA Morning Digest & Briefing</option>
                 <option value="claude-3-7-sonnet" class="bg-slate-900 text-purple-300">🏆 Claude 3.7 Sonnet (Hybrid Reasoning)</option>
                 <option value="gpt-4-5" class="bg-slate-900 text-indigo-300">🥇 OpenAI GPT-4.5 / GPT-4o Flagship</option>
             </select>
@@ -90,8 +90,8 @@
             <button id="open-settings-btn" class="bg-slate-900 hover:bg-slate-800 text-slate-300 font-semibold text-xs px-3 py-2 rounded-xl border border-slate-700 transition-colors">
                 <span>⚙️ Keys</span>
             </button>
-            <a href="https://github.com/hamz963/NOVA-AI/releases/tag/v1.5.0" target="_blank" class="bg-gradient-to-r from-cyan-500 via-indigo-600 to-amber-500 hover:opacity-90 text-slate-950 font-extrabold text-xs px-4 py-2 rounded-xl transition-all shadow-lg shadow-cyan-500/20 flex items-center gap-1.5">
-                ⚡ Download NOVA.exe
+            <a href="https://github.com/hamz963/Friday-AI/releases/tag/v1.5.0" target="_blank" class="bg-gradient-to-r from-cyan-500 via-indigo-600 to-amber-500 hover:opacity-90 text-slate-950 font-extrabold text-xs px-4 py-2 rounded-xl transition-all shadow-lg shadow-cyan-500/20 flex items-center gap-1.5">
+                ⚡ Download Nova.exe
             </a>
         </div>
     </header>
@@ -105,7 +105,7 @@
             <!-- OpenNOVA Presets Drawer -->
             <div class="glass rounded-2xl p-4 flex flex-col gap-3 glow-arc">
                 <div class="text-xs font-bold tracking-wider text-cyan-400 uppercase flex justify-between items-center border-b border-cyan-500/20 pb-2">
-                    <span>OpenNOVA Agent Presets</span>
+                    <span>NOVA Agent Presets</span>
                     <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/40">On-Device</span>
                 </div>
                 
@@ -221,7 +221,7 @@
                 <!-- Input Controls -->
                 <div class="flex flex-col gap-2 pt-2 border-t border-cyan-500/20">
                     <div class="flex gap-2">
-                        <input id="chat-input" type="text" placeholder="Command NOVA (e.g. build me a schedule for next day, write python code)..." class="bg-slate-950 border border-cyan-500/30 text-cyan-100 rounded-xl px-4 py-3 text-sm flex-1 focus:outline-none focus:border-cyan-400 transition-all shadow-inner">
+                        <input id="chat-input" type="text" placeholder="Command NOVA OS (e.g. write a python script, explain quantum physics, build schedule)..." class="bg-slate-950 border border-cyan-500/30 text-cyan-100 rounded-xl px-4 py-3 text-sm flex-1 focus:outline-none focus:border-cyan-400 transition-all shadow-inner">
                         <button id="chat-enhance" class="bg-slate-900 hover:bg-slate-800 text-cyan-400 font-semibold text-xs px-4 py-3 rounded-xl transition-all border border-slate-700 flex items-center gap-1.5" title="Enhance prompt clarity & structure">✨ Enhance</button>
                         <button id="chat-send" class="bg-gradient-to-r from-cyan-500 via-indigo-600 to-amber-500 hover:opacity-95 text-slate-950 font-extrabold text-sm px-6 py-3 rounded-xl transition-all shadow-lg shadow-cyan-500/20">Send</button>
                     </div>
@@ -261,7 +261,7 @@
                     </div>
                     <div id="console-output" class="bg-slate-950 border border-slate-800 rounded-xl p-3 min-h-[140px] max-h-[160px] overflow-y-auto text-xs text-slate-300 mono flex flex-col gap-1 leading-relaxed">
                         <div class="text-slate-500">$ Initialize OpenNOVA security sandbox...</div>
-                        <div id="git-status-log" class="text-cyan-400">Git status: Working tree clean (OpenNOVA v2.0)</div>
+                        <div id="git-status-log" class="text-cyan-400">Git status: Working tree clean (NOVA OS v2.0)</div>
                     </div>
                     <div class="flex gap-2">
                         <span class="text-cyan-500 self-center text-xs font-bold select-none">$</span>
@@ -282,12 +282,12 @@
                 <button id="close-settings-btn" class="text-slate-400 hover:text-white font-bold text-lg">&times;</button>
             </div>
             <p class="text-xs text-slate-300 leading-relaxed">
-                Connect your standard Google Gemini key starting with <code class="text-purple-300">AIzaSy...</code>, OpenAI (<code class="text-emerald-300">sk-proj-...</code>), or Anthropic (<code class="text-amber-300">sk-ant-...</code>).
+                Connect your standard Google Gemini key starting with <code class="text-purple-300">AQ.Ab8...</code> or <code class="text-purple-300">AIzaSy...</code>, OpenAI (<code class="text-emerald-300">sk-proj-...</code>), or Anthropic (<code class="text-amber-300">sk-ant-...</code>).
             </p>
             <div class="flex flex-col gap-3 text-xs">
                 <div>
-                    <label class="font-bold text-purple-300 block mb-1">Google Gemini Key (AIzaSy...):</label>
-                    <input id="key-gemini" type="password" placeholder="Enter AI Studio Key (AIzaSy...)..." class="w-full bg-slate-950 border border-slate-800 text-slate-100 rounded-xl px-3 py-2 focus:outline-none focus:border-cyan-500">
+                    <label class="font-bold text-purple-300 block mb-1">Google Gemini Key (AQ.Ab8... / AIzaSy...):</label>
+                    <input id="key-gemini" type="password" placeholder="Enter Gemini Key..." class="w-full bg-slate-950 border border-slate-800 text-slate-100 rounded-xl px-3 py-2 focus:outline-none focus:border-cyan-500">
                 </div>
                 <div>
                     <label class="font-bold text-amber-300 block mb-1">Anthropic Claude Key (sk-ant-...):</label>
@@ -296,10 +296,6 @@
                 <div>
                     <label class="font-bold text-emerald-300 block mb-1">OpenAI Key (sk-proj-...):</label>
                     <input id="key-openai" type="password" placeholder="Enter OpenAI API key..." class="w-full bg-slate-950 border border-slate-800 text-slate-100 rounded-xl px-3 py-2 focus:outline-none focus:border-cyan-500">
-                </div>
-                <div>
-                    <label class="font-bold text-cyan-300 block mb-1">Groq / OpenRouter Key (gsk_... or sk-or-...):</label>
-                    <input id="key-groq" type="password" placeholder="Enter Groq or OpenRouter key..." class="w-full bg-slate-950 border border-slate-800 text-slate-100 rounded-xl px-3 py-2 focus:outline-none focus:border-cyan-500">
                 </div>
             </div>
             <div class="flex justify-end gap-2 pt-2 border-t border-slate-800">
@@ -342,11 +338,11 @@
 
     <!-- Footer -->
     <footer class="w-full bg-slate-950 border-t border-cyan-500/20 py-4 px-6 text-center text-xs text-slate-500 flex flex-col md:flex-row items-center justify-between gap-2">
-        <div>OpenNOVA Autonomous Stack &copy; 2026. Architected by <strong class="text-cyan-400">Hamza Abdul Karim</strong>.</div>
+        <div>NOVA OS Autonomous Stack &copy; 2026. Architected by <strong class="text-cyan-400">Hamza Abdul Karim</strong>.</div>
         <div class="flex gap-4 text-[11px] text-slate-400">
-            <a href="https://github.com/hamz963/NOVA-AI" target="_blank" class="hover:text-cyan-400">GitHub Repo</a>
-            <a href="https://github.com/hamz963/NOVA-AI/releases/tag/v1.5.0" target="_blank" class="hover:text-cyan-400">Download v1.5.0 Release</a>
-            <span>OpenNOVA Protocol</span>
+            <a href="https://github.com/hamz963/Friday-AI" target="_blank" class="hover:text-cyan-400">GitHub Repo</a>
+            <a href="https://github.com/hamz963/Friday-AI/releases/tag/v1.5.0" target="_blank" class="hover:text-cyan-400">Download v1.5.0 Release</a>
+            <span>NOVA OS Protocol</span>
         </div>
     </footer>
 
@@ -393,7 +389,7 @@
         const lightboxDownloadLink = document.getElementById('lightbox-download-link');
 
         // Voice Readout Helper (Text to Speech)
-        function speakNOVA(text) {
+        function speakJarvis(text) {
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
                 const cleanText = text.replace(/<[^>]*>?/gm, '').replace(/[\#\*\`]/g, '');
@@ -406,8 +402,8 @@
 
         if (voiceBtn) {
             voiceBtn.onclick = () => {
-                speakNOVA("NOVA voice HUD active. All systems functional.");
-                addMessage("System", "🎙️ <strong>NOVA Voice Synthesis Core</strong> activated.", true);
+                speakJarvis("NOVA OS voice HUD active. All neural systems online.");
+                addMessage("System", "🎙️ <strong>NOVA OS Voice Synthesis Core</strong> activated.", true);
             };
         }
 
@@ -417,7 +413,6 @@
                 document.getElementById('key-anthropic').value = localStorage.getItem('key_anthropic') || '';
                 document.getElementById('key-openai').value = localStorage.getItem('key_openai') || '';
                 document.getElementById('key-gemini').value = localStorage.getItem('key_gemini') || '';
-                document.getElementById('key-groq').value = localStorage.getItem('key_groq') || '';
                 modalSettings.classList.remove('hidden');
             };
         }
@@ -431,7 +426,6 @@
                 localStorage.setItem('key_anthropic', document.getElementById('key-anthropic').value.trim());
                 localStorage.setItem('key_openai', document.getElementById('key-openai').value.trim());
                 localStorage.setItem('key_gemini', gemVal);
-                localStorage.setItem('key_groq', document.getElementById('key-groq').value.trim());
                 modalSettings.classList.add('hidden');
                 addMessage('System', '⚙️ Saved API Keys locally!', true);
             };
@@ -448,7 +442,7 @@
                     customModelInput.classList.add('hidden');
                     const selectedText = modelSelector.options[modelSelector.selectedIndex].text.split('(')[0].trim();
                     activeModelBadge.innerText = selectedText;
-                    addMessage('System', `🔥 Switched OpenNOVA preset to <strong>${selectedText}</strong>.`, true);
+                    addMessage('System', `🔥 Switched NOVA OS preset to <strong>${selectedText}</strong>.`, true);
                 }
             };
         }
@@ -462,7 +456,7 @@
             consoleOutput.scrollTop = consoleOutput.scrollHeight;
         }
 
-        // Add Message Helper with Typewriter Streaming Effect
+        // Add Message Helper with Typewriter Streaming Effect & Markdown Formatting
         function addMessage(sender, text, isSystem = false) {
             const bubble = document.createElement('div');
             if (isSystem) {
@@ -492,18 +486,25 @@
                     bubble.appendChild(contentSpan);
                     bubble.appendChild(cursor);
 
+                    const formattedText = text
+                        .replace(/\n\n/g, '<br><br>')
+                        .replace(/\n/g, '<br>')
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                        .replace(/`([^`]+)`/g, '<code class="bg-slate-950 border border-cyan-500/30 text-cyan-300 px-1 py-0.5 rounded mono">$1</code>');
+
                     const timer = setInterval(() => {
-                        currentLength += 3;
-                        if (currentLength >= text.length) {
-                            contentSpan.innerHTML = text;
+                        currentLength += 4;
+                        if (currentLength >= formattedText.length) {
+                            contentSpan.innerHTML = formattedText;
                             cursor.remove();
                             clearInterval(timer);
-                            speakNOVA(text);
+                            speakJarvis(text);
                         } else {
-                            contentSpan.innerHTML = text.substring(0, currentLength);
+                            contentSpan.innerHTML = formattedText.substring(0, currentLength);
                         }
                         chatLog.scrollTop = chatLog.scrollHeight;
-                    }, 18);
+                    }, 15);
                 }
             }
         }
@@ -511,7 +512,7 @@
         // Live Interactive Application Templates
         const CHATTING_APP_HTML = `<!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>OpenNOVA Chat App</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
+<head><meta charset="utf-8"><title>NOVA OS Chat App</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
 <body class="h-full bg-slate-950 text-slate-100 flex flex-col p-3 font-sans">
 <header class="bg-slate-900 border border-cyan-500/30 p-2.5 rounded-xl flex justify-between items-center mb-2 text-xs">
 <div class="font-bold text-cyan-400 flex items-center gap-1.5">💬 NOVA Real-Time Chatting App</div>
@@ -538,7 +539,7 @@ btn.onclick=send; input.onkeydown=(e)=>{if(e.key==='Enter')send();};
 
         const SCHEDULE_APP_HTML = `<!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>OpenNOVA Daily Schedule</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
+<head><meta charset="utf-8"><title>NOVA OS Daily Schedule</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
 <body class="h-full bg-slate-950 text-slate-100 flex flex-col p-3 font-sans">
 <header class="bg-slate-900 border border-amber-500/30 p-2.5 rounded-xl flex justify-between items-center mb-2 text-xs">
 <div class="font-bold text-amber-400 flex items-center gap-1.5">📅 Tomorrow's Daily Schedule & Timetable</div>
@@ -547,7 +548,7 @@ btn.onclick=send; input.onkeydown=(e)=>{if(e.key==='Enter')send();};
 <div id="schedList" class="flex-1 bg-slate-900/80 rounded-xl p-2.5 overflow-y-auto border border-slate-800 space-y-2 text-xs min-h-[190px]">
 <div class="bg-slate-800 p-2.5 rounded-lg border-l-4 border-cyan-400 flex justify-between items-center"><div><div class="font-bold text-cyan-300">08:00 AM - 09:00 AM</div><div>Morning Exercise & Cybernetic Briefing</div></div><span class="text-emerald-400 font-bold">✓ Ready</span></div>
 <div class="bg-slate-800 p-2.5 rounded-lg border-l-4 border-indigo-400 flex justify-between items-center"><div><div class="font-bold text-indigo-300">09:30 AM - 01:00 PM</div><div>Core AI Architecture & Development Session</div></div><span class="text-amber-400 font-bold">● Scheduled</span></div>
-<div class="bg-slate-800 p-2.5 rounded-lg border-l-4 border-purple-400 flex justify-between items-center"><div><div class="font-bold text-purple-300">02:00 PM - 05:00 PM</div><div>Project Review & OpenNOVA Codebase Sync</div></div><span class="text-amber-400 font-bold">● Scheduled</span></div>
+<div class="bg-slate-800 p-2.5 rounded-lg border-l-4 border-purple-400 flex justify-between items-center"><div><div class="font-bold text-purple-300">02:00 PM - 05:00 PM</div><div>Project Review & NOVA OS Codebase Sync</div></div><span class="text-amber-400 font-bold">● Scheduled</span></div>
 </div>
 <div class="flex gap-2 mt-2">
 <input id="sIn" type="text" placeholder="Add schedule item (e.g. 06:00 PM Dinner)..." class="bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-1.5 text-xs flex-1 focus:outline-none focus:border-amber-500">
@@ -563,33 +564,9 @@ list.appendChild(d);
 };
 </` + `script></body></html>`;
 
-        const TODO_APP_HTML = `<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><title>OpenNOVA Todo App</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
-<body class="h-full bg-slate-950 text-slate-100 flex flex-col p-3 font-sans">
-<header class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl flex justify-between items-center mb-2 text-xs">
-<div class="font-bold text-indigo-400 flex items-center gap-1.5">📝 Task & Todo Manager</div>
-</header>
-<div class="flex gap-2 mb-2">
-<input id="tIn" type="text" placeholder="Add a new task..." class="bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-1.5 text-xs flex-1 focus:outline-none focus:border-indigo-500">
-<button id="addBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-3 py-1.5 rounded-xl text-xs">+ Add Task</button>
-</div>
-<ul id="list" class="flex-1 bg-slate-900/80 rounded-xl p-2.5 overflow-y-auto border border-slate-800 space-y-1.5 text-xs min-h-[180px]">
-<li class="bg-slate-800 p-2 rounded-lg flex justify-between items-center"><span>Setup OpenNOVA workspace</span><span class="text-emerald-400 font-bold">✓ Done</span></li>
-</ul>
-<script>
-const list=document.getElementById('list'), input=document.getElementById('tIn'), btn=document.getElementById('addBtn');
-btn.onclick=()=>{
-const val=input.value.trim(); if(!val) return; input.value='';
-const li=document.createElement('li'); li.className='bg-slate-800 p-2 rounded-lg flex justify-between items-center';
-li.innerHTML='<span>'+val+'</span><button onclick="this.parentElement.remove()" class="text-rose-400 font-bold hover:underline">Delete</button>';
-list.appendChild(li);
-};
-</` + `script></body></html>`;
-
         // Direct Live Google Gemini API Integration
         async function fetchGeminiApiResponse(prompt, apiKey) {
-            if (!apiKey || !apiKey.startsWith("AIzaSy")) return null;
+            if (!apiKey) return null;
             const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
             try {
                 const res = await fetch(url, {
@@ -609,19 +586,41 @@ list.appendChild(li);
             return null;
         }
 
-        // Free Public Open LLM Fallback (Pollinations AI GPT-4o API)
+        // Multi-Model Public Free AI Engine
         async function fetchFreePublicLlmResponse(prompt) {
+            // 1. Pollinations POST request
             try {
-                const sys = encodeURIComponent("You are NOVA, an autonomous AI developer co-worker architected by Hamza Abdul Karim. Provide clear, direct, expert, production-ready responses. No fluff.");
-                const p = encodeURIComponent(prompt);
-                const res = await fetch(`https://text.pollinations.ai/${p}?model=openai&system=${sys}`);
+                const res = await fetch("https://text.pollinations.ai/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        messages: [
+                            { role: "system", content: "You are NOVA OS, a world-class intelligent AI co-worker architected by Hamza Abdul Karim. Provide clear, smart, highly detailed, production-ready responses. Format using bolding, lists, and markdown." },
+                            { role: "user", content: prompt }
+                        ],
+                        model: "openai"
+                    })
+                });
                 if (res.ok) {
                     const text = await res.text();
-                    if (text && text.length > 5) return text;
+                    if (text && text.trim().length > 3) return text;
                 }
             } catch (e) {
-                console.error("Free Public LLM Error:", e);
+                console.error("Pollinations POST Error:", e);
             }
+
+            // 2. Pollinations GET request
+            try {
+                const p = encodeURIComponent(prompt);
+                const res = await fetch(`https://text.pollinations.ai/${p}?model=openai`);
+                if (res.ok) {
+                    const text = await res.text();
+                    if (text && text.trim().length > 3) return text;
+                }
+            } catch (e) {
+                console.error("Pollinations GET Error:", e);
+            }
+
             return null;
         }
 
@@ -718,44 +717,34 @@ list.appendChild(li);
 
             // 4. Direct Gemini Key Check
             const geminiKey = localStorage.getItem('key_gemini');
-            if (geminiKey && geminiKey.startsWith('AIzaSy')) {
+            if (geminiKey) {
                 const geminiResp = await fetchGeminiApiResponse(prompt, geminiKey);
                 if (geminiResp) {
-                    return `[Engine: Google Gemini 2.5 API]<br><br>${geminiResp.replace(/\n/g, '<br>')}`;
+                    return `[Engine: Google Gemini 2.5 API]<br><br>${geminiResp}`;
                 }
             }
 
             // 5. FREE PUBLIC FRONTIER AI API (Pollinations GPT-4o Engine)
             const publicLlmResp = await fetchFreePublicLlmResponse(prompt);
             if (publicLlmResp) {
-                return `[Engine: ${modelName}]<br><br>${publicLlmResp.replace(/\n/g, '<br>')}`;
+                return `[Engine: ${modelName}]<br><br>${publicLlmResp}`;
             }
 
             // 6. Greetings & Author Info
             if (normalized.includes("hi") || normalized.includes("hello") || normalized.includes("hey")) {
-                return `Hello! 👋 I am **NOVA**, your autonomous cybernetic developer co-worker architected by **Hamza Abdul Karim**. Running on **OpenNOVA Stack**.<br><br>
-                I can construct applications, write Python code, execute RAG searches, or generate artwork. Try asking:<br>
+                return `Hello! 👋 I am **NOVA**, your autonomous cybernetic developer co-worker architected by **Hamza Abdul Karim**. Running on **NOVA OS Stack**.<br><br>
+                I can construct applications, write Python code, execute RAG searches, or answer complex questions. Try asking:<br>
                 • <em>"build me a schedule for next day"</em><br>
                 • <em>"write a python code for me"</em><br>
-                • <em>"build a chatting app"</em>`;
+                • <em>"explain quantum computing"</em>`;
             }
 
             if (normalized.includes("who created") || normalized.includes("author") || normalized.includes("hamza")) {
-                return `OpenNOVA NOVA OS was architected and built by **Hamza Abdul Karim** as an ultra-fast autonomous AI operating system natively in Rust with 100% on-device privacy enforcement.`;
+                return `NOVA OS was architected and built by **Hamza Abdul Karim** as an ultra-fast autonomous AI operating system natively in Rust with 100% on-device privacy enforcement.`;
             }
 
-            // 7. Default Solution
-            return `Here is the optimal OpenNOVA solution for: *"<strong>${prompt}</strong>"*:<br><br>
-            <div class="bg-slate-950 p-3 rounded-lg border border-cyan-500/30 text-[11px] mono text-cyan-300 overflow-x-auto">
-            # OpenNOVA Solution for ${prompt}<br>
-            class OpenNOVARunner:<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, objective: str):<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.objective = objective<br><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;def run(self):<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"[NOVA] Executing objective: {self.objective}")<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {"status": "SUCCESS", "latency_ms": 0.12}
-            </div><br>
-            ✅ **Verification**: Code validated cleanly with 0 warnings.`;
+            // 7. Smart AI Reasoned Response (No Dummy Runner Code!)
+            return `I am processing your input: "**${prompt}**". NOVA OS is fully online. Ask me to write code, design an architecture, build a daily schedule, or explain any complex topic in detail!`;
         }
 
         function launchAppPreview(title, htmlCode) {
@@ -781,7 +770,7 @@ list.appendChild(li);
                 generateMedia('image');
                 addMessage("NOVA", `[Engine: ${currentModel}] Triggered 🍌 Nano Banana AI Media Engine. Rendering artwork below...`);
             } else if (lower.includes("fix") || lower.includes("check") || lower.includes("compile")) {
-                addMessage("NOVA", `[Engine: ${currentModel}] Executing Self-Healing Codebase Diagnostics (NOVA-diagnostics)....`);
+                addMessage("NOVA", `[Engine: ${currentModel}] Executing Self-Healing Codebase Diagnostics (nova-diagnostics)....`);
                 logToConsole("$ cargo check --workspace");
                 setTimeout(() => logToConsole("Finished dev profile [unoptimized + debuginfo] target(s) in 0.12s. Workspace clean."), 300);
                 addMessage("System", "🛠️ Self-Healing Diagnostics: 0 compiler errors. Applied diff patches automatically.", true);
@@ -866,9 +855,9 @@ list.appendChild(li);
         }
 
         // Preset Clicks
-        if (presetCode) presetCode.onclick = () => { modelSelector.value = "openNOVA-code"; modelSelector.onchange(); chatInput.focus(); };
-        if (presetResearch) presetResearch.onclick = () => { modelSelector.value = "openNOVA-research"; modelSelector.onchange(); chatInput.value = "run deep research search"; sendPrompt(); };
-        if (presetDigest) presetDigest.onclick = () => { modelSelector.value = "openNOVA-digest"; modelSelector.onchange(); chatInput.value = "morning digest"; sendPrompt(); };
+        if (presetCode) presetCode.onclick = () => { modelSelector.value = "nova-code"; modelSelector.onchange(); chatInput.focus(); };
+        if (presetResearch) presetResearch.onclick = () => { modelSelector.value = "nova-research"; modelSelector.onchange(); chatInput.value = "run deep research search"; sendPrompt(); };
+        if (presetDigest) presetDigest.onclick = () => { modelSelector.value = "nova-digest"; modelSelector.onchange(); chatInput.value = "morning digest"; sendPrompt(); };
         if (presetMedia) presetMedia.onclick = () => { document.getElementById('media-prompt').focus(); };
 
         // Chip Clicks
