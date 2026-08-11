@@ -3,6 +3,9 @@ use std::fs;
 use zip::ZipArchive;
 use serde::{Deserialize, Serialize};
 
+pub mod documents;
+pub use documents::{DocumentFormat, DocumentMetadata, DocumentProcessor};
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct FileEntry {
     pub path: String,

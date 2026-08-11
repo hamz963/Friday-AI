@@ -28,9 +28,11 @@ pub mod anthropic;
 pub mod gemini;
 pub mod ollama;
 pub mod crawler;
+pub mod optimizer;
 
 pub use anthropic::AnthropicProvider;
 pub use crawler::UrlCrawler;
 pub use gemini::GeminiProvider;
 pub use ollama::OllamaProvider;
 pub use openai::OpenAiProvider;
+pub use optimizer::{ModelOptimizer, SubtaskRoutingDecision, TaskCategory};

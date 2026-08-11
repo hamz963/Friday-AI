@@ -74,7 +74,7 @@ impl SelfHealingEngine {
     pub fn auto_fix(build_command: &str) -> SelfHealingResult {
         let raw_output = match TerminalSandbox::execute_command(build_command) {
             Ok(out) => out,
-            Err(err) => err,
+            Err(err) => err.to_string(),
         };
 
         let parsed_errors = Self::parse_compiler_errors(&raw_output);
