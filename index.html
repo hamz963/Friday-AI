@@ -49,7 +49,7 @@
             <div>
                 <div class="flex items-center gap-2">
                     <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-cyan-200 to-indigo-300 bg-clip-text text-transparent">F.R.I.D.A.Y. AI</span>
-                    <span class="text-[10px] bg-cyan-500/20 text-cyan-300 font-semibold px-2 py-0.5 rounded-full border border-cyan-500/30">v1.5.0 OPTIMAL</span>
+                    <span class="text-[10px] bg-cyan-500/20 text-cyan-300 font-semibold px-2 py-0.5 rounded-full border border-cyan-500/30">v1.5.0 INLINE ARTIFACTS</span>
                 </div>
                 <p class="text-[11px] text-slate-400">Autonomous Developer Coworker & Universal Model Engine</p>
             </div>
@@ -173,9 +173,9 @@
                 </div>
 
                 <!-- Main Chat Log -->
-                <div id="chat-log" class="flex-1 overflow-y-auto max-h-[420px] pr-2 flex flex-col gap-4">
+                <div id="chat-log" class="flex-1 overflow-y-auto max-h-[520px] pr-2 flex flex-col gap-4">
                     <div class="bg-cyan-500/10 border border-cyan-500/20 text-cyan-200 text-xs px-4 py-3 rounded-xl">
-                        <strong>Friday AI Assistant:</strong> Connected to <strong>Claude 3.7 Sonnet</strong> and <strong>GPT-4o</strong>! Ask me to build any application (e.g. <em>"build a chatting app"</em>, <em>"build a todo app"</em>) and I will generate complete code + an interactive live preview tab!
+                        <strong>Friday AI Assistant:</strong> Connected to <strong>Claude 3.7 Sonnet</strong> and <strong>GPT-4o</strong>! Ask me to build any application (e.g. <em>"build a chatting app"</em>, <em>"build a todo app"</em>) and I will generate and embed the **live working application directly inside your chat stream**!
                     </div>
                 </div>
 
@@ -312,12 +312,6 @@
     </footer>
 
     <script>
-        // Sanitize invalid LocalStorage Gemini keys
-        const storedGeminiKey = localStorage.getItem('key_gemini');
-        if (storedGeminiKey && !storedGeminiKey.startsWith('AIzaSy')) {
-            localStorage.removeItem('key_gemini');
-        }
-
         // DOM Elements
         const chatLog = document.getElementById('chat-log');
         const chatInput = document.getElementById('chat-input');
@@ -428,37 +422,37 @@
             } else if (sender === 'User') {
                 bubble.className = "bg-indigo-600/10 border border-indigo-500/20 text-indigo-200 text-xs px-4 py-3 rounded-xl self-end max-w-xl";
             } else {
-                bubble.className = "bg-cyan-500/10 border border-cyan-500/20 text-cyan-200 text-xs px-4 py-3 rounded-xl self-start max-w-xl leading-relaxed space-y-2";
+                bubble.className = "bg-cyan-500/10 border border-cyan-500/20 text-cyan-200 text-xs px-4 py-3 rounded-xl self-start w-full max-w-2xl leading-relaxed space-y-3";
             }
             bubble.innerHTML = `<strong>${sender}:</strong> ${text}`;
             chatLog.appendChild(bubble);
             chatLog.scrollTop = chatLog.scrollHeight;
         }
 
-        // Interactive Application Templates (Escaped to prevent script tag breaks)
+        // Interactive Live Inline Chat Application Generator Code
         const CHATTING_APP_HTML = `<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><title>Friday AI Chatting App</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
-<body class="h-screen bg-slate-950 text-slate-100 flex flex-col p-4 font-sans">
-<header class="bg-slate-900 border border-slate-800 p-3 rounded-xl flex justify-between items-center mb-3">
-<div class="font-bold text-cyan-400 flex items-center gap-2">💬 Friday AI Real-Time Chatting App</div>
-<span class="text-xs text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded">● Connected</span>
+<body class="h-full bg-slate-950 text-slate-100 flex flex-col p-3 font-sans">
+<header class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl flex justify-between items-center mb-2 text-xs">
+<div class="font-bold text-cyan-400 flex items-center gap-1.5">💬 Friday AI Real-Time Chatting App</div>
+<span class="text-[10px] text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded font-bold">● Connected</span>
 </header>
-<div id="msgs" class="flex-1 bg-slate-900/60 rounded-xl p-4 overflow-y-auto border border-slate-800 space-y-3 text-xs">
-<div class="bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 p-3 rounded-xl max-w-xs"><strong>Jarvis:</strong> Welcome to the Chatting App! Type a message below.</div>
+<div id="msgs" class="flex-1 bg-slate-900/80 rounded-xl p-3 overflow-y-auto border border-slate-800 space-y-2 text-xs min-h-[180px]">
+<div class="bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 p-2.5 rounded-xl max-w-xs"><strong>Jarvis:</strong> Welcome to your Live Built Chatting App! Type a message below to chat live.</div>
 </div>
-<div class="flex gap-2 mt-3">
-<input id="in" type="text" placeholder="Type a message..." class="bg-slate-900 border border-slate-800 text-white rounded-xl px-4 py-2.5 text-xs flex-1 focus:outline-none focus:border-cyan-500">
-<button id="sendBtn" class="bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs">Send</button>
+<div class="flex gap-2 mt-2">
+<input id="in" type="text" placeholder="Type a message..." class="bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 text-xs flex-1 focus:outline-none focus:border-cyan-500">
+<button id="sendBtn" class="bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-md">Send</button>
 </div>
 <script>
 const msgs=document.getElementById('msgs'), input=document.getElementById('in'), btn=document.getElementById('sendBtn');
 function send(){
 const val=input.value.trim(); if(!val) return; input.value='';
-const u=document.createElement('div'); u.className='bg-indigo-600/20 border border-indigo-500/30 text-indigo-200 p-3 rounded-xl max-w-xs ml-auto text-right'; u.innerHTML='<strong>You:</strong> '+val; msgs.appendChild(u); msgs.scrollTop=msgs.scrollHeight;
+const u=document.createElement('div'); u.className='bg-indigo-600/30 border border-indigo-500/40 text-indigo-100 p-2.5 rounded-xl max-w-xs ml-auto text-right'; u.innerHTML='<strong>You:</strong> '+val; msgs.appendChild(u); msgs.scrollTop=msgs.scrollHeight;
 setTimeout(()=>{
-const a=document.createElement('div'); a.className='bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 p-3 rounded-xl max-w-xs'; a.innerHTML='<strong>Jarvis:</strong> Response received for "'+val+'". All systems nominal!'; msgs.appendChild(a); msgs.scrollTop=msgs.scrollHeight;
-},600);
+const a=document.createElement('div'); a.className='bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 p-2.5 rounded-xl max-w-xs'; a.innerHTML='<strong>Jarvis:</strong> Received message: "'+val+'". Friday AI agent ready!'; msgs.appendChild(a); msgs.scrollTop=msgs.scrollHeight;
+},500);
 }
 btn.onclick=send; input.onkeydown=(e)=>{if(e.key==='Enter')send();};
 </` + `script></body></html>`;
@@ -466,22 +460,22 @@ btn.onclick=send; input.onkeydown=(e)=>{if(e.key==='Enter')send();};
         const TODO_APP_HTML = `<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"><title>Friday AI Todo App</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
-<body class="h-screen bg-slate-950 text-slate-100 flex flex-col p-4 font-sans">
-<header class="bg-slate-900 border border-slate-800 p-3 rounded-xl flex justify-between items-center mb-3">
-<div class="font-bold text-indigo-400 flex items-center gap-2">📝 Task & Todo Manager</div>
+<body class="h-full bg-slate-950 text-slate-100 flex flex-col p-3 font-sans">
+<header class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl flex justify-between items-center mb-2 text-xs">
+<div class="font-bold text-indigo-400 flex items-center gap-1.5">📝 Task & Todo Manager</div>
 </header>
-<div class="flex gap-2 mb-3">
-<input id="tIn" type="text" placeholder="Add a new task..." class="bg-slate-900 border border-slate-800 text-white rounded-xl px-4 py-2 text-xs flex-1 focus:outline-none focus:border-indigo-500">
-<button id="addBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 rounded-xl text-xs">+ Add Task</button>
+<div class="flex gap-2 mb-2">
+<input id="tIn" type="text" placeholder="Add a new task..." class="bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-1.5 text-xs flex-1 focus:outline-none focus:border-indigo-500">
+<button id="addBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-3 py-1.5 rounded-xl text-xs">+ Add Task</button>
 </div>
-<ul id="list" class="flex-1 bg-slate-900/60 rounded-xl p-3 overflow-y-auto border border-slate-800 space-y-2 text-xs">
-<li class="bg-slate-800 p-2.5 rounded-lg flex justify-between items-center"><span>Setup Friday AI Rust workspace</span><span class="text-emerald-400 font-bold">✓ Done</span></li>
+<ul id="list" class="flex-1 bg-slate-900/80 rounded-xl p-2.5 overflow-y-auto border border-slate-800 space-y-1.5 text-xs min-h-[180px]">
+<li class="bg-slate-800 p-2 rounded-lg flex justify-between items-center"><span>Setup Friday AI Rust workspace</span><span class="text-emerald-400 font-bold">✓ Done</span></li>
 </ul>
 <script>
 const list=document.getElementById('list'), input=document.getElementById('tIn'), btn=document.getElementById('addBtn');
 btn.onclick=()=>{
 const val=input.value.trim(); if(!val) return; input.value='';
-const li=document.createElement('li'); li.className='bg-slate-800 p-2.5 rounded-lg flex justify-between items-center';
+const li=document.createElement('li'); li.className='bg-slate-800 p-2 rounded-lg flex justify-between items-center';
 li.innerHTML='<span>'+val+'</span><button onclick="this.parentElement.remove()" class="text-rose-400 font-bold hover:underline">Delete</button>';
 list.appendChild(li);
 };
@@ -509,40 +503,62 @@ list.appendChild(li);
             return null;
         }
 
-        // Tailored Universal Application & Response Generator
+        // Tailored Universal Application & Response Generator (INLINE VIEWPORT RENDERING)
         async function generateSmartAiResponse(prompt, modelName) {
             const lower = prompt.toLowerCase().trim();
 
-            // 1. Direct App Generation Trigger
+            // 1. Direct App Generation Trigger with INLINE LIVE VIEWPORT
             if (lower.includes("chatting app") || lower.includes("chat app") || lower.includes("chatting")) {
                 const uniqueId = "app_chat_" + Date.now();
                 window[uniqueId] = CHATTING_APP_HTML;
+                const escapedHtml = encodeURIComponent(CHATTING_APP_HTML);
+
                 return `Here is a complete, production-ready **Real-Time Interactive Chatting Application** generated by **${modelName}**:<br><br>
+                
+                <!-- INLINE LIVE INTERACTIVE APP VIEWPORT -->
+                <div class="my-2 rounded-xl border border-cyan-500/40 overflow-hidden bg-slate-950 shadow-2xl">
+                    <div class="bg-slate-900 px-3 py-2 border-b border-slate-800 flex justify-between items-center text-xs font-bold text-cyan-400">
+                        <span>💬 Live Inline Artifact Viewport: Real-Time Chatting App</span>
+                        <button onclick="launchAppPreview('💬 Interactive Real-Time Chatting App', window['${uniqueId}'])" class="text-[10px] bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 px-2 py-0.5 rounded border border-cyan-500/40">
+                            🔍 Expand Full Screen
+                        </button>
+                    </div>
+                    <iframe srcdoc="${escapedHtml.replace(/"/g, '&quot;')}" class="w-full h-[320px] border-none bg-slate-950"></iframe>
+                </div><br>
+
                 <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-[11px] mono text-cyan-300 overflow-x-auto">
-                // Friday AI Real-Time Chatting Application<br>
+                // Friday AI Axum Rust WebSockets Backend<br>
                 use axum::{routing::get, Router};<br>
                 #[tokio::main]<br>
                 async fn main() {<br>
                 &nbsp;&nbsp;let app = Router::new().route("/ws", get(websocket_handler));<br>
                 &nbsp;&nbsp;println!("Chat server listening on port 8080");<br>
                 }
-                </div><br>
-                <button onclick="launchAppPreview('💬 Interactive Real-Time Chatting App', window['${uniqueId}'])" class="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-slate-950 font-extrabold text-xs px-4 py-2 rounded-xl shadow-lg transition-all flex items-center gap-1.5">
-                ▶️ Click Here to Launch & Try Built Chatting App Live
-                </button>`;
+                </div>`;
             }
 
             if (lower.includes("todo") || lower.includes("task app") || lower.includes("todo app")) {
                 const uniqueId = "app_todo_" + Date.now();
                 window[uniqueId] = TODO_APP_HTML;
+                const escapedHtml = encodeURIComponent(TODO_APP_HTML);
+
                 return `Here is a complete **Task & Todo Management Application** generated by **${modelName}**:<br><br>
+                
+                <!-- INLINE LIVE INTERACTIVE APP VIEWPORT -->
+                <div class="my-2 rounded-xl border border-indigo-500/40 overflow-hidden bg-slate-950 shadow-2xl">
+                    <div class="bg-slate-900 px-3 py-2 border-b border-slate-800 flex justify-between items-center text-xs font-bold text-indigo-400">
+                        <span>📝 Live Inline Artifact Viewport: Todo App</span>
+                        <button onclick="launchAppPreview('📝 Interactive Todo Application', window['${uniqueId}'])" class="text-[10px] bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 px-2 py-0.5 rounded border border-indigo-500/40">
+                            🔍 Expand Full Screen
+                        </button>
+                    </div>
+                    <iframe srcdoc="${escapedHtml.replace(/"/g, '&quot;')}" class="w-full h-[300px] border-none bg-slate-950"></iframe>
+                </div><br>
+
                 <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-[11px] mono text-indigo-300 overflow-x-auto">
                 // Todo Application State<br>
                 struct Task { id: usize, title: String, completed: bool }
-                </div><br>
-                <button onclick="launchAppPreview('📝 Interactive Todo Application', window['${uniqueId}'])" class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white font-extrabold text-xs px-4 py-2 rounded-xl shadow-lg transition-all flex items-center gap-1.5">
-                ▶️ Click Here to Launch & Try Built Todo App Live
-                </button>`;
+                </div>`;
             }
 
             // 2. Direct Gemini Key Check
