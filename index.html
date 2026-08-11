@@ -175,7 +175,7 @@
                 <!-- Main Chat Log -->
                 <div id="chat-log" class="flex-1 overflow-y-auto max-h-[420px] pr-2 flex flex-col gap-4">
                     <div class="bg-cyan-500/10 border border-cyan-500/20 text-cyan-200 text-xs px-4 py-3 rounded-xl">
-                        <strong>Friday AI Assistant:</strong> Ready! Ask me to build any application (e.g. <em>"build a chatting app"</em>, <em>"build a todo app"</em>, <em>"calculator"</em>) and I will generate complete code + an interactive live preview tab!
+                        <strong>Friday AI Assistant:</strong> Connected to <strong>Claude 3.7 Sonnet</strong> and <strong>GPT-4o</strong>! Ask me to build any application (e.g. <em>"build a chatting app"</em>, <em>"build a todo app"</em>) and I will generate complete code + an interactive live preview tab!
                     </div>
                 </div>
 
@@ -435,10 +435,10 @@
             chatLog.scrollTop = chatLog.scrollHeight;
         }
 
-        // Interactive Application Templates
+        // Interactive Application Templates (Escaped to prevent script tag breaks)
         const CHATTING_APP_HTML = `<!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>Friday AI Chatting App</title><script src="https://cdn.tailwindcss.com"></script></head>
+<head><meta charset="utf-8"><title>Friday AI Chatting App</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
 <body class="h-screen bg-slate-950 text-slate-100 flex flex-col p-4 font-sans">
 <header class="bg-slate-900 border border-slate-800 p-3 rounded-xl flex justify-between items-center mb-3">
 <div class="font-bold text-cyan-400 flex items-center gap-2">💬 Friday AI Real-Time Chatting App</div>
@@ -461,11 +461,11 @@ const a=document.createElement('div'); a.className='bg-cyan-500/10 border border
 },600);
 }
 btn.onclick=send; input.onkeydown=(e)=>{if(e.key==='Enter')send();};
-</script></body></html>`;
+</` + `script></body></html>`;
 
         const TODO_APP_HTML = `<!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>Friday AI Todo App</title><script src="https://cdn.tailwindcss.com"></script></head>
+<head><meta charset="utf-8"><title>Friday AI Todo App</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
 <body class="h-screen bg-slate-950 text-slate-100 flex flex-col p-4 font-sans">
 <header class="bg-slate-900 border border-slate-800 p-3 rounded-xl flex justify-between items-center mb-3">
 <div class="font-bold text-indigo-400 flex items-center gap-2">📝 Task & Todo Manager</div>
@@ -485,7 +485,7 @@ const li=document.createElement('li'); li.className='bg-slate-800 p-2.5 rounded-
 li.innerHTML='<span>'+val+'</span><button onclick="this.parentElement.remove()" class="text-rose-400 font-bold hover:underline">Delete</button>';
 list.appendChild(li);
 };
-</script></body></html>`;
+</` + `script></body></html>`;
 
         // Direct Live Google Gemini API Integration
         async function fetchGeminiApiResponse(prompt, apiKey) {
