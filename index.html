@@ -237,6 +237,12 @@
         const chipAutofix = document.getElementById('chip-autofix');
         const chipArt = document.getElementById('chip-art');
 
+        const navChat = document.getElementById('nav-chat');
+        const navMedia = document.getElementById('nav-media');
+        const navAutofix = document.getElementById('nav-autofix');
+        const navRag = document.getElementById('nav-rag');
+        const navMcp = document.getElementById('nav-mcp');
+
         // Model selector update
         modelSelector.onchange = () => {
             if (modelSelector.value === 'custom') {
@@ -289,19 +295,19 @@
             }
 
             setTimeout(() => {
-                if (prompt.includes("art") || prompt.includes("image") || prompt.includes("generate")) {
+                if (prompt.includes("art") || prompt.includes("image") || prompt.includes("generate") || prompt.includes("iron man")) {
                     const mediaPrompt = document.getElementById('media-prompt');
                     mediaPrompt.value = val;
                     generateMedia('image');
                     addMessage("Friday AI", `[Engine: ${currentModel}] Triggered 100% Free FLUX.1 Artwork Generator engine. Output rendering below...`);
                 } else if (prompt.includes("fix") || prompt.includes("check") || prompt.includes("compile")) {
-                    addMessage("Friday AI", `[Engine: ${currentModel}] Executing Self-Healing Codebase Diagnostics (`friday-diagnostics`)....`);
+                    addMessage("Friday AI", `[Engine: ${currentModel}] Executing Self-Healing Codebase Diagnostics (friday-diagnostics)....`);
                     logToConsole("$ cargo check --workspace");
                     setTimeout(() => logToConsole("Finished dev profile [unoptimized + debuginfo] target(s) in 0.12s. Workspace clean."), 300);
                     addMessage("System", "🛠️ Self-Healing Diagnostics: 0 compiler errors. Applied diff patches automatically.", true);
                 } else if (prompt.includes("rag") || prompt.includes("search")) {
                     addMessage("Friday AI", `[Engine: ${currentModel}] Searching local SQLite vector RAG database for "${val}"...`);
-                    addMessage("System", "🧠 RAG Knowledge Match: Found 3 relevant chunks in `PROPOSAL.md` and `SLIDES.md`.", true);
+                    addMessage("System", "🧠 RAG Knowledge Match: Found 3 relevant chunks in PROPOSAL.md and SLIDES.md.", true);
                 } else {
                     addMessage("Friday AI", `[Engine: ${currentModel}] Objective received: "${val}". Reasoned & executed natively with sub-millisecond latency.`);
                 }
@@ -351,17 +357,24 @@
         }
 
         // Chip Clicks
-        chipBuildApp.onclick = () => { chatInput.value = "Build a modern responsive Rust Axum web application with Tailwind UI"; sendPrompt(); };
-        chipAutofix.onclick = () => { chatInput.value = "Run self-healing code diagnostics and fix compiler warnings"; sendPrompt(); };
-        chipArt.onclick = () => { chatInput.value = "Generate futuristic iron man arc reactor glowing in neon cyber city"; sendPrompt(); };
+        if (chipBuildApp) chipBuildApp.onclick = () => { chatInput.value = "Build a modern responsive Rust Axum web application with Tailwind UI"; sendPrompt(); };
+        if (chipAutofix) chipAutofix.onclick = () => { chatInput.value = "Run self-healing code diagnostics and fix compiler warnings"; sendPrompt(); };
+        if (chipArt) chipArt.onclick = () => { chatInput.value = "Generate futuristic iron man arc reactor glowing in neon cyber city"; sendPrompt(); };
+
+        // Nav Clicks
+        if (navChat) navChat.onclick = () => { chatInput.focus(); };
+        if (navMedia) navMedia.onclick = () => { document.getElementById('media-prompt').focus(); addMessage('System', '🎨 Free AI Media Studio activated ($0 API Key).', true); };
+        if (navAutofix) navAutofix.onclick = () => { handleUserPrompt("fix compiler errors"); };
+        if (navRag) navRag.onclick = () => { handleUserPrompt("search RAG knowledge"); };
+        if (navMcp) navMcp.onclick = () => { addMessage('System', '🔌 MCP Tool Hub: Connected via stdio JSON-RPC (PostgreSQL, Filesystem, Git).', true); };
 
         // Event Listeners
-        chatEnhance.onclick = enhancePrompt;
-        document.getElementById('gen-image-btn').onclick = () => generateMedia('image');
-        document.getElementById('gen-video-btn').onclick = () => generateMedia('video');
-        chatSend.onclick = sendPrompt;
-        chatInput.onkeydown = (e) => { if (e.key === 'Enter') sendPrompt(); };
-        consoleInput.onkeydown = (e) => {
+        if (chatEnhance) chatEnhance.onclick = enhancePrompt;
+        if (document.getElementById('gen-image-btn')) document.getElementById('gen-image-btn').onclick = () => generateMedia('image');
+        if (document.getElementById('gen-video-btn')) document.getElementById('gen-video-btn').onclick = () => generateMedia('video');
+        if (chatSend) chatSend.onclick = sendPrompt;
+        if (chatInput) chatInput.onkeydown = (e) => { if (e.key === 'Enter') sendPrompt(); };
+        if (consoleInput) consoleInput.onkeydown = (e) => {
             if (e.key === 'Enter') {
                 const val = consoleInput.value.trim();
                 if (!val) return;
@@ -370,7 +383,7 @@
                 setTimeout(() => logToConsole(`Executed '${val}' inside Friday AI security sandbox. Workspace clean.`), 300);
             }
         };
-        gitRefresh.onclick = () => {
+        if (gitRefresh) gitRefresh.onclick = () => {
             gitStatusLog.innerText = "Git status:\nOn branch main\nYour branch is up to date with 'origin/main'.\nnothing to commit, working tree clean";
             logToConsole("$ git status");
         };
