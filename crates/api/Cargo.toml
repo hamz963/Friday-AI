@@ -13,6 +13,10 @@ friday-files = { path = "../files" }
 friday-refiner = { path = "../refiner" }
 friday-llm = { path = "../llm" }
 friday-generator = { path = "../generator" }
+friday-voice = { path = "../voice" }
+friday-diagnostics = { path = "../diagnostics" }
+friday-plugins = { path = "../plugins" }
+friday-desktop = { path = "../desktop" }
 serde = { workspace = true }
 serde_json = { workspace = true }
 tokio = { workspace = true }

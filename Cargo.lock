@@ -893,13 +893,17 @@ dependencies = [
  "axum",
  "friday-agents",
  "friday-core",
+ "friday-desktop",
+ "friday-diagnostics",
  "friday-files",
  "friday-generator",
  "friday-git",
  "friday-llm",
  "friday-memory",
+ "friday-plugins",
  "friday-refiner",
  "friday-terminal",
+ "friday-voice",
  "serde",
  "serde_json",
  "thiserror 2.0.18",
@@ -982,6 +986,7 @@ version = "0.1.0"
 dependencies = [
  "friday-core",
  "friday-terminal",
+ "regex",
  "serde",
  "serde_json",
  "thiserror 2.0.18",
@@ -1005,6 +1010,7 @@ dependencies = [
 name = "friday-generator"
 version = "0.1.0"
 dependencies = [
+ "chrono",
  "friday-core",
  "reqwest",
  "serde",

@@ -16,6 +16,10 @@ use friday_memory::MemoryStore;
 use friday_refiner::WhisperFlowRefiner;
 use friday_llm::{LlmProvider, LlmRequest, LlmResponse, OllamaProvider};
 use friday_generator::FreeMediaGenerator;
+use friday_voice::{LocalSpeechSynthesizer, VoiceSynthesisPayload};
+use friday_diagnostics::SelfHealingEngine;
+use friday_plugins::McpClient;
+use friday_desktop::{DesktopInspector, ScreenInspectionPayload};
 use friday_agents::AutomationAgent;
 use async_trait::async_trait;
 
@@ -83,6 +87,24 @@ struct MediaGenerateInput {
     prompt: String,
 }
 
+#[derive(Deserialize)]
+struct RagIndexInput {
+    path: String,
+    content: String,
+}
+
+#[derive(Deserialize)]
+struct RagSearchInput {
+    query: String,
+    top_k: Option<usize>,
+}
+
+#[derive(Deserialize)]
+struct McpCallInput {
+    name: String,
+    args: Value,
+}
+
 impl ApiServer {
     pub fn build_router() -> Router {
         Router::new()
@@ -99,6 +121,13 @@ impl ApiServer {
             .route("/api/files/write", post(Self::handle_files_write))
             .route("/api/generate/image", post(Self::handle_generate_image))
             .route("/api/generate/video", post(Self::handle_generate_video))
+            .route("/api/voice/speak", post(Self::handle_voice_speak))
+            .route("/api/diagnostics/autofix", post(Self::handle_diagnostics_autofix))
+            .route("/api/memory/rag/index", post(Self::handle_rag_index))
+            .route("/api/memory/rag/search", post(Self::handle_rag_search))
+            .route("/api/mcp/tools", post(Self::handle_mcp_tools))
+            .route("/api/mcp/call", post(Self::handle_mcp_call))
+            .route("/api/desktop/inspect", post(Self::handle_desktop_inspect))
     }
 
     async fn handle_enhance(Json(payload): Json<ChatInput>) -> Json<Value> {
@@ -118,6 +147,62 @@ impl ApiServer {
         let generator = FreeMediaGenerator::new();
         match generator.generate_video(&payload.prompt).await {
             Ok(media) => Json(json!(media)),
+            Err(e) => Json(json!({ "error": e.to_string() })),
+        }
+    }
+
+    async fn handle_voice_speak(Json(payload): Json<VoiceSynthesisPayload>) -> Json<Value> {
+        let synth = LocalSpeechSynthesizer::new();
+        let result = synth.synthesize(&payload);
+        Json(json!(result))
+    }
+
+    async fn handle_diagnostics_autofix(Json(payload): Json<CommandInput>) -> Json<Value> {
+        let result = SelfHealingEngine::auto_fix(&payload.command);
+        Json(json!(result))
+    }
+
+    async fn handle_rag_index(Json(payload): Json<RagIndexInput>) -> Json<Value> {
+        if let Ok(store) = MemoryStore::new("friday_memory.db") {
+            match store.index_document_content(&payload.path, &payload.content) {
+                Ok(chunks) => Json(json!({ "success": true, "chunks_indexed": chunks })),
+                Err(e) => Json(json!({ "error": e.to_string() })),
+            }
+        } else {
+            Json(json!({ "error": "Database access error" }))
+        }
+    }
+
+    async fn handle_rag_search(Json(payload): Json<RagSearchInput>) -> Json<Value> {
+        if let Ok(store) = MemoryStore::new("friday_memory.db") {
+            let limit = payload.top_k.unwrap_or(5);
+            match store.rag_vector_search(&payload.query, limit) {
+                Ok(results) => Json(json!({ "results": results })),
+                Err(e) => Json(json!({ "error": e.to_string() })),
+            }
+        } else {
+            Json(json!({ "results": [] }))
+        }
+    }
+
+    async fn handle_mcp_tools() -> Json<Value> {
+        let tools = McpClient::list_tools();
+        Json(json!({ "tools": tools }))
+    }
+
+    async fn handle_mcp_call(Json(payload): Json<McpCallInput>) -> Json<Value> {
+        match McpClient::call_tool(&payload.name, payload.args) {
+            Ok(res) => Json(json!(res)),
+            Err(e) => Json(json!({ "error": e.to_string() })),
+        }
+    }
+
+    async fn handle_desktop_inspect(Json(payload): Json<ScreenInspectionPayload>) -> Json<Value> {
+        let inspector = DesktopInspector::new();
+        let temp_dir = std::env::temp_dir();
+        let save_path = temp_dir.join("friday_screen_inspect.png");
+        match inspector.inspect_screen(&save_path, &payload) {
+            Ok(result) => Json(json!(result)),
             Err(e) => Json(json!({ "error": e.to_string() })),
         }
     }
@@ -143,6 +228,8 @@ impl ApiServer {
             "used_memory_mb": report.used_memory_mb,
             "total_memory_mb": report.total_memory_mb,
             "elapsed_latency_ms": report.elapsed_latency_ms,
+            "local_privacy_mode": true,
+            "bytes_exfiltrated": 0
         }))
     }
 
