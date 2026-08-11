@@ -1,0 +1,21 @@
+{
+  "name": "friday-ai-assistant",
+  "version": "1.5.0",
+  "description": "Friday AI Assistant - Autonomous AI Operating System & SaaS Web Demo Portal",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Build complete'",
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "ai",
+    "assistant",
+    "rust",
+    "claude-3-7",
+    "gpt-4o",
+    "deepseek-r1",
+    "gemini-2-5"
+  ],
+  "author": "Hamza Abdul Karim",
+  "license": "MIT"
+}
