@@ -214,7 +214,7 @@
                         <div class="font-extrabold text-sm text-cyan-300 flex items-center gap-2">
                             <span>✨ NOVA OS — Autonomous Luminous Operating System Online</span>
                         </div>
-                        <div>Welcome! I am <strong>NOVA OS</strong>, your clean, powerful, luminous AI operating system co-worker. Ask me to <strong>build a schedule</strong>, <strong>write python code</strong>, <strong>construct chatting apps</strong>, or <strong>deep research briefs</strong>!</div>
+                        <div>Welcome! I am <strong>NOVA OS</strong>, your clean, powerful, luminous AI operating system co-worker powered by real LLM models. Ask me anything!</div>
                     </div>
                 </div>
 
@@ -473,7 +473,7 @@
                 bubble.className = "bg-slate-900/90 border border-cyan-500/30 text-slate-100 text-xs px-4 py-3.5 rounded-xl self-start w-full max-w-2xl leading-relaxed space-y-3 shadow-xl";
                 chatLog.appendChild(bubble);
 
-                if (text.includes("<iframe") || text.includes("<div")) {
+                if (text.includes("<iframe") || text.includes("<div class=\"my-2")) {
                     bubble.innerHTML = `<strong>NOVA:</strong> ${text}`;
                     chatLog.scrollTop = chatLog.scrollHeight;
                 } else {
@@ -487,6 +487,19 @@
                     bubble.appendChild(cursor);
 
                     const formattedText = text
+                        .replace(/```(html|xml)([\s\S]*?)```/gi, (match, lang, code) => {
+                            const uniqueId = "app_gen_" + Date.now();
+                            window[uniqueId] = code.trim();
+                            const escapedHtml = encodeURIComponent(code.trim());
+                            return `<div class="my-3 rounded-xl border border-cyan-500/40 overflow-hidden bg-slate-950 shadow-2xl">
+                                <div class="bg-slate-900 px-3 py-2 border-b border-slate-800 flex justify-between items-center text-xs font-bold text-cyan-400">
+                                    <span>🚀 Live AI-Generated Application Preview</span>
+                                    <button onclick="launchAppPreview('🚀 AI Generated Application', window['${uniqueId}'])" class="text-[10px] bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 px-2 py-0.5 rounded border border-cyan-500/40">🔍 Full Screen</button>
+                                </div>
+                                <iframe srcdoc="${escapedHtml.replace(/"/g, '&quot;')}" class="w-full h-[300px] border-none bg-slate-950"></iframe>
+                            </div>`;
+                        })
+                        .replace(/```([a-z]*)\n([\s\S]*?)```/gi, '<div class="bg-slate-950 p-3 rounded-lg border border-cyan-500/30 text-[11px] mono text-emerald-300 overflow-x-auto my-2">$2</div>')
                         .replace(/\n\n/g, '<br><br>')
                         .replace(/\n/g, '<br>')
                         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
@@ -494,7 +507,7 @@
                         .replace(/`([^`]+)`/g, '<code class="bg-slate-950 border border-cyan-500/30 text-cyan-300 px-1 py-0.5 rounded mono">$1</code>');
 
                     const timer = setInterval(() => {
-                        currentLength += 4;
+                        currentLength += 5;
                         if (currentLength >= formattedText.length) {
                             contentSpan.innerHTML = formattedText;
                             cursor.remove();
@@ -504,247 +517,110 @@
                             contentSpan.innerHTML = formattedText.substring(0, currentLength);
                         }
                         chatLog.scrollTop = chatLog.scrollHeight;
-                    }, 15);
+                    }, 12);
                 }
             }
         }
 
-        // Live Interactive Application Templates
-        const CHATTING_APP_HTML = `<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><title>NOVA OS Chat App</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
-<body class="h-full bg-slate-950 text-slate-100 flex flex-col p-3 font-sans">
-<header class="bg-slate-900 border border-cyan-500/30 p-2.5 rounded-xl flex justify-between items-center mb-2 text-xs">
-<div class="font-bold text-cyan-400 flex items-center gap-1.5">💬 NOVA Real-Time Chatting App</div>
-<span class="text-[10px] text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded font-bold">● Connected</span>
-</header>
-<div id="msgs" class="flex-1 bg-slate-900/80 rounded-xl p-3 overflow-y-auto border border-slate-800 space-y-2 text-xs min-h-[180px]">
-<div class="bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 p-2.5 rounded-xl max-w-xs"><strong>NOVA:</strong> Welcome to your Live Built Chatting App! Type a message below to chat live.</div>
-</div>
-<div class="flex gap-2 mt-2">
-<input id="in" type="text" placeholder="Type a message..." class="bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 text-xs flex-1 focus:outline-none focus:border-cyan-500">
-<button id="sendBtn" class="bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-md">Send</button>
-</div>
-<script>
-const msgs=document.getElementById('msgs'), input=document.getElementById('in'), btn=document.getElementById('sendBtn');
-function send(){
-const val=input.value.trim(); if(!val) return; input.value='';
-const u=document.createElement('div'); u.className='bg-indigo-600/30 border border-indigo-500/40 text-indigo-100 p-2.5 rounded-xl max-w-xs ml-auto text-right'; u.innerHTML='<strong>You:</strong> '+val; msgs.appendChild(u); msgs.scrollTop=msgs.scrollHeight;
-setTimeout(()=>{
-const a=document.createElement('div'); a.className='bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 p-2.5 rounded-xl max-w-xs'; a.innerHTML='<strong>NOVA:</strong> Received message: "'+val+'". NOVA OS agent ready!'; msgs.appendChild(a); msgs.scrollTop=msgs.scrollHeight;
-},500);
-}
-btn.onclick=send; input.onkeydown=(e)=>{if(e.key==='Enter')send();};
-</` + `script></body></html>`;
+        // REAL FRONTIER AI MODEL CALLER (100% Dynamic - Zero Static Templates)
+        async function queryRealLlmModel(prompt, modelName) {
+            const systemPrompt = `You are NOVA OS, an ultra-intelligent, highly capable autonomous AI system co-worker architected by Hamza Abdul Karim.
+Answer every prompt dynamically and intelligently. NEVER use hardcoded generic templates or filler text.
+If the user asks for code (Python, Rust, JavaScript, etc.), provide complete, working, high-quality code with comments.
+If the user asks for a schedule, routine, or plan, generate a clear, comprehensive, detailed daily schedule with time slots.
+If the user asks for an app or website, write clean HTML, Tailwind CSS, and JavaScript. Format clearly using Markdown.`;
 
-        const SCHEDULE_APP_HTML = `<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><title>NOVA OS Daily Schedule</title><script src="https://cdn.tailwindcss.com"></` + `script></head>
-<body class="h-full bg-slate-950 text-slate-100 flex flex-col p-3 font-sans">
-<header class="bg-slate-900 border border-amber-500/30 p-2.5 rounded-xl flex justify-between items-center mb-2 text-xs">
-<div class="font-bold text-amber-400 flex items-center gap-1.5">📅 Tomorrow's Daily Schedule & Timetable</div>
-<span class="text-[10px] text-amber-300 bg-amber-500/20 px-2 py-0.5 rounded font-bold">Priority High</span>
-</header>
-<div id="schedList" class="flex-1 bg-slate-900/80 rounded-xl p-2.5 overflow-y-auto border border-slate-800 space-y-2 text-xs min-h-[190px]">
-<div class="bg-slate-800 p-2.5 rounded-lg border-l-4 border-cyan-400 flex justify-between items-center"><div><div class="font-bold text-cyan-300">08:00 AM - 09:00 AM</div><div>Morning Exercise & Cybernetic Briefing</div></div><span class="text-emerald-400 font-bold">✓ Ready</span></div>
-<div class="bg-slate-800 p-2.5 rounded-lg border-l-4 border-indigo-400 flex justify-between items-center"><div><div class="font-bold text-indigo-300">09:30 AM - 01:00 PM</div><div>Core AI Architecture & Development Session</div></div><span class="text-amber-400 font-bold">● Scheduled</span></div>
-<div class="bg-slate-800 p-2.5 rounded-lg border-l-4 border-purple-400 flex justify-between items-center"><div><div class="font-bold text-purple-300">02:00 PM - 05:00 PM</div><div>Project Review & NOVA OS Codebase Sync</div></div><span class="text-amber-400 font-bold">● Scheduled</span></div>
-</div>
-<div class="flex gap-2 mt-2">
-<input id="sIn" type="text" placeholder="Add schedule item (e.g. 06:00 PM Dinner)..." class="bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-1.5 text-xs flex-1 focus:outline-none focus:border-amber-500">
-<button id="addSchedBtn" class="bg-amber-600 hover:bg-amber-700 text-slate-950 font-bold px-3 py-1.5 rounded-xl text-xs">+ Add Event</button>
-</div>
-<script>
-const list=document.getElementById('schedList'), input=document.getElementById('sIn'), btn=document.getElementById('addSchedBtn');
-btn.onclick=()=>{
-const val=input.value.trim(); if(!val) return; input.value='';
-const d=document.createElement('div'); d.className='bg-slate-800 p-2.5 rounded-lg border-l-4 border-amber-400 flex justify-between items-center';
-d.innerHTML='<div><div class="font-bold text-amber-300">Custom Event</div><div>'+val+'</div></div><button onclick="this.parentElement.remove()" class="text-rose-400 font-bold hover:underline">Delete</button>';
-list.appendChild(d);
-};
-</` + `script></body></html>`;
-
-        // Direct Live Google Gemini API Integration
-        async function fetchGeminiApiResponse(prompt, apiKey) {
-            if (!apiKey) return null;
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-            try {
-                const res = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-                });
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-                        return data.candidates[0].content.parts[0].text;
+            // 1. Check Gemini Key
+            const geminiKey = localStorage.getItem('key_gemini');
+            if (geminiKey && geminiKey.trim().length > 10) {
+                try {
+                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: systemPrompt + "\n\nUser Input: " + prompt }] }]
+                        })
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+                            return data.candidates[0].content.parts[0].text;
+                        }
                     }
+                } catch (e) {
+                    console.error("Gemini API Error:", e);
                 }
-            } catch (e) {
-                console.error("Gemini API Error:", e);
             }
-            return null;
-        }
 
-        // Multi-Model Public Free AI Engine
-        async function fetchFreePublicLlmResponse(prompt) {
-            // 1. Pollinations POST request
+            // 2. Check OpenAI Key
+            const openaiKey = localStorage.getItem('key_openai');
+            if (openaiKey && openaiKey.startsWith('sk-')) {
+                try {
+                    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${openaiKey}`
+                        },
+                        body: JSON.stringify({
+                            model: "gpt-4o",
+                            messages: [
+                                { role: "system", content: systemPrompt },
+                                { role: "user", content: prompt }
+                            ]
+                        })
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data.choices && data.choices[0]) {
+                            return data.choices[0].message.content;
+                        }
+                    }
+                } catch (e) {
+                    console.error("OpenAI API Error:", e);
+                }
+            }
+
+            // 3. Pollinations POST Free Live LLM Engine
             try {
                 const res = await fetch("https://text.pollinations.ai/", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         messages: [
-                            { role: "system", content: "You are NOVA OS, a world-class intelligent AI co-worker architected by Hamza Abdul Karim. Provide clear, smart, highly detailed, production-ready responses. Format using bolding, lists, and markdown." },
+                            { role: "system", content: systemPrompt },
                             { role: "user", content: prompt }
                         ],
-                        model: "openai"
+                        model: "openai",
+                        seed: Math.floor(Math.random() * 100000)
                     })
                 });
                 if (res.ok) {
                     const text = await res.text();
-                    if (text && text.trim().length > 3) return text;
+                    if (text && text.trim().length > 5) return text;
                 }
             } catch (e) {
                 console.error("Pollinations POST Error:", e);
             }
 
-            // 2. Pollinations GET request
+            // 4. Pollinations GET Fallback
             try {
-                const p = encodeURIComponent(prompt);
-                const res = await fetch(`https://text.pollinations.ai/${p}?model=openai`);
+                const url = `https://text.pollinations.ai/${encodeURIComponent(prompt)}?system=${encodeURIComponent(systemPrompt)}&model=openai`;
+                const res = await fetch(url);
                 if (res.ok) {
                     const text = await res.text();
-                    if (text && text.trim().length > 3) return text;
+                    if (text && text.trim().length > 5) return text;
                 }
             } catch (e) {
                 console.error("Pollinations GET Error:", e);
             }
 
-            return null;
+            return `NOVA OS Engine Response for "${prompt}": Please add your Google Gemini or OpenAI API Key in ⚙️ Keys settings to enable direct unthrottled cloud model responses.`;
         }
 
-        // OpenNOVA Smart Response Generator with Typo Normalizer
         async function generateSmartAiResponse(prompt, modelName) {
-            let normalized = prompt.toLowerCase().trim()
-                .replace(/\bcpde\b/g, "code")
-                .replace(/\bbuil\b/g, "build")
-                .replace(/\bapplicaion\b/g, "application")
-                .replace(/\bpyton\b/g, "python")
-                .replace(/\bscrapr\b/g, "scraper");
-
-            // 1. SCHEDULE & TIMETABLE REQUESTS ("schedule", "timetable", "routine", "planner", "calendar")
-            if (normalized.includes("schedule") || normalized.includes("timetable") || normalized.includes("routine") || normalized.includes("planner") || normalized.includes("calendar")) {
-                const uniqueId = "app_sched_" + Date.now();
-                window[uniqueId] = SCHEDULE_APP_HTML;
-                const escapedHtml = encodeURIComponent(SCHEDULE_APP_HTML);
-
-                return `Here is a complete **Tomorrow's Daily Schedule & Timetable Application** built & generated by **NOVA**:<br><br>
-                
-                <!-- INLINE LIVE INTERACTIVE APP VIEWPORT -->
-                <div class="my-2 rounded-xl border border-amber-500/40 overflow-hidden bg-slate-950 shadow-2xl">
-                    <div class="bg-slate-900 px-3 py-2 border-b border-slate-800 flex justify-between items-center text-xs font-bold text-amber-400">
-                        <span>📅 Live Inline Artifact Viewport: Daily Schedule Planner</span>
-                        <button onclick="launchAppPreview('📅 Interactive Daily Schedule', window['${uniqueId}'])" class="text-[10px] bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 px-2 py-0.5 rounded border border-amber-500/40">
-                            🔍 Expand Full Screen
-                        </button>
-                    </div>
-                    <iframe srcdoc="${escapedHtml.replace(/"/g, '&quot;')}" class="w-full h-[320px] border-none bg-slate-950"></iframe>
-                </div><br>
-
-                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-[11px] mono text-amber-300 overflow-x-auto">
-                // NOVA OS Schedule Engine Payload<br>
-                struct ScheduleTask { time_slot: String, title: String, priority: String }
-                </div>`;
-            }
-
-            // 2. PYTHON CODE REQUESTS ("python", "code", "script")
-            if (normalized.includes("python") || normalized.includes("script")) {
-                return `Here is a complete, production-ready **Python Web Scraper & Automation Suite** generated by **NOVA**:<br><br>
-                <div class="bg-slate-950 p-4 rounded-xl border border-cyan-500/30 text-[11px] mono text-emerald-300 overflow-x-auto leading-relaxed">
-                # OpenNOVA Production Python Web Scraper & Data Extractor<br>
-                import requests<br>
-                from bs4 import BeautifulSoup<br>
-                import json<br><br>
-                class OpenNOVAScraper:<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;def __init__(self, target_url: str):<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.target_url = target_url<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.headers = {"User-Agent": "OpenNOVA-Bot/2.0"}<br><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;def fetch_and_parse(self):<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(f"[NOVA] Requesting URL: {self.target_url}")<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response = requests.get(self.target_url, headers=self.headers)<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if response.status_code == 200:<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;soup = BeautifulSoup(response.text, 'html.parser')<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;titles = [t.text.strip() for t in soup.find_all(['h1', 'h2', 'h3'])]<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return { "status": 200, "headings": titles[:5] }<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {"status": response.status_code, "error": "Request failed"}<br><br>
-                if __name__ == "__main__":<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;scraper = OpenNOVAScraper("https://news.ycombinator.com")<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;print(json.dumps(scraper.fetch_and_parse(), indent=2))
-                </div><br>
-                ✅ **Execution Statistics**: Code syntax validated cleanly. 0 dependencies missing.`;
-            }
-
-            // 3. LIVE INTERACTIVE APPLICATION REQUESTS ("application", "app", "website", "chatting")
-            if (normalized.includes("application") || normalized.includes("app") || normalized.includes("website") || normalized.includes("chatting")) {
-                const uniqueId = "app_chat_" + Date.now();
-                window[uniqueId] = CHATTING_APP_HTML;
-                const escapedHtml = encodeURIComponent(CHATTING_APP_HTML);
-
-                return `Here is a complete **Real-Time Interactive Application** built & generated by **NOVA**:<br><br>
-                
-                <!-- INLINE LIVE INTERACTIVE APP VIEWPORT -->
-                <div class="my-2 rounded-xl border border-cyan-500/40 overflow-hidden bg-slate-950 shadow-2xl">
-                    <div class="bg-slate-900 px-3 py-2 border-b border-slate-800 flex justify-between items-center text-xs font-bold text-cyan-400">
-                        <span>💬 Live Inline Artifact Viewport: Chatting Application</span>
-                        <button onclick="launchAppPreview('💬 Interactive Real-Time Chatting App', window['${uniqueId}'])" class="text-[10px] bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 px-2 py-0.5 rounded border border-cyan-500/40">
-                            🔍 Expand Full Screen
-                        </button>
-                    </div>
-                    <iframe srcdoc="${escapedHtml.replace(/"/g, '&quot;')}" class="w-full h-[320px] border-none bg-slate-950"></iframe>
-                </div><br>
-
-                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-[11px] mono text-cyan-300 overflow-x-auto">
-                // NOVA OS Axum Rust WebSockets Backend<br>
-                use axum::{routing::get, Router};<br>
-                #[tokio::main]<br>
-                async fn main() {<br>
-                &nbsp;&nbsp;let app = Router::new().route("/ws", get(websocket_handler));<br>
-                &nbsp;&nbsp;println!("Chat server listening on port 8080");<br>
-                }
-                </div>`;
-            }
-
-            // 4. Direct Gemini Key Check
-            const geminiKey = localStorage.getItem('key_gemini');
-            if (geminiKey) {
-                const geminiResp = await fetchGeminiApiResponse(prompt, geminiKey);
-                if (geminiResp) {
-                    return `[Engine: Google Gemini 2.5 API]<br><br>${geminiResp}`;
-                }
-            }
-
-            // 5. FREE PUBLIC FRONTIER AI API (Pollinations GPT-4o Engine)
-            const publicLlmResp = await fetchFreePublicLlmResponse(prompt);
-            if (publicLlmResp) {
-                return `[Engine: ${modelName}]<br><br>${publicLlmResp}`;
-            }
-
-            // 6. Greetings & Author Info
-            if (normalized.includes("hi") || normalized.includes("hello") || normalized.includes("hey")) {
-                return `Hello! 👋 I am **NOVA**, your autonomous cybernetic developer co-worker architected by **Hamza Abdul Karim**. Running on **NOVA OS Stack**.<br><br>
-                I can construct applications, write Python code, execute RAG searches, or answer complex questions. Try asking:<br>
-                • <em>"build me a schedule for next day"</em><br>
-                • <em>"write a python code for me"</em><br>
-                • <em>"explain quantum computing"</em>`;
-            }
-
-            if (normalized.includes("who created") || normalized.includes("author") || normalized.includes("hamza")) {
-                return `NOVA OS was architected and built by **Hamza Abdul Karim** as an ultra-fast autonomous AI operating system natively in Rust with 100% on-device privacy enforcement.`;
-            }
-
-            // 7. Smart AI Reasoned Response (No Dummy Runner Code!)
-            return `I am processing your input: "**${prompt}**". NOVA OS is fully online. Ask me to write code, design an architecture, build a daily schedule, or explain any complex topic in detail!`;
+            const aiResponse = await queryRealLlmModel(prompt, modelName);
+            return aiResponse;
         }
 
         function launchAppPreview(title, htmlCode) {
@@ -764,7 +640,7 @@ list.appendChild(d);
             }
 
             const lower = val.toLowerCase();
-            if (lower.includes("art") || lower.includes("image") || lower.includes("generate") || lower.includes("lion") || lower.includes("iron man")) {
+            if (lower.includes("art") || lower.includes("image") || lower.includes("generate image") || lower.includes("photorealism")) {
                 const mediaPrompt = document.getElementById('media-prompt');
                 mediaPrompt.value = val;
                 generateMedia('image');
@@ -774,7 +650,7 @@ list.appendChild(d);
                 logToConsole("$ cargo check --workspace");
                 setTimeout(() => logToConsole("Finished dev profile [unoptimized + debuginfo] target(s) in 0.12s. Workspace clean."), 300);
                 addMessage("System", "🛠️ Self-Healing Diagnostics: 0 compiler errors. Applied diff patches automatically.", true);
-            } else if (lower.includes("rag") || lower.includes("search")) {
+            } else if (lower.includes("rag") || lower.includes("search vector")) {
                 addMessage("NOVA", `[Engine: ${currentModel}] Searching local SQLite vector RAG database for "${val}"...`);
                 addMessage("System", "🧠 RAG Knowledge Match: Found 3 relevant chunks in PROPOSAL.md and SLIDES.md.", true);
             } else {
@@ -862,8 +738,8 @@ list.appendChild(d);
 
         // Chip Clicks
         if (chipSchedule) chipSchedule.onclick = () => { chatInput.value = "build me a schedule for next day"; sendPrompt(); };
-        if (chipBuildChatApp) chipBuildChatApp.onclick = () => { chatInput.value = "I am asking you to build a chatting app"; sendPrompt(); };
-        if (chipPython) chipPython.onclick = () => { chatInput.value = "write a python code for me"; sendPrompt(); };
+        if (chipBuildChatApp) chipBuildChatApp.onclick = () => { chatInput.value = "build a chatting app in html and javascript"; sendPrompt(); };
+        if (chipPython) chipPython.onclick = () => { chatInput.value = "write a python web scraper script"; sendPrompt(); };
 
         // Event Listeners
         if (chatEnhance) chatEnhance.onclick = enhancePrompt;
