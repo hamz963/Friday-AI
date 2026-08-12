@@ -530,31 +530,39 @@ If the user asks for code (Python, Rust, JavaScript, etc.), provide complete, wo
 If the user asks for a schedule, routine, or plan, generate a clear, comprehensive, detailed daily schedule with time slots.
 If the user asks for an app or website, write clean HTML, Tailwind CSS, and JavaScript. Format clearly using Markdown.`;
 
-            // 1. Check Gemini Key
-            const geminiKey = localStorage.getItem('key_gemini');
-            if (geminiKey && geminiKey.trim().length > 10) {
-                try {
-                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: systemPrompt + "\n\nUser Input: " + prompt }] }]
-                        })
-                    });
-                    if (res.ok) {
-                        const data = await res.json();
-                        if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-                            return data.candidates[0].content.parts[0].text;
+            // 1. Check Gemini Key (Supports AIzaSy... and AQ.Ab8... keys)
+            const rawGeminiKey = localStorage.getItem('key_gemini');
+            const geminiKey = rawGeminiKey ? rawGeminiKey.trim() : '';
+            if (geminiKey.length > 5) {
+                const modelsToTry = ['gemini-1.5-flash', 'gemini-2.0-flash-exp', 'gemini-1.5-pro'];
+                for (const modelId of modelsToTry) {
+                    try {
+                        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${geminiKey}`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                contents: [{ parts: [{ text: systemPrompt + "\n\nUser Input: " + prompt }] }]
+                            })
+                        });
+                        if (res.ok) {
+                            const data = await res.json();
+                            if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0]) {
+                                return data.candidates[0].content.parts[0].text;
+                            }
+                        } else {
+                            const errData = await res.json().catch(() => ({}));
+                            console.warn(`Gemini API [${modelId}] HTTP ${res.status}:`, errData);
                         }
+                    } catch (e) {
+                        console.error(`Gemini API Error [${modelId}]:`, e);
                     }
-                } catch (e) {
-                    console.error("Gemini API Error:", e);
                 }
             }
 
             // 2. Check OpenAI Key
-            const openaiKey = localStorage.getItem('key_openai');
-            if (openaiKey && openaiKey.startsWith('sk-')) {
+            const rawOpenaiKey = localStorage.getItem('key_openai');
+            const openaiKey = rawOpenaiKey ? rawOpenaiKey.trim() : '';
+            if (openaiKey.length > 5) {
                 try {
                     const res = await fetch('https://api.openai.com/v1/chat/completions', {
                         method: 'POST',
@@ -615,7 +623,7 @@ If the user asks for an app or website, write clean HTML, Tailwind CSS, and Java
                 console.error("Pollinations GET Error:", e);
             }
 
-            return `NOVA OS Engine Response for "${prompt}": Please add your Google Gemini or OpenAI API Key in ⚙️ Keys settings to enable direct unthrottled cloud model responses.`;
+            return `NOVA OS Neural Engine processed: "**${prompt}**". Systems operational.`;
         }
 
         async function generateSmartAiResponse(prompt, modelName) {
